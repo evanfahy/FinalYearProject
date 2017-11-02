@@ -40,9 +40,9 @@ void main(void) {
     for (int i=0; i<4; i++){
     
         Pin6_ON;
-        __delay_ms(1000);
+        __delay_ms(2000);
         Pin6_OFF;
-        __delay_ms(1000);
+        __delay_ms(2000);
     }
    
     return 0;
