@@ -1,5 +1,47 @@
 Version 3.2 HI-TECH Software Intermediate Code
+"23 IO_Controls.h
+[s S293 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S293 . TxPin RxPin RCD_FaultPinDIN ResetButtonPinDin Pin3 ShortTripSCRPinOut NoPin_RA6 NoPin_RA7 ]
+"21
+[u S292 `uc 1 `S293 1 ]
+[n S292 . portAByte bits ]
+"38
+[s S295 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S295 . VccSensePinAIN FaultLEDPinOut ClosePinOut MainsSensePinAIN Pin6 TripPinOut NoPin_RC6 NoPin_RC7 ]
+"36
+[u S294 `uc 1 `S295 1 ]
+[n S294 . portCByte bits ]
+"1696 C:\Program Files (x86)\Microchip\xc8\v1.44\include\pic16f1823.h
+[v _OPTION_REG `Vuc ~T0 @X0 0 e@149 ]
+"2283
+[v _LATA `Vuc ~T0 @X0 0 e@268 ]
+"3113
+[v _ANSELA `Vuc ~T0 @X0 0 e@396 ]
+"1489
+[v _TRISA `Vuc ~T0 @X0 0 e@140 ]
+"2328
+[v _LATC `Vuc ~T0 @X0 0 e@270 ]
+"3160
+[v _ANSELC `Vuc ~T0 @X0 0 e@398 ]
+"1539
+[v _TRISC `Vuc ~T0 @X0 0 e@142 ]
+"427
+[v _PORTA `Vuc ~T0 @X0 0 e@12 ]
+"682
+[v _PORTC `Vuc ~T0 @X0 0 e@14 ]
 [p mainexit ]
+"1947
+[v _OSCCON `Vuc ~T0 @X0 0 e@153 ]
+"5971
+[v _HFIOFR `Vb ~T0 @X0 0 e@1236 ]
+"349
+[v _INTCON `Vuc ~T0 @X0 0 e@11 ]
+"5963
+[v _GIE `Vb ~T0 @X0 0 e@95 ]
+[v F2436 `(v ~T0 @X0 1 tf1`ul ]
+"153 C:\Program Files (x86)\Microchip\xc8\v1.44\include\pic.h
+[v __delay `JF2436 ~T0 @X0 0 e ]
+[p i __delay ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -2342,17 +2384,237 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 193: extern __bank0 unsigned char __resetbits;
 [; ;pic.h: 194: extern __bank0 __bit __powerdown;
 [; ;pic.h: 195: extern __bank0 __bit __timeout;
+[; ;math.h: 30: extern double fabs(double);
+[; ;math.h: 31: extern double floor(double);
+[; ;math.h: 32: extern double ceil(double);
+[; ;math.h: 33: extern double modf(double, double *);
+[; ;math.h: 34: extern double sqrt(double);
+[; ;math.h: 35: extern double atof(const char *);
+[; ;math.h: 36: extern double sin(double) ;
+[; ;math.h: 37: extern double cos(double) ;
+[; ;math.h: 38: extern double tan(double) ;
+[; ;math.h: 39: extern double asin(double) ;
+[; ;math.h: 40: extern double acos(double) ;
+[; ;math.h: 41: extern double atan(double);
+[; ;math.h: 42: extern double atan2(double, double) ;
+[; ;math.h: 43: extern double log(double);
+[; ;math.h: 44: extern double log10(double);
+[; ;math.h: 45: extern double pow(double, double) ;
+[; ;math.h: 46: extern double exp(double) ;
+[; ;math.h: 47: extern double sinh(double) ;
+[; ;math.h: 48: extern double cosh(double) ;
+[; ;math.h: 49: extern double tanh(double);
+[; ;math.h: 50: extern double eval_poly(double, const double *, int);
+[; ;math.h: 51: extern double frexp(double, int *);
+[; ;math.h: 52: extern double ldexp(double, int);
+[; ;math.h: 53: extern double fmod(double, double);
+[; ;math.h: 54: extern double trunc(double);
+[; ;math.h: 55: extern double round(double);
+"24 DeviceConfig.h
+[p x FOSC=INTOSC ]
+"25
+[p x CLKOUTEN=OFF ]
+"26
+[p x IESO=OFF ]
+"27
+[p x PLLEN=OFF ]
+"28
+[p x FCMEN=OFF ]
+"31
+[p x PWRTE=ON ]
+"32
+[p x MCLRE=OFF ]
+"33
+[p x BOREN=ON ]
+"34
+[p x BORV=LO ]
+"35
+[p x STVREN=ON ]
+"36
+[p x WDTE=ON ]
+"39
+[p x WRT=OFF ]
+"40
+[p x CP=OFF ]
+"41
+[p x CPD=OFF ]
+"42
+[p x LVP=OFF ]
+[; ;IO_Controls.h: 14: void InitialisePorts (void);
+[; ;IO_Controls.h: 15: void LEDPin(char OnOff);
+[; ;IO_Controls.h: 16: void PIN3(char OnOff);
+[; ;IO_Controls.h: 17: void PIN6(char OnOff);
+"33 IO_Controls.h
+[v _portA `S292 ~T0 @X0 1 e ]
+[; ;IO_Controls.h: 21: union {
+[; ;IO_Controls.h: 22: unsigned char portAByte;
+[; ;IO_Controls.h: 23: struct{
+[; ;IO_Controls.h: 24: unsigned TxPin:1;
+[; ;IO_Controls.h: 25: unsigned RxPin:1;
+[; ;IO_Controls.h: 26: unsigned RCD_FaultPinDIN:1;
+[; ;IO_Controls.h: 27: unsigned ResetButtonPinDin:1;
+[; ;IO_Controls.h: 28: unsigned Pin3:1;
+[; ;IO_Controls.h: 29: unsigned ShortTripSCRPinOut:1;
+[; ;IO_Controls.h: 30: unsigned NoPin_RA6:1;
+[; ;IO_Controls.h: 31: unsigned NoPin_RA7:1;
+[; ;IO_Controls.h: 32: } bits;
+[; ;IO_Controls.h: 33: }portA;
+"48
+[v _portC `S294 ~T0 @X0 1 e ]
+[; ;IO_Controls.h: 36: union {
+[; ;IO_Controls.h: 37: unsigned char portCByte;
+[; ;IO_Controls.h: 38: struct{
+[; ;IO_Controls.h: 39: unsigned VccSensePinAIN:1;
+[; ;IO_Controls.h: 40: unsigned FaultLEDPinOut:1;
+[; ;IO_Controls.h: 41: unsigned ClosePinOut:1;
+[; ;IO_Controls.h: 42: unsigned MainsSensePinAIN:1;
+[; ;IO_Controls.h: 43: unsigned Pin6:1;
+[; ;IO_Controls.h: 44: unsigned TripPinOut:1;
+[; ;IO_Controls.h: 45: unsigned NoPin_RC6:1;
+[; ;IO_Controls.h: 46: unsigned NoPin_RC7:1;
+[; ;IO_Controls.h: 47: } bits;
+[; ;IO_Controls.h: 48: }portC;
+"51
+[v _InitialisePorts `(v ~T0 @X0 1 ef ]
+{
+[; ;IO_Controls.h: 51: void InitialisePorts(void){
+[e :U _InitialisePorts ]
+[f ]
+[; ;IO_Controls.h: 53: OPTION_REG = 0b10000000;
+"53
+[e = _OPTION_REG -> -> 128 `i `uc ]
+[; ;IO_Controls.h: 69: portA.portAByte = 0;
+"69
+[e = . _portA 0 -> -> 0 `i `uc ]
+[; ;IO_Controls.h: 70: LATA = 0;
+"70
+[e = _LATA -> -> 0 `i `uc ]
+[; ;IO_Controls.h: 71: ANSELA = 0;
+"71
+[e = _ANSELA -> -> 0 `i `uc ]
+[; ;IO_Controls.h: 72: TRISA = 0b00001110;
+"72
+[e = _TRISA -> -> 14 `i `uc ]
+[; ;IO_Controls.h: 84: portC.portCByte = 0;
+"84
+[e = . _portC 0 -> -> 0 `i `uc ]
+[; ;IO_Controls.h: 85: LATC = 0;
+"85
+[e = _LATC -> -> 0 `i `uc ]
+[; ;IO_Controls.h: 86: ANSELC = 0b00001001;
+"86
+[e = _ANSELC -> -> 9 `i `uc ]
+[; ;IO_Controls.h: 89: TRISC = 0b00001001;
+"89
+[e = _TRISC -> -> 9 `i `uc ]
+[; ;IO_Controls.h: 92: return;
+"92
+[e $UE 296  ]
+[; ;IO_Controls.h: 93: }
+"93
+[e :UE 296 ]
+}
+"95
+[v _PIN3 `(v ~T0 @X0 1 ef1`uc ]
+{
+[; ;IO_Controls.h: 95: void PIN3(char OnOff){
+[e :U _PIN3 ]
+[v _OnOff `uc ~T0 @X0 1 r1 ]
+[f ]
+[; ;IO_Controls.h: 97: portA.portAByte = PORTA;
+"97
+[e = . _portA 0 _PORTA ]
+[; ;IO_Controls.h: 98: portA.bits.Pin3 = OnOff;
+"98
+[e = . . _portA 1 4 _OnOff ]
+[; ;IO_Controls.h: 99: PORTA=portA.portAByte;
+"99
+[e = _PORTA . _portA 0 ]
+[; ;IO_Controls.h: 100: return;
+"100
+[e $UE 297  ]
+[; ;IO_Controls.h: 101: }
+"101
+[e :UE 297 ]
+}
+"103
+[v _PIN6 `(v ~T0 @X0 1 ef1`uc ]
+{
+[; ;IO_Controls.h: 103: void PIN6(char OnOff){
+[e :U _PIN6 ]
+[v _OnOff `uc ~T0 @X0 1 r1 ]
+[f ]
+[; ;IO_Controls.h: 105: portC.portCByte = PORTC;
+"105
+[e = . _portC 0 _PORTC ]
+[; ;IO_Controls.h: 106: portC.bits.Pin6 = OnOff;
+"106
+[e = . . _portC 1 4 _OnOff ]
+[; ;IO_Controls.h: 107: PORTC=portC.portCByte;
+"107
+[e = _PORTC . _portC 0 ]
+[; ;IO_Controls.h: 108: return;
+"108
+[e $UE 298  ]
+[; ;IO_Controls.h: 109: }
+"109
+[e :UE 298 ]
+}
 [v $root$_main `(v ~T0 @X0 0 e ]
-"11 newmain.c
+"17 newmain.c
 [v _main `(v ~T0 @X0 1 ef ]
 {
-[; ;newmain.c: 11: void main(void) {
+[; ;newmain.c: 17: void main(void) {
 [e :U _main ]
 [f ]
-[; ;newmain.c: 12: return;
-"12
-[e $UE 292  ]
-[; ;newmain.c: 13: }
-"13
-[e :UE 292 ]
+[; ;newmain.c: 20: OSCCON = 0b01011000;
+"20
+[e = _OSCCON -> -> 88 `i `uc ]
+[; ;newmain.c: 31: while(HFIOFR==0){
+"31
+[e $U 300  ]
+[e :U 301 ]
+{
+"32
+}
+[e :U 300 ]
+"31
+[e $ == -> _HFIOFR `i -> 0 `i 301  ]
+[e :U 302 ]
+[; ;newmain.c: 32: }
+[; ;newmain.c: 35: INTCON = 0b00000000;
+"35
+[e = _INTCON -> -> 0 `i `uc ]
+[; ;newmain.c: 36: GIE = 0;
+"36
+[e = _GIE -> -> 0 `i `b ]
+[; ;newmain.c: 38: InitialisePorts();
+"38
+[e ( _InitialisePorts ..  ]
+[; ;newmain.c: 42: while (1){
+"42
+[e :U 304 ]
+{
+[; ;newmain.c: 44: PIN6(1);
+"44
+[e ( _PIN6 (1 -> -> 1 `i `uc ]
+[; ;newmain.c: 45: _delay((unsigned long)((5000)*(100000/4000.0)));
+"45
+[e ( __delay (1 -> * -> -> 5000 `i `d / -> -> 100000 `l `d .4000.0 `ul ]
+[; ;newmain.c: 46: PIN6(0);
+"46
+[e ( _PIN6 (1 -> -> 0 `i `uc ]
+[; ;newmain.c: 47: _delay((unsigned long)((5000)*(100000/4000.0)));
+"47
+[e ( __delay (1 -> * -> -> 5000 `i `d / -> -> 100000 `l `d .4000.0 `ul ]
+"48
+}
+[e :U 303 ]
+"42
+[e $U 304  ]
+[e :U 305 ]
+[; ;newmain.c: 48: }
+[; ;newmain.c: 51: }
+"51
+[e :UE 299 ]
 }

@@ -3194,7 +3194,157 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 
-# 11 "newmain.c"
-void main(void) {
+# 30 "C:\Program Files (x86)\Microchip\xc8\v1.44\include\math.h"
+extern double fabs(double);
+extern double floor(double);
+extern double ceil(double);
+extern double modf(double, double *);
+extern double sqrt(double);
+extern double atof(const char *);
+extern double sin(double) ;
+extern double cos(double) ;
+extern double tan(double) ;
+extern double asin(double) ;
+extern double acos(double) ;
+extern double atan(double);
+extern double atan2(double, double) ;
+extern double log(double);
+extern double log10(double);
+extern double pow(double, double) ;
+extern double exp(double) ;
+extern double sinh(double) ;
+extern double cosh(double) ;
+extern double tanh(double);
+extern double eval_poly(double, const double *, int);
+extern double frexp(double, int *);
+extern double ldexp(double, int);
+extern double fmod(double, double);
+extern double trunc(double);
+extern double round(double);
+
+
+# 24 "DeviceConfig.h"
+#pragma config FOSC = INTOSC
+#pragma config CLKOUTEN = OFF
+#pragma config IESO = OFF
+#pragma config PLLEN = OFF
+#pragma config FCMEN = OFF
+
+
+#pragma config PWRTE = ON
+#pragma config MCLRE = OFF
+#pragma config BOREN = ON
+#pragma config BORV = LO
+#pragma config STVREN = ON
+#pragma config WDTE = ON
+
+
+#pragma config WRT = OFF
+#pragma config CP = OFF
+#pragma config CPD = OFF
+#pragma config LVP = OFF
+
+# 14 "IO_Controls.h"
+void InitialisePorts (void);
+void LEDPin(char OnOff);
+void PIN3(char OnOff);
+void PIN6(char OnOff);
+
+
+
+union {
+unsigned char portAByte;
+struct{
+unsigned TxPin:1;
+unsigned RxPin:1;
+unsigned RCD_FaultPinDIN:1;
+unsigned ResetButtonPinDin:1;
+unsigned Pin3:1;
+unsigned ShortTripSCRPinOut:1;
+unsigned NoPin_RA6:1;
+unsigned NoPin_RA7:1;
+} bits;
+}portA;
+
+
+union {
+unsigned char portCByte;
+struct{
+unsigned VccSensePinAIN:1;
+unsigned FaultLEDPinOut:1;
+unsigned ClosePinOut:1;
+unsigned MainsSensePinAIN:1;
+unsigned Pin6:1;
+unsigned TripPinOut:1;
+unsigned NoPin_RC6:1;
+unsigned NoPin_RC7:1;
+} bits;
+}portC;
+
+
+void InitialisePorts(void){
+
+OPTION_REG = 0b10000000;
+
+# 69
+portA.portAByte = 0;
+LATA = 0;
+ANSELA = 0;
+TRISA = 0b00001110;
+
+# 84
+portC.portCByte = 0;
+LATC = 0;
+ANSELC = 0b00001001;
+
+
+TRISC = 0b00001001;
+
+
 return;
+}
+
+void PIN3(char OnOff){
+
+portA.portAByte = PORTA;
+portA.bits.Pin3 = OnOff;
+PORTA=portA.portAByte;
+return;
+}
+
+void PIN6(char OnOff){
+
+portC.portCByte = PORTC;
+portC.bits.Pin6 = OnOff;
+PORTC=portC.portCByte;
+return;
+}
+
+# 17 "newmain.c"
+void main(void) {
+
+
+OSCCON = 0b01011000;
+
+# 31
+while(HFIOFR==0){
+}
+
+
+INTCON = 0b00000000;
+GIE = 0;
+
+InitialisePorts();
+
+
+
+while (1){
+
+PIN6(1);
+_delay((unsigned long)((5000)*(100000/4000.0)));
+PIN6(0);
+_delay((unsigned long)((5000)*(100000/4000.0)));
+}
+
+
 }

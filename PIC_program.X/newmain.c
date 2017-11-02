@@ -5,7 +5,7 @@
  * Created on 25 October 2017, 09:46
  */
 
-#define _XTAL_FREQ 1000000  //Declare Oscillator value (1Mhz) for use in __delay_ms, etc.
+#define _XTAL_FREQ 100000  //Declare Oscillator value (0.1Mhz) for use in __delay_ms, etc.
 
 #include <xc.h>
 #include <math.h>
@@ -37,13 +37,15 @@ void main(void) {
     
     InitialisePorts();      // routine to setup ports
     
-    for (int i=0; i<4; i++){
+    //Pin6_OFF;
     
-        Pin6_ON;
-        __delay_ms(2000);
-        Pin6_OFF;
-        __delay_ms(2000);
+    while (1){
+        
+        PIN6(1);
+        __delay_ms(5000);
+        PIN6(0);
+        __delay_ms(5000);
     }
    
-    return 0;
+    //return (0);
 }
