@@ -13,8 +13,8 @@
 //Function Declarations
 void InitialisePorts (void);    //Setup I/O ports
 void LEDPin(char OnOff);        //direct Pin control
-void PIN3(char OnOFF);
-void PIN6(char OnOFF);
+void PIN3(char OnOff);
+void PIN6(char OnOff);
 
 //  Port Variables
 //  ************* PORT A *************
@@ -90,6 +90,22 @@ void InitialisePorts(void){
     //************* PORT C end *************
 
     return;
+}
+
+void PIN3(char OnOff){
+
+    portA.portAByte = PORTA;
+    portA.bits.Pin3 = OnOff;
+    PORTA=portA.portAByte;
+    return;
+}
+
+void PIN6(char OnOff){
+
+    portC.portCByte = PORTC;
+    portC.bits.Pin6 = OnOff;
+    PORTC=portC.portCByte;
+    return; 
 }
 
 #endif	/* IO_CONTROLS_H */
