@@ -5,7 +5,7 @@
  * Created on 25 October 2017, 09:46
  */
 
-#define _XTAL_FREQ 100000  //Declare Oscillator value (0.1Mhz) for use in __delay_ms, etc.
+#define _XTAL_FREQ 1000000  //Declare Oscillator value (0.1Mhz) for use in __delay_ms, etc.
 
 #include <xc.h>
 #include <math.h>
@@ -14,7 +14,7 @@
 #include "IO_Controls.h"
 
 
-void main(void) {
+int main() {
     
     // Setup Oscillator for 1MHz
     OSCCON = 0b01011000;    // SPLLEN IRCF2 IRCF2 IRCF1 IRCF0 unused SCS1 SCS0
@@ -36,16 +36,26 @@ void main(void) {
     GIE = Disable;          // Disable Global Interrupt
     
     InitialisePorts();      // routine to setup ports
-    
-    //Pin6_OFF;
-    
-    while (1){
+ 
+    while(1){
         
-        PIN6(1);
-        __delay_ms(5000);
-        PIN6(0);
-        __delay_ms(5000);
+        if(portA.bits.Pin3 == 0){
+            
+            //PIN6(Set);
+            portC.bits.Pin6 = 1;
+            PORTC=portC.portCByte;
+            __delay_ms(200);   //#define __delay_ms(x) _delay((unsigned long)((x)*(_XTAL_FREQ/4000.0)))
+                            // NOTE: To use the __delay_ms() function, YOU must have previously defined _XTAL_FREQ
+
+            //PIN6(Clear);
+            portC.bits.Pin6 = 0;
+            PORTC=portC.portCByte;
+            __delay_ms(200);
+        }
+            
+    //}
     }
    
-    //return (0);
+   
+    return (0);
 }

@@ -2489,82 +2489,82 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;IO_Controls.h: 70: LATA = 0;
 "70
 [e = _LATA -> -> 0 `i `uc ]
-[; ;IO_Controls.h: 71: ANSELA = 0;
+[; ;IO_Controls.h: 71: ANSELA = 1;
 "71
-[e = _ANSELA -> -> 0 `i `uc ]
-[; ;IO_Controls.h: 72: TRISA = 0b00001110;
-"72
-[e = _TRISA -> -> 14 `i `uc ]
-[; ;IO_Controls.h: 84: portC.portCByte = 0;
-"84
+[e = _ANSELA -> -> 1 `i `uc ]
+[; ;IO_Controls.h: 73: TRISA = 1;
+"73
+[e = _TRISA -> -> 1 `i `uc ]
+[; ;IO_Controls.h: 87: portC.portCByte = 0;
+"87
 [e = . _portC 0 -> -> 0 `i `uc ]
-[; ;IO_Controls.h: 85: LATC = 0;
-"85
+[; ;IO_Controls.h: 88: LATC = 0;
+"88
 [e = _LATC -> -> 0 `i `uc ]
-[; ;IO_Controls.h: 86: ANSELC = 0b00001001;
-"86
-[e = _ANSELC -> -> 9 `i `uc ]
-[; ;IO_Controls.h: 89: TRISC = 0b00001001;
+[; ;IO_Controls.h: 89: ANSELC = 0b00000000;
 "89
-[e = _TRISC -> -> 9 `i `uc ]
-[; ;IO_Controls.h: 92: return;
+[e = _ANSELC -> -> 0 `i `uc ]
+[; ;IO_Controls.h: 92: TRISC = 0b00001000;
 "92
+[e = _TRISC -> -> 8 `i `uc ]
+[; ;IO_Controls.h: 95: return;
+"95
 [e $UE 296  ]
-[; ;IO_Controls.h: 93: }
-"93
+[; ;IO_Controls.h: 96: }
+"96
 [e :UE 296 ]
 }
-"95
+"103
 [v _PIN3 `(v ~T0 @X0 1 ef1`uc ]
 {
-[; ;IO_Controls.h: 95: void PIN3(char OnOff){
+[; ;IO_Controls.h: 103: void PIN3(char OnOff){
 [e :U _PIN3 ]
 [v _OnOff `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;IO_Controls.h: 97: portA.portAByte = PORTA;
-"97
+[; ;IO_Controls.h: 105: portA.portAByte = PORTA;
+"105
 [e = . _portA 0 _PORTA ]
-[; ;IO_Controls.h: 98: portA.bits.Pin3 = OnOff;
-"98
+[; ;IO_Controls.h: 106: portA.bits.Pin3 = OnOff;
+"106
 [e = . . _portA 1 4 _OnOff ]
-[; ;IO_Controls.h: 99: PORTA=portA.portAByte;
-"99
+[; ;IO_Controls.h: 107: PORTA=portA.portAByte;
+"107
 [e = _PORTA . _portA 0 ]
-[; ;IO_Controls.h: 100: return;
-"100
+[; ;IO_Controls.h: 108: return;
+"108
 [e $UE 297  ]
-[; ;IO_Controls.h: 101: }
-"101
+[; ;IO_Controls.h: 109: }
+"109
 [e :UE 297 ]
 }
-"103
+"111
 [v _PIN6 `(v ~T0 @X0 1 ef1`uc ]
 {
-[; ;IO_Controls.h: 103: void PIN6(char OnOff){
+[; ;IO_Controls.h: 111: void PIN6(char OnOff){
 [e :U _PIN6 ]
 [v _OnOff `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;IO_Controls.h: 105: portC.portCByte = PORTC;
-"105
+[; ;IO_Controls.h: 113: portC.portCByte = PORTC;
+"113
 [e = . _portC 0 _PORTC ]
-[; ;IO_Controls.h: 106: portC.bits.Pin6 = OnOff;
-"106
+[; ;IO_Controls.h: 114: portC.bits.Pin6 = OnOff;
+"114
 [e = . . _portC 1 4 _OnOff ]
-[; ;IO_Controls.h: 107: PORTC=portC.portCByte;
-"107
+[; ;IO_Controls.h: 115: PORTC=portC.portCByte;
+"115
 [e = _PORTC . _portC 0 ]
-[; ;IO_Controls.h: 108: return;
-"108
+[; ;IO_Controls.h: 116: return;
+"116
 [e $UE 298  ]
-[; ;IO_Controls.h: 109: }
-"109
+[; ;IO_Controls.h: 117: }
+"117
 [e :UE 298 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
 "17 newmain.c
-[v _main `(v ~T0 @X0 1 ef ]
+[v _main `(i ~T0 @X0 1 ef ]
 {
-[; ;newmain.c: 17: void main(void) {
+[; ;newmain.c: 17: int main() {
 [e :U _main ]
 [f ]
 [; ;newmain.c: 20: OSCCON = 0b01011000;
@@ -2591,30 +2591,48 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;newmain.c: 38: InitialisePorts();
 "38
 [e ( _InitialisePorts ..  ]
-[; ;newmain.c: 42: while (1){
-"42
+[; ;newmain.c: 40: while(1){
+"40
 [e :U 304 ]
 {
-[; ;newmain.c: 44: PIN6(1);
-"44
-[e ( _PIN6 (1 -> -> 1 `i `uc ]
-[; ;newmain.c: 45: _delay((unsigned long)((5000)*(100000/4000.0)));
+[; ;newmain.c: 42: if(portA.bits.Pin3 == 0){
+"42
+[e $ ! == -> . . _portA 1 4 `i -> 0 `i 306  ]
+{
+[; ;newmain.c: 45: portC.bits.Pin6 = 1;
 "45
-[e ( __delay (1 -> * -> -> 5000 `i `d / -> -> 100000 `l `d .4000.0 `ul ]
-[; ;newmain.c: 46: PIN6(0);
+[e = . . _portC 1 4 -> -> 1 `i `uc ]
+[; ;newmain.c: 46: PORTC=portC.portCByte;
 "46
-[e ( _PIN6 (1 -> -> 0 `i `uc ]
-[; ;newmain.c: 47: _delay((unsigned long)((5000)*(100000/4000.0)));
+[e = _PORTC . _portC 0 ]
+[; ;newmain.c: 47: _delay((unsigned long)((200)*(1000000/4000.0)));
 "47
-[e ( __delay (1 -> * -> -> 5000 `i `d / -> -> 100000 `l `d .4000.0 `ul ]
-"48
+[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+[; ;newmain.c: 51: portC.bits.Pin6 = 0;
+"51
+[e = . . _portC 1 4 -> -> 0 `i `uc ]
+[; ;newmain.c: 52: PORTC=portC.portCByte;
+"52
+[e = _PORTC . _portC 0 ]
+[; ;newmain.c: 53: _delay((unsigned long)((200)*(1000000/4000.0)));
+"53
+[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"54
+}
+[e :U 306 ]
+"57
 }
 [e :U 303 ]
-"42
+"40
 [e $U 304  ]
 [e :U 305 ]
-[; ;newmain.c: 48: }
-[; ;newmain.c: 51: }
-"51
+[; ;newmain.c: 54: }
+[; ;newmain.c: 57: }
+[; ;newmain.c: 60: return (0);
+"60
+[e ) -> 0 `i ]
+[e $UE 299  ]
+[; ;newmain.c: 61: }
+"61
 [e :UE 299 ]
 }

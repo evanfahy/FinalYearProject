@@ -66,10 +66,13 @@ void InitialisePorts(void){
     // A4 TestPin1Out        Digital Out
     // A5 ShortTripSCRPinOut Digital Out
     
-    portA.portAByte = 0;    // initialise the A shadow register to zero
-    LATA = 0;               // Switch off all port A output pins before enabling
-    ANSELA = 0;             // Disable all port A Analog inputs (1=Analog In)
-    TRISA = 0b00001110;     // 0 = Digital Outputs; 1 = Digital IN.
+    portA.portAByte = 0;     // initialise the A shadow register to zero
+    LATA   = 0;              // Switch off all port A output pins before enabling
+    ANSELA = 1;              // Disable all port A Analog inputs (1=Analog In)
+    
+    TRISA  = 1;              // 0 = Digital Outputs; 1 = Digital IN.
+                             // RA3 pin4 bit is always ?1? as RA3 is an input only
+    
     //INLVLA2 =1;             // select Schmitt Trigger levels for IOC A2 pin
     //************* PORT A end *************
     
@@ -83,14 +86,19 @@ void InitialisePorts(void){
     
     portC.portCByte = 0;    // initialise the C shadow register to zero
     LATC = 0;               // Switch off all port C output pins before enabling
-    ANSELC = 0b00001001;    // Disable all port C Analog inputs (1=Analog In)
+    ANSELC = 0b00000000;    // Disable all port C Analog inputs (1=Analog In)
                             // Enable PortC.0 as Analog: AN5 (pin9) (RC1:VCC Sense)
                             // Enable PortC.3 as Analog: AN7 (pin7) (RC3:Mains Sense)
-    TRISC = 0b00001001;     // 0 = Digital Outputs; 1 = Digital IN.
+    TRISC  = 0b00001000;     // 0 = Digital Outputs; 1 = Digital IN.
     //************* PORT C end *************
 
     return;
 }
+
+
+
+
+
 
 void PIN3(char OnOff){
 

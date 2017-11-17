@@ -3289,21 +3289,23 @@ OPTION_REG = 0b10000000;
 # 69
 portA.portAByte = 0;
 LATA = 0;
-ANSELA = 0;
-TRISA = 0b00001110;
+ANSELA = 1;
 
-# 84
+TRISA = 1;
+
+# 87
 portC.portCByte = 0;
 LATC = 0;
-ANSELC = 0b00001001;
+ANSELC = 0b00000000;
 
 
-TRISC = 0b00001001;
+TRISC = 0b00001000;
 
 
 return;
 }
 
+# 103
 void PIN3(char OnOff){
 
 portA.portAByte = PORTA;
@@ -3321,7 +3323,7 @@ return;
 }
 
 # 17 "newmain.c"
-void main(void) {
+int main() {
 
 
 OSCCON = 0b01011000;
@@ -3336,15 +3338,25 @@ GIE = 0;
 
 InitialisePorts();
 
+while(1){
+
+if(portA.bits.Pin3 == 0){
 
 
-while (1){
+portC.bits.Pin6 = 1;
+PORTC=portC.portCByte;
+_delay((unsigned long)((200)*(1000000/4000.0)));
 
-PIN6(1);
-_delay((unsigned long)((5000)*(100000/4000.0)));
-PIN6(0);
-_delay((unsigned long)((5000)*(100000/4000.0)));
+
+
+portC.bits.Pin6 = 0;
+PORTC=portC.portCByte;
+_delay((unsigned long)((200)*(1000000/4000.0)));
 }
 
 
+}
+
+
+return (0);
 }
