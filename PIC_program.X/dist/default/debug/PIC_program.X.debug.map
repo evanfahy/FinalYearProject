@@ -3,14 +3,14 @@ Microchip MPLAB XC8 Compiler V1.44 ()
 Linker command line:
 
 -W-3 --edf=C:\Program Files (x86)\Microchip\xc8\v1.44\dat\en_msgs.txt -cs \
-  -h+dist/default/production\PIC_program.X.production.sym \
-  --cmf=dist/default/production\PIC_program.X.production.cmf -z -Q16F1823 \
-  -oC:\Users\Evan\AppData\Local\Temp\s9bo.2 \
-  -Mdist/default/production/PIC_program.X.production.map -E1 -ver=XC8 \
-  -ASTACK=02000h-0206fh -pstack=STACK -ACODE=00h-07FFh -ASTRCODE=00h-07FFh \
+  -h+dist/default/debug\PIC_program.X.debug.sym \
+  --cmf=dist/default/debug\PIC_program.X.debug.cmf -z -Q16F1823 \
+  -oC:\Users\Evan\AppData\Local\Temp\s83s.2 \
+  -Mdist/default/debug/PIC_program.X.debug.map -E1 -ver=XC8 \
+  -ASTACK=02000h-0205fh -pstack=STACK -ACODE=00h-07FFh -ASTRCODE=00h-07FFh \
   -ASTRING=00h-0FFhx8 -ACONST=00h-0FFhx8 -AENTRY=00h-0FFhx8 \
-  -ACOMMON=070h-07Fh -ABANK0=020h-06Fh -ABANK1=0A0h-0BFh \
-  -ABIGRAM=02000h-0206Fh -ARAM=020h-06Fh,0A0h-0BFh \
+  -ACOMMON=070h-07Fh -ABANK0=020h-06Fh -ABANK1=0A0h-0AFh \
+  -ABIGRAM=02000h-0205Fh -ARAM=020h-06Fh,0A0h-0AFh \
   -AABS1=020h-07Fh,0A0h-0BFh -ASFR0=00h-01Fh -ASFR1=080h-09Fh \
   -ASFR2=0100h-016Fh -ASFR3=0180h-01EFh -ASFR4=0200h-026Fh \
   -ASFR5=0280h-02EFh -ASFR6=0300h-036Fh -ASFR7=0380h-03EFh \
@@ -26,8 +26,8 @@ Linker command line:
   -pfunctab=ENTRY -ACONFIG=08007h-08008h -pconfig=CONFIG -DCONFIG=2 \
   -AIDLOC=08000h-08003h -pidloc=IDLOC -DIDLOC=2 -AEEDATA=00h-0FFh/0F000h \
   -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 -DSTRCODE=2 -DSTRING=2 -DCONST=2 \
-  -DENTRY=2 -k C:\Users\Evan\AppData\Local\Temp\s9bo.obj \
-  dist/default/production\PIC_program.X.production.obj 
+  -DENTRY=2 -k C:\Users\Evan\AppData\Local\Temp\s83s.obj \
+  dist/default/debug\PIC_program.X.debug.obj 
 
 Object code version is 3.11
 
@@ -36,11 +36,11 @@ Machine type is 16F1823
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\Evan\AppData\Local\Temp\s9bo.obj
-                end_init                              1        1        1        0       0
-                reset_vec                             0        0        1        0       0
+C:\Users\Evan\AppData\Local\Temp\s83s.obj
+                end_init                              2        2        1        0       0
+                reset_vec                             0        0        2        0       0
                 config                             8007     8007        2    1000E       0
-dist/default/production\PIC_program.X.production.obj
+dist/default/debug\PIC_program.X.debug.obj
                 cinit                               7FC      7FC        4      FF8       0
                 text2                               7C5      7C5       13      F8A       0
                 text1                               7B7      7B7        E      F6E       0
@@ -52,9 +52,9 @@ TOTAL           Name                               Link     Load   Length     Sp
         CLASS   STACK          
 
         CLASS   CODE           
-                end_init                              1        1        1         0
+                end_init                              2        2        1         0
                 cinit                               7FC      7FC        4         0
-                reset_vec                             0        0        1         0
+                reset_vec                             0        0        2         0
                 text2                               7C5      7C5       13         0
                 text1                               7B7      7B7        E         0
                 maintext                            7D8      7D8       24         0
@@ -217,7 +217,7 @@ TOTAL           Name                               Link     Load   Length     Sp
 
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class     Delta
 
-                reset_vec                      000000  000002  000002         0       0  CODE        2
+                reset_vec                      000000  000003  000003         0       0  CODE        2
                 cstackCOMMON                   000070  000006  000076        70       1  COMMON      1
                 text1                          0007B7  00000E  0007C5       F6E       0  CODE        2
                 text2                          0007C5  000013  0007D8       F8A       0  CODE        2
@@ -230,16 +230,16 @@ UNUSED ADDRESS RANGES
 
         Name                Unused          Largest block    Delta
         BANK0            00020-0006F              50           1
-        BANK1            000A0-000BF              20           1
-        BIGRAM           02000-0206F              70           1
-        CODE             00002-007B6             7B5           2
+        BANK1            000A0-000AF              10           1
+        BIGRAM           02000-0205F              60           1
+        CODE             00003-007B6             7B4           2
         COMMON           00076-0007D               8           1
-        CONST            00002-007B6             100           2
+        CONST            00003-007B6             100           2
         EEDATA           0F000-0F0FF             100           2
-        ENTRY            00002-007B6             100           2
+        ENTRY            00003-007B6             100           2
         IDLOC            08000-08003               4           2
         RAM              00020-0006F              50           1
-                         000A0-000BF              20
+                         000A0-000AF              10
         SFR0             00000-0001F              20           1
         SFR1             00080-0009F              20           1
         SFR10            00500-0056F              70           1
@@ -272,9 +272,9 @@ UNUSED ADDRESS RANGES
         SFR7             00380-003EF              70           1
         SFR8             00400-0046F              70           1
         SFR9             00480-004EF              70           1
-        STACK            02000-0206F              70           1
-        STRCODE          00002-007B6             7B5           2
-        STRING           00002-007B6             100           2
+        STACK            02000-0205F              60           1
+        STRCODE          00003-007B6             7B4           2
+        STRING           00003-007B6             100           2
 
                                   Symbol Table
 
@@ -351,15 +351,15 @@ __Hcommon                 common       00000
 __Hconfig                 config       08009
 __HcstackCOMMON           cstackCOMMON 00000
 __Heeprom_data            eeprom_data  00000
-__Hend_init               end_init     00002
+__Hend_init               end_init     00003
 __Hfunctab                functab      00000
 __Hidloc                  idloc        00000
-__Hinit                   init         00001
-__Hintentry               intentry     00001
+__Hinit                   init         00002
+__Hintentry               intentry     00002
 __Hmaintext               maintext     00000
 __Hpowerup                powerup      00000
 __Hram                    ram          00000
-__Hreset_vec              reset_vec    00001
+__Hreset_vec              reset_vec    00002
 __Hsfr0                   sfr0         00000
 __Hsfr1                   sfr1         00000
 __Hsfr10                  sfr10        00000
@@ -441,11 +441,11 @@ __Lcommon                 common       00000
 __Lconfig                 config       08007
 __LcstackCOMMON           cstackCOMMON 00000
 __Leeprom_data            eeprom_data  00000
-__Lend_init               end_init     00001
+__Lend_init               end_init     00002
 __Lfunctab                functab      00000
 __Lidloc                  idloc        00000
-__Linit                   init         00001
-__Lintentry               intentry     00001
+__Linit                   init         00002
+__Lintentry               intentry     00002
 __Lmaintext               maintext     00000
 __Lpowerup                powerup      00000
 __Lram                    ram          00000
@@ -522,9 +522,9 @@ intlevel4                 functab      00000
 intlevel5                 functab      00000
 main@temp                 cstackCOMMON 00073
 reset_vec                 reset_vec    00000
-stackhi                   (abs)        0206F
+stackhi                   (abs)        0205F
 stacklo                   (abs)        02000
-start                     init         00001
+start                     init         00002
 start_initialization      cinit        007FC
 wtemp0                    (abs)        0007E
 

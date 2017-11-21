@@ -54,6 +54,7 @@ void InitialisePorts(void){
     //bit7:0=weak pull-up enable
     //bit6:0=falling edge interrupt
     //others for timers
+    
     //ensure weak-pull-ups are disabled if not needed to avoid random glitches
     //The ports automatically start up as tri-state inputs and are enabled as analog inputs
     //Ensure IO ports are configured to output zeros before enabling as outputs
@@ -68,9 +69,9 @@ void InitialisePorts(void){
     
     portA.portAByte = 0;     // initialise the A shadow register to zero
     LATA   = 0;              // Switch off all port A output pins before enabling
-    ANSELA = 1;              // Disable all port A Analog inputs (1=Analog In)
+    ANSELA = 0b00000000;     // Disable all port A Analog inputs (1=Analog In)
     
-    TRISA  = 1;              // 0 = Digital Outputs; 1 = Digital IN.
+    TRISA  = 0b00011000;     // 0 = Digital Outputs; 1 = Digital IN.
                              // RA3 pin4 bit is always ?1? as RA3 is an input only
     
     //INLVLA2 =1;             // select Schmitt Trigger levels for IOC A2 pin
@@ -89,7 +90,7 @@ void InitialisePorts(void){
     ANSELC = 0b00000000;    // Disable all port C Analog inputs (1=Analog In)
                             // Enable PortC.0 as Analog: AN5 (pin9) (RC1:VCC Sense)
                             // Enable PortC.3 as Analog: AN7 (pin7) (RC3:Mains Sense)
-    TRISC  = 0b00001000;     // 0 = Digital Outputs; 1 = Digital IN.
+    TRISC  = 0b00000000;     // 0 = Digital Outputs; 1 = Digital IN.
     //************* PORT C end *************
 
     return;
@@ -102,6 +103,7 @@ void InitialisePorts(void){
 
 void PIN3(char OnOff){
 
+    //read, write, modify
     portA.portAByte = PORTA;
     portA.bits.Pin3 = OnOff;
     PORTA=portA.portAByte;

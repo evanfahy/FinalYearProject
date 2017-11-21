@@ -39,17 +39,21 @@ int main() {
  
     while(1){
         
-        if(portA.bits.Pin3 == 0){
+        char temp = PORTA;
+        
+        //if(portA.bits.Pin3 == 0){
+        
+        if((PORTA & 0x10) != 0) {
             
-            //PIN6(Set);
-            portC.bits.Pin6 = 1;
-            PORTC=portC.portCByte;
+            PIN6(Set);
+            //portC.bits.Pin6 = 1;
+            //PORTC=portC.portCByte;
             __delay_ms(200);   //#define __delay_ms(x) _delay((unsigned long)((x)*(_XTAL_FREQ/4000.0)))
                             // NOTE: To use the __delay_ms() function, YOU must have previously defined _XTAL_FREQ
 
-            //PIN6(Clear);
-            portC.bits.Pin6 = 0;
-            PORTC=portC.portCByte;
+            PIN6(Clear);
+            //portC.bits.Pin6 = 0;
+            //PORTC=portC.portCByte;
             __delay_ms(200);
         }
             

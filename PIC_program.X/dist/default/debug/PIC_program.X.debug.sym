@@ -4,8 +4,8 @@ __S1 76 0 ABS 0
 __S2 0 0 ABS 0
 __S3 0 0 ABS 0
 _GIE 5F 0 ABS 0
-__Hintentry 1 0 CODE 0
-__Lintentry 1 0 CODE 0
+__Hintentry 2 0 CODE 0
+__Lintentry 2 0 CODE 0
 __CFG_BOREN$ON 0 0 ABS 0
 __CFG_PWRTE$ON 0 0 ABS 0
 __end_of_InitialisePorts 7D8 0 CODE 0
@@ -15,7 +15,7 @@ _LATC 10E 0 ABS 0
 _main 7D8 0 CODE 0
 ___sp 0 0 STACK 2
 btemp 7E 0 ABS 0
-start 1 0 CODE 0
+start 2 0 CODE 0
 _TRISA 8C 0 ABS 0
 _TRISC 8E 0 ABS 0
 _PORTA C 0 ABS 0
@@ -72,10 +72,10 @@ __Hsfr9 0 0 ABS 0
 __Lsfr9 0 0 ABS 0
 __Hcode 0 0 ABS 0
 __Lcode 0 0 ABS 0
-stackhi 206F 0 ABS 0
+stackhi 205F 0 ABS 0
 stacklo 2000 0 ABS 0
-__Hinit 1 0 CODE 0
-__Linit 1 0 CODE 0
+__Hinit 2 0 CODE 0
+__Linit 2 0 CODE 0
 __end_of_main 7FC 0 CODE 0
 __Htext 0 0 ABS 0
 __Ltext 0 0 ABS 0
@@ -223,9 +223,9 @@ __Lbank29 0 0 BANK29 1
 __HbssCOMMON 0 0 ABS 0
 __LbssCOMMON 0 0 ABS 0
 __pbssCOMMON 74 0 COMMON 1
-__Hend_init 2 0 CODE 0
-__Lend_init 1 0 CODE 0
-__Hreset_vec 1 0 CODE 0
+__Hend_init 3 0 CODE 0
+__Lend_init 2 0 CODE 0
+__Hreset_vec 2 0 CODE 0
 __Lreset_vec 0 0 CODE 0
 intlevel0 0 0 ENTRY 0
 intlevel1 0 0 ENTRY 0
@@ -248,7 +248,7 @@ __CFG_CP$OFF 0 0 ABS 0
 __CFG_LVP$OFF 0 0 ABS 0
 __size_of_PIN6 0 0 ABS 0
 %segments
-reset_vec 0 3 CODE 0 0
+reset_vec 0 5 CODE 0 0
 cinit FF8 FFF CODE FF8 0
 config 1000E 10011 CONFIG 1000E 0
 cstackCOMMON 70 75 COMMON 70 1
@@ -256,8 +256,8 @@ maintext FB0 FF7 CODE FB0 0
 text2 F8A FAF CODE F8A 0
 text1 F6E F89 CODE F6E 0
 %locals
-dist/default/production\PIC_program.X.production.obj
-C:\Users\Evan\AppData\Local\Temp\s9bo.
+dist/default/debug\PIC_program.X.debug.obj
+C:\Users\Evan\AppData\Local\Temp\s83s.
 343 7FC 0 CODE 0
 346 7FC 0 CODE 0
 361 7FC 0 CODE 0

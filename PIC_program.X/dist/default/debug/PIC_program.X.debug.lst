@@ -1,7 +1,7 @@
 
 
 Microchip Technology PIC LITE Macro Assembler V1.44 build -154322312 
-                                                                                               Mon Nov 20 19:07:04 2017
+                                                                                               Mon Nov 20 19:07:34 2017
 
 Microchip Technology Omniscient Code Generator v1.44 (Free mode) build 201709140600
      1                           	processor	16F1823
@@ -516,7 +516,7 @@ Auto Spaces:
     Space          Size  Autos    Used
     COMMON           14      4       6
     BANK0            80      0       0
-    BANK1            32      0       0
+    BANK1            16      0       0
 
 Pointer List with Targets:
 
@@ -560,7 +560,7 @@ Call Graph Tables:
 
  Address spaces:
 Name               Size   Autos  Total    Cost      Usage
-BIGRAM              70      0       0       0        0.0%
+BIGRAM              60      0       0       0        0.0%
 EEDATA             100      0       0       0        0.0%
 NULL                 0      0       0       0        0.0%
 CODE                 0      0       0       0        0.0%
@@ -582,10 +582,10 @@ SFR4                 0      0       0       5        0.0%
 BANK0               50      0       0       6        0.0%
 BITSFR5              0      0       0       6        0.0%
 SFR5                 0      0       0       6        0.0%
-BITBANK1            20      0       0       7        0.0%
+BITBANK1            10      0       0       7        0.0%
 BITSFR6              0      0       0       7        0.0%
 SFR6                 0      0       0       7        0.0%
-BANK1               20      0       0       8        0.0%
+BANK1               10      0       0       8        0.0%
 BITSFR7              0      0       0       8        0.0%
 SFR7                 0      0       0       8        0.0%
 BITSFR8              0      0       0       9        0.0%
@@ -640,7 +640,7 @@ SFR31                0      0       0      32        0.0%
 
 
 Microchip Technology PIC Macro Assembler V1.44 build -154322312 
-Symbol Table                                                                                   Mon Nov 20 19:07:04 2017
+Symbol Table                                                                                   Mon Nov 20 19:07:34 2017
 
              __CFG_CP$OFF 0000                        l46 07DB                        u37 07EC  
                       u47 07F6                       l553 07E0                       _GIE 005F  
@@ -648,7 +648,7 @@ Symbol Table                                                                    
             __CFG_LVP$OFF 0000              __CFG_WDTE$ON 0000                      _LATA 010C  
                     _LATC 010E                      _PIN6 07B7              __CFG_WRT$OFF 0000  
                     _main 07D8                      btemp 007E             __CFG_BOREN$ON 0000  
-                    start 0001             __CFG_IESO$OFF 0000                     ?_PIN6 0070  
+                    start 0002             __CFG_IESO$OFF 0000                     ?_PIN6 0070  
                    ?_main 0070                     _PORTA 000C                     _PORTC 000E  
                    _TRISA 008C                     _TRISC 008E             __CFG_PWRTE$ON 0000  
           __CFG_FCMEN$OFF 0000                     _portA 0075                     _portC 0074  
