@@ -3236,7 +3236,7 @@ extern double round(double);
 #pragma config BOREN = ON
 #pragma config BORV = LO
 #pragma config STVREN = ON
-#pragma config WDTE = ON
+#pragma config WDTE = OFF
 
 
 #pragma config WRT = OFF
@@ -3296,16 +3296,16 @@ TRISA = 0b00011000;
 # 88
 portC.portCByte = 0;
 LATC = 0;
-ANSELC = 0b00000000;
+ANSELC = 0b00001000;
 
 
-TRISC = 0b00000000;
+TRISC = 0b00001000;
 
 
 return;
 }
 
-# 104
+
 void PIN3(char OnOff){
 
 
@@ -3323,13 +3323,53 @@ PORTC=portC.portCByte;
 return;
 }
 
-# 17 "newmain.c"
+# 10 "ADC.h"
+void InitialiseADC(void);
+unsigned short ReadADC(void);
+
+
+void InitialiseADC(void){
+
+ADCON0bits.CHS = 0b0111;
+ADFM = 1;
+ADCON1bits.ADCS = 0b000;
+
+ADCON1bits.ADPREF = 0b000;
+
+_delay((unsigned long)((10)*(1000000/4000000.0)));
+ADIE=0;
+ADON=0;
+GO_nDONE=0;
+return;
+}
+
+unsigned short ReadADC(){
+
+unsigned short adcData = 0;
+
+GO_nDONE = 1;
+while (GO_nDONE){
+}
+
+
+adcData = (ADRESH & 0x03);
+adcData<<=8;
+adcData+=ADRESL;
+
+GO_nDONE = 0;
+
+
+return adcData;
+
+}
+
+# 18 "newmain.c"
 int main() {
 
 
 OSCCON = 0b01011000;
 
-# 31
+# 32
 while(HFIOFR==0){
 }
 
@@ -3338,7 +3378,10 @@ INTCON = 0b00000000;
 GIE = 0;
 
 InitialisePorts();
-
+InitialiseADC();
+ADON=1;
+unsigned short Vread;
+char chDelay=500;
 while(1){
 
 char temp = PORTA;
@@ -3347,16 +3390,37 @@ char temp = PORTA;
 
 if((PORTA & 0x10) != 0) {
 
+Vread = ReadADC();
+
+chDelay = 0;
+if (Vread>500){
+chDelay = 1;
+}
+
+
+
+_delay((unsigned long)((10)*(1000000/4000000.0)));
+
 PIN6(1);
 
 
-_delay((unsigned long)((200)*(1000000/4000.0)));
+if (chDelay==0) {
+_delay((unsigned long)((250)*(1000000/4000.0)));
 
-
+}
+else {
+_delay((unsigned long)((500)*(1000000/4000.0)));
+}
 PIN6(0);
 
 
-_delay((unsigned long)((200)*(1000000/4000.0)));
+if (chDelay==0) {
+_delay((unsigned long)((250)*(1000000/4000.0)));
+
+}
+else {
+_delay((unsigned long)((500)*(1000000/4000.0)));
+}
 }
 
 

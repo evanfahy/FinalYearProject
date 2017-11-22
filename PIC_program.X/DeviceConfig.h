@@ -33,7 +33,7 @@
 #pragma config BOREN = ON       //DEBUG OFF: Brown-out Reset Enabled
 #pragma config BORV = LO        //Brown-out Reset Voltage Selection (Vbor HI = 2.5V, LO1 = 0.9V)
 #pragma config STVREN = ON      //Stack Overflow/Underflow Reset Enable (Stack Overflow or UnderFlow will cause a reset)
-#pragma config WDTE = ON        //DEBUG OFF: Watchdog Timer Enable (WDT Enabled)
+#pragma config WDTE = OFF        //DEBUG OFF: Watchdog Timer Enable (WDT Enabled)
 
 //Programming Settings
 #pragma config WRT = OFF        //Flash Memory Self-Write Protection (Write protection off)

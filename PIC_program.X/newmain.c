@@ -12,6 +12,7 @@
 #include "Constants.h"
 #include "DeviceConfig.h"
 #include "IO_Controls.h"
+#include "ADC.h"
 
 
 int main() {
@@ -36,7 +37,10 @@ int main() {
     GIE = Disable;          // Disable Global Interrupt
     
     InitialisePorts();      // routine to setup ports
- 
+    InitialiseADC();
+    ADON=Enable;
+    unsigned short Vread;
+    char chDelay=500;
     while(1){
         
         char temp = PORTA;
@@ -45,16 +49,37 @@ int main() {
         
         if((PORTA & 0x10) != 0) {
             
+            Vread = ReadADC();
+            
+            chDelay = shortDelay;
+            if (Vread>500){
+                chDelay = longDelay;
+            }    
+            
+        
+            
+            __delay_us(10);
+            
             PIN6(Set);
             //portC.bits.Pin6 = 1;
             //PORTC=portC.portCByte;
-            __delay_ms(200);   //#define __delay_ms(x) _delay((unsigned long)((x)*(_XTAL_FREQ/4000.0)))
+            if (chDelay==shortDelay) {
+            __delay_ms(250);   //#define __delay_ms(x) _delay((unsigned long)((x)*(_XTAL_FREQ/4000.0)))
                             // NOTE: To use the __delay_ms() function, YOU must have previously defined _XTAL_FREQ
-
+            }
+            else  {
+                __delay_ms(500);   //#define __delay_ms(x) _delay((unsigned long)((x)*(_XTAL_FREQ/4000.0)))
+            }
             PIN6(Clear);
             //portC.bits.Pin6 = 0;
             //PORTC=portC.portCByte;
-            __delay_ms(200);
+            if (chDelay==shortDelay) {
+            __delay_ms(250);   //#define __delay_ms(x) _delay((unsigned long)((x)*(_XTAL_FREQ/4000.0)))
+                            // NOTE: To use the __delay_ms() function, YOU must have previously defined _XTAL_FREQ
+            }
+            else  {
+                __delay_ms(500);   //#define __delay_ms(x) _delay((unsigned long)((x)*(_XTAL_FREQ/4000.0)))
+            }
         }
             
     //}

@@ -17,7 +17,8 @@
 //Constant Definitions
 #define Yes 1
 #define No 0
-
+#define longDelay 1
+#define shortDelay 0
 #define Set 1
 #define Clear 0
 #define Start 1

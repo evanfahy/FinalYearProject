@@ -3,4 +3,5 @@
  newmain.c  \
 DeviceConfig.h  \
 IO_Controls.h  \
+ADC.h  \
 Constants.h 

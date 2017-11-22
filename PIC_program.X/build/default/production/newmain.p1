@@ -29,6 +29,50 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _PORTA `Vuc ~T0 @X0 0 e@12 ]
 "682
 [v _PORTC `Vuc ~T0 @X0 0 e@14 ]
+"2134
+[s S105 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S105 . ADON GO_nDONE CHS0 CHS1 CHS2 CHS3 CHS4 ]
+"2143
+[s S106 :1 `uc 1 :1 `uc 1 :5 `uc 1 ]
+[n S106 . . ADGO CHS ]
+"2148
+[s S107 :1 `uc 1 :1 `uc 1 ]
+[n S107 . . GO ]
+"2152
+[s S108 :1 `uc 1 :1 `uc 1 ]
+[n S108 . . nDONE ]
+"2133
+[u S104 `S105 1 `S106 1 `S107 1 `S108 1 ]
+[n S104 . . . . . ]
+"2157
+[v _ADCON0bits `VS104 ~T0 @X0 0 e@157 ]
+"5661
+[v _ADFM `Vb ~T0 @X0 0 e@1271 ]
+"2223
+[s S110 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S110 . ADPREF0 ADPREF1 . ADCS0 ADCS1 ADCS2 ADFM ]
+"2232
+[s S111 :2 `uc 1 :2 `uc 1 :3 `uc 1 ]
+[n S111 . ADPREF . ADCS ]
+"2222
+[u S109 `S110 1 `S111 1 ]
+[n S109 . . . ]
+"2238
+[v _ADCON1bits `VS109 ~T0 @X0 0 e@158 ]
+[v F2436 `(v ~T0 @X0 1 tf1`ul ]
+"153 C:\Program Files (x86)\Microchip\xc8\v1.44\include\pic.h
+[v __delay `JF2436 ~T0 @X0 0 e ]
+[p i __delay ]
+"5669 C:\Program Files (x86)\Microchip\xc8\v1.44\include\pic16f1823.h
+[v _ADIE `Vb ~T0 @X0 0 e@1166 ]
+"5673
+[v _ADON `Vb ~T0 @X0 0 e@1256 ]
+"5967
+[v _GO_nDONE `Vb ~T0 @X0 0 e@1257 ]
+"2108
+[v _ADRESH `Vuc ~T0 @X0 0 e@156 ]
+"2088
+[v _ADRESL `Vuc ~T0 @X0 0 e@155 ]
 [p mainexit ]
 "1947
 [v _OSCCON `Vuc ~T0 @X0 0 e@153 ]
@@ -38,10 +82,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _INTCON `Vuc ~T0 @X0 0 e@11 ]
 "5963
 [v _GIE `Vb ~T0 @X0 0 e@95 ]
-[v F2436 `(v ~T0 @X0 1 tf1`ul ]
-"153 C:\Program Files (x86)\Microchip\xc8\v1.44\include\pic.h
-[v __delay `JF2436 ~T0 @X0 0 e ]
-[p i __delay ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -2431,7 +2471,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "35
 [p x STVREN=ON ]
 "36
-[p x WDTE=ON ]
+[p x WDTE=OFF ]
 "39
 [p x WRT=OFF ]
 "40
@@ -2501,12 +2541,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;IO_Controls.h: 89: LATC = 0;
 "89
 [e = _LATC -> -> 0 `i `uc ]
-[; ;IO_Controls.h: 90: ANSELC = 0b00000000;
+[; ;IO_Controls.h: 90: ANSELC = 0b00001000;
 "90
-[e = _ANSELC -> -> 0 `i `uc ]
-[; ;IO_Controls.h: 93: TRISC = 0b00000000;
+[e = _ANSELC -> -> 8 `i `uc ]
+[; ;IO_Controls.h: 93: TRISC = 0b00001000;
 "93
-[e = _TRISC -> -> 0 `i `uc ]
+[e = _TRISC -> -> 8 `i `uc ]
 [; ;IO_Controls.h: 96: return;
 "96
 [e $UE 296  ]
@@ -2514,123 +2554,278 @@ Version 3.2 HI-TECH Software Intermediate Code
 "97
 [e :UE 296 ]
 }
-"104
+"100
 [v _PIN3 `(v ~T0 @X0 1 ef1`uc ]
 {
-[; ;IO_Controls.h: 104: void PIN3(char OnOff){
+[; ;IO_Controls.h: 100: void PIN3(char OnOff){
 [e :U _PIN3 ]
 [v _OnOff `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;IO_Controls.h: 107: portA.portAByte = PORTA;
-"107
+[; ;IO_Controls.h: 103: portA.portAByte = PORTA;
+"103
 [e = . _portA 0 _PORTA ]
-[; ;IO_Controls.h: 108: portA.bits.Pin3 = OnOff;
-"108
+[; ;IO_Controls.h: 104: portA.bits.Pin3 = OnOff;
+"104
 [e = . . _portA 1 4 _OnOff ]
-[; ;IO_Controls.h: 109: PORTA=portA.portAByte;
-"109
+[; ;IO_Controls.h: 105: PORTA=portA.portAByte;
+"105
 [e = _PORTA . _portA 0 ]
-[; ;IO_Controls.h: 110: return;
-"110
+[; ;IO_Controls.h: 106: return;
+"106
 [e $UE 297  ]
-[; ;IO_Controls.h: 111: }
-"111
+[; ;IO_Controls.h: 107: }
+"107
 [e :UE 297 ]
 }
-"113
+"109
 [v _PIN6 `(v ~T0 @X0 1 ef1`uc ]
 {
-[; ;IO_Controls.h: 113: void PIN6(char OnOff){
+[; ;IO_Controls.h: 109: void PIN6(char OnOff){
 [e :U _PIN6 ]
 [v _OnOff `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;IO_Controls.h: 115: portC.portCByte = PORTC;
-"115
+[; ;IO_Controls.h: 111: portC.portCByte = PORTC;
+"111
 [e = . _portC 0 _PORTC ]
-[; ;IO_Controls.h: 116: portC.bits.Pin6 = OnOff;
-"116
+[; ;IO_Controls.h: 112: portC.bits.Pin6 = OnOff;
+"112
 [e = . . _portC 1 4 _OnOff ]
-[; ;IO_Controls.h: 117: PORTC=portC.portCByte;
-"117
+[; ;IO_Controls.h: 113: PORTC=portC.portCByte;
+"113
 [e = _PORTC . _portC 0 ]
-[; ;IO_Controls.h: 118: return;
-"118
+[; ;IO_Controls.h: 114: return;
+"114
 [e $UE 298  ]
-[; ;IO_Controls.h: 119: }
-"119
+[; ;IO_Controls.h: 115: }
+"115
 [e :UE 298 ]
 }
+[; ;ADC.h: 10: void InitialiseADC(void);
+[; ;ADC.h: 11: unsigned short ReadADC(void);
+"14 ADC.h
+[v _InitialiseADC `(v ~T0 @X0 1 ef ]
+{
+[; ;ADC.h: 14: void InitialiseADC(void){
+[e :U _InitialiseADC ]
+[f ]
+[; ;ADC.h: 16: ADCON0bits.CHS = 0b0111;
+"16
+[e = . . _ADCON0bits 1 2 -> -> 7 `i `uc ]
+[; ;ADC.h: 17: ADFM = 1;
+"17
+[e = _ADFM -> -> 1 `i `b ]
+[; ;ADC.h: 18: ADCON1bits.ADCS = 0b000;
+"18
+[e = . . _ADCON1bits 1 2 -> -> 0 `i `uc ]
+[; ;ADC.h: 20: ADCON1bits.ADPREF = 0b000;
+"20
+[e = . . _ADCON1bits 1 0 -> -> 0 `i `uc ]
+[; ;ADC.h: 22: _delay((unsigned long)((10)*(1000000/4000000.0)));
+"22
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 1000000 `l `d .4000000.0 `ul ]
+[; ;ADC.h: 23: ADIE=0;
+"23
+[e = _ADIE -> -> 0 `i `b ]
+[; ;ADC.h: 24: ADON=0;
+"24
+[e = _ADON -> -> 0 `i `b ]
+[; ;ADC.h: 25: GO_nDONE=0;
+"25
+[e = _GO_nDONE -> -> 0 `i `b ]
+[; ;ADC.h: 26: return;
+"26
+[e $UE 299  ]
+[; ;ADC.h: 27: }
+"27
+[e :UE 299 ]
+}
+"29
+[v _ReadADC `(us ~T0 @X0 1 ef ]
+{
+[; ;ADC.h: 29: unsigned short ReadADC(){
+[e :U _ReadADC ]
+[f ]
+"31
+[v _adcData `us ~T0 @X0 1 a ]
+[; ;ADC.h: 31: unsigned short adcData = 0;
+[e = _adcData -> -> 0 `i `us ]
+[; ;ADC.h: 33: GO_nDONE = 1;
+"33
+[e = _GO_nDONE -> -> 1 `i `b ]
+[; ;ADC.h: 34: while (GO_nDONE){
+"34
+[e $U 301  ]
+[e :U 302 ]
+{
+"35
+}
+[e :U 301 ]
+"34
+[e $ _GO_nDONE 302  ]
+[e :U 303 ]
+[; ;ADC.h: 35: }
+[; ;ADC.h: 38: adcData = (ADRESH & 0x03);
+"38
+[e = _adcData -> & -> _ADRESH `i -> 3 `i `us ]
+[; ;ADC.h: 39: adcData<<=8;
+"39
+[e =<< _adcData -> 8 `i ]
+[; ;ADC.h: 40: adcData+=ADRESL;
+"40
+[e =+ _adcData -> _ADRESL `us ]
+[; ;ADC.h: 42: GO_nDONE = 0;
+"42
+[e = _GO_nDONE -> -> 0 `i `b ]
+[; ;ADC.h: 45: return adcData;
+"45
+[e ) _adcData ]
+[e $UE 300  ]
+[; ;ADC.h: 47: }
+"47
+[e :UE 300 ]
+}
 [v $root$_main `(v ~T0 @X0 0 e ]
-"17 newmain.c
+"18 newmain.c
 [v _main `(i ~T0 @X0 1 ef ]
 {
-[; ;newmain.c: 17: int main() {
+[; ;newmain.c: 18: int main() {
 [e :U _main ]
 [f ]
-[; ;newmain.c: 20: OSCCON = 0b01011000;
-"20
+[; ;newmain.c: 21: OSCCON = 0b01011000;
+"21
 [e = _OSCCON -> -> 88 `i `uc ]
-[; ;newmain.c: 31: while(HFIOFR==0){
-"31
-[e $U 300  ]
-[e :U 301 ]
-{
+[; ;newmain.c: 32: while(HFIOFR==0){
 "32
-}
-[e :U 300 ]
-"31
-[e $ == -> _HFIOFR `i -> 0 `i 301  ]
-[e :U 302 ]
-[; ;newmain.c: 32: }
-[; ;newmain.c: 35: INTCON = 0b00000000;
-"35
-[e = _INTCON -> -> 0 `i `uc ]
-[; ;newmain.c: 36: GIE = 0;
-"36
-[e = _GIE -> -> 0 `i `b ]
-[; ;newmain.c: 38: InitialisePorts();
-"38
-[e ( _InitialisePorts ..  ]
-[; ;newmain.c: 40: while(1){
-"40
-[e :U 304 ]
-{
-"42
-[v _temp `uc ~T0 @X0 1 a ]
-[; ;newmain.c: 42: char temp = PORTA;
-[e = _temp _PORTA ]
-[; ;newmain.c: 46: if((PORTA & 0x10) != 0) {
-"46
-[e $ ! != & -> _PORTA `i -> 16 `i -> 0 `i 306  ]
-{
-[; ;newmain.c: 48: PIN6(1);
-"48
-[e ( _PIN6 (1 -> -> 1 `i `uc ]
-[; ;newmain.c: 51: _delay((unsigned long)((200)*(1000000/4000.0)));
-"51
-[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
-[; ;newmain.c: 54: PIN6(0);
-"54
-[e ( _PIN6 (1 -> -> 0 `i `uc ]
-[; ;newmain.c: 57: _delay((unsigned long)((200)*(1000000/4000.0)));
-"57
-[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
-"58
-}
+[e $U 305  ]
 [e :U 306 ]
-"61
+{
+"33
 }
-[e :U 303 ]
-"40
-[e $U 304  ]
 [e :U 305 ]
-[; ;newmain.c: 58: }
-[; ;newmain.c: 61: }
-[; ;newmain.c: 64: return (0);
-"64
+"32
+[e $ == -> _HFIOFR `i -> 0 `i 306  ]
+[e :U 307 ]
+[; ;newmain.c: 33: }
+[; ;newmain.c: 36: INTCON = 0b00000000;
+"36
+[e = _INTCON -> -> 0 `i `uc ]
+[; ;newmain.c: 37: GIE = 0;
+"37
+[e = _GIE -> -> 0 `i `b ]
+[; ;newmain.c: 39: InitialisePorts();
+"39
+[e ( _InitialisePorts ..  ]
+[; ;newmain.c: 40: InitialiseADC();
+"40
+[e ( _InitialiseADC ..  ]
+[; ;newmain.c: 41: ADON=1;
+"41
+[e = _ADON -> -> 1 `i `b ]
+"42
+[v _Vread `us ~T0 @X0 1 a ]
+"43
+[v _chDelay `uc ~T0 @X0 1 a ]
+[; ;newmain.c: 42: unsigned short Vread;
+[; ;newmain.c: 43: char chDelay=500;
+[e = _chDelay -> -> 500 `i `uc ]
+[; ;newmain.c: 44: while(1){
+"44
+[e :U 309 ]
+{
+"46
+[v _temp `uc ~T0 @X0 1 a ]
+[; ;newmain.c: 46: char temp = PORTA;
+[e = _temp _PORTA ]
+[; ;newmain.c: 50: if((PORTA & 0x10) != 0) {
+"50
+[e $ ! != & -> _PORTA `i -> 16 `i -> 0 `i 311  ]
+{
+[; ;newmain.c: 52: Vread = ReadADC();
+"52
+[e = _Vread ( _ReadADC ..  ]
+[; ;newmain.c: 54: chDelay = 0;
+"54
+[e = _chDelay -> -> 0 `i `uc ]
+[; ;newmain.c: 55: if (Vread>500){
+"55
+[e $ ! > -> _Vread `ui -> -> 500 `i `ui 312  ]
+{
+[; ;newmain.c: 56: chDelay = 1;
+"56
+[e = _chDelay -> -> 1 `i `uc ]
+"57
+}
+[e :U 312 ]
+[; ;newmain.c: 57: }
+[; ;newmain.c: 61: _delay((unsigned long)((10)*(1000000/4000000.0)));
+"61
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 1000000 `l `d .4000000.0 `ul ]
+[; ;newmain.c: 63: PIN6(1);
+"63
+[e ( _PIN6 (1 -> -> 1 `i `uc ]
+[; ;newmain.c: 66: if (chDelay==0) {
+"66
+[e $ ! == -> _chDelay `i -> 0 `i 313  ]
+{
+[; ;newmain.c: 67: _delay((unsigned long)((250)*(1000000/4000.0)));
+"67
+[e ( __delay (1 -> * -> -> 250 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"69
+}
+[; ;newmain.c: 69: }
+[e $U 314  ]
+"70
+[e :U 313 ]
+[; ;newmain.c: 70: else {
+{
+[; ;newmain.c: 71: _delay((unsigned long)((500)*(1000000/4000.0)));
+"71
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"72
+}
+[e :U 314 ]
+[; ;newmain.c: 72: }
+[; ;newmain.c: 73: PIN6(0);
+"73
+[e ( _PIN6 (1 -> -> 0 `i `uc ]
+[; ;newmain.c: 76: if (chDelay==0) {
+"76
+[e $ ! == -> _chDelay `i -> 0 `i 315  ]
+{
+[; ;newmain.c: 77: _delay((unsigned long)((250)*(1000000/4000.0)));
+"77
+[e ( __delay (1 -> * -> -> 250 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"79
+}
+[; ;newmain.c: 79: }
+[e $U 316  ]
+"80
+[e :U 315 ]
+[; ;newmain.c: 80: else {
+{
+[; ;newmain.c: 81: _delay((unsigned long)((500)*(1000000/4000.0)));
+"81
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"82
+}
+[e :U 316 ]
+"83
+}
+[e :U 311 ]
+"86
+}
+[e :U 308 ]
+"44
+[e $U 309  ]
+[e :U 310 ]
+[; ;newmain.c: 82: }
+[; ;newmain.c: 83: }
+[; ;newmain.c: 86: }
+[; ;newmain.c: 89: return (0);
+"89
 [e ) -> 0 `i ]
-[e $UE 299  ]
-[; ;newmain.c: 65: }
-"65
-[e :UE 299 ]
+[e $UE 304  ]
+[; ;newmain.c: 90: }
+"90
+[e :UE 304 ]
 }

@@ -87,26 +87,22 @@ void InitialisePorts(void){
     
     portC.portCByte = 0;    // initialise the C shadow register to zero
     LATC = 0;               // Switch off all port C output pins before enabling
-    ANSELC = 0b00000000;    // Disable all port C Analog inputs (1=Analog In)
+    ANSELC = 0b00001000;    // Disable all port C Analog inputs (1=Analog In)
                             // Enable PortC.0 as Analog: AN5 (pin9) (RC1:VCC Sense)
                             // Enable PortC.3 as Analog: AN7 (pin7) (RC3:Mains Sense)
-    TRISC  = 0b00000000;     // 0 = Digital Outputs; 1 = Digital IN.
+    TRISC  = 0b00001000;     // 0 = Digital Outputs; 1 = Digital IN.
     //************* PORT C end *************
 
     return;
 }
 
 
-
-
-
-
 void PIN3(char OnOff){
 
     //read, write, modify
-    portA.portAByte = PORTA;
-    portA.bits.Pin3 = OnOff;
-    PORTA=portA.portAByte;
+    portA.portAByte = PORTA;//reads port A val into mask
+    portA.bits.Pin3 = OnOff;//change bit in mask
+    PORTA=portA.portAByte;//write to mask
     return;
 }
 
