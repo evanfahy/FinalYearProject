@@ -7,7 +7,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S292 . portAByte bits ]
 "38
 [s S295 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S295 . VccSensePinAIN FaultLEDPinOut ClosePinOut MainsSensePinAIN Pin6 TripPinOut NoPin_RC6 NoPin_RC7 ]
+[n S295 . VccSensePinAIN FaultLEDPinOut ClosePinOut MainsSensePinAIN Pin6 Pin5 NoPin_RC6 NoPin_RC7 ]
 "36
 [u S294 `uc 1 `S295 1 ]
 [n S294 . portCByte bits ]
@@ -15,16 +15,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _OPTION_REG `Vuc ~T0 @X0 0 e@149 ]
 "2283
 [v _LATA `Vuc ~T0 @X0 0 e@268 ]
-"3113
-[v _ANSELA `Vuc ~T0 @X0 0 e@396 ]
 "1489
 [v _TRISA `Vuc ~T0 @X0 0 e@140 ]
+"3113
+[v _ANSELA `Vuc ~T0 @X0 0 e@396 ]
 "2328
 [v _LATC `Vuc ~T0 @X0 0 e@270 ]
-"3160
-[v _ANSELC `Vuc ~T0 @X0 0 e@398 ]
 "1539
 [v _TRISC `Vuc ~T0 @X0 0 e@142 ]
+"3160
+[v _ANSELC `Vuc ~T0 @X0 0 e@398 ]
 "427
 [v _PORTA `Vuc ~T0 @X0 0 e@12 ]
 "682
@@ -59,6 +59,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S109 . . . ]
 "2238
 [v _ADCON1bits `VS109 ~T0 @X0 0 e@158 ]
+"2677
+[v _FVRCON `Vuc ~T0 @X0 0 e@279 ]
 [v F2436 `(v ~T0 @X0 1 tf1`ul ]
 "153 C:\Program Files (x86)\Microchip\xc8\v1.44\include\pic.h
 [v __delay `JF2436 ~T0 @X0 0 e ]
@@ -2509,7 +2511,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;IO_Controls.h: 41: unsigned ClosePinOut:1;
 [; ;IO_Controls.h: 42: unsigned MainsSensePinAIN:1;
 [; ;IO_Controls.h: 43: unsigned Pin6:1;
-[; ;IO_Controls.h: 44: unsigned TripPinOut:1;
+[; ;IO_Controls.h: 44: unsigned Pin5:1;
 [; ;IO_Controls.h: 45: unsigned NoPin_RC6:1;
 [; ;IO_Controls.h: 46: unsigned NoPin_RC7:1;
 [; ;IO_Controls.h: 47: } bits;
@@ -2529,76 +2531,99 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;IO_Controls.h: 71: LATA = 0;
 "71
 [e = _LATA -> -> 0 `i `uc ]
-[; ;IO_Controls.h: 72: ANSELA = 0b00000000;
+[; ;IO_Controls.h: 72: TRISA = 0b00011000;
 "72
-[e = _ANSELA -> -> 0 `i `uc ]
-[; ;IO_Controls.h: 74: TRISA = 0b00011000;
-"74
 [e = _TRISA -> -> 24 `i `uc ]
+[; ;IO_Controls.h: 74: ANSELA = 0b00000000;
+"74
+[e = _ANSELA -> -> 0 `i `uc ]
 [; ;IO_Controls.h: 88: portC.portCByte = 0;
 "88
 [e = . _portC 0 -> -> 0 `i `uc ]
 [; ;IO_Controls.h: 89: LATC = 0;
 "89
 [e = _LATC -> -> 0 `i `uc ]
-[; ;IO_Controls.h: 90: ANSELC = 0b00001000;
+[; ;IO_Controls.h: 90: TRISC = 0b00001000;
 "90
-[e = _ANSELC -> -> 8 `i `uc ]
-[; ;IO_Controls.h: 93: TRISC = 0b00001000;
-"93
 [e = _TRISC -> -> 8 `i `uc ]
-[; ;IO_Controls.h: 96: return;
-"96
-[e $UE 296  ]
-[; ;IO_Controls.h: 97: }
+[; ;IO_Controls.h: 92: ANSELC = 0b00001000;
+"92
+[e = _ANSELC -> -> 8 `i `uc ]
+[; ;IO_Controls.h: 97: return;
 "97
+[e $UE 296  ]
+[; ;IO_Controls.h: 98: }
+"98
 [e :UE 296 ]
 }
-"100
+"101
 [v _PIN3 `(v ~T0 @X0 1 ef1`uc ]
 {
-[; ;IO_Controls.h: 100: void PIN3(char OnOff){
+[; ;IO_Controls.h: 101: void PIN3(char OnOff){
 [e :U _PIN3 ]
 [v _OnOff `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;IO_Controls.h: 103: portA.portAByte = PORTA;
-"103
-[e = . _portA 0 _PORTA ]
-[; ;IO_Controls.h: 104: portA.bits.Pin3 = OnOff;
+[; ;IO_Controls.h: 104: portA.portAByte = PORTA;
 "104
-[e = . . _portA 1 4 _OnOff ]
-[; ;IO_Controls.h: 105: PORTA=portA.portAByte;
+[e = . _portA 0 _PORTA ]
+[; ;IO_Controls.h: 105: portA.bits.Pin3 = OnOff;
 "105
-[e = _PORTA . _portA 0 ]
-[; ;IO_Controls.h: 106: return;
+[e = . . _portA 1 4 _OnOff ]
+[; ;IO_Controls.h: 106: PORTA=portA.portAByte;
 "106
-[e $UE 297  ]
-[; ;IO_Controls.h: 107: }
+[e = _PORTA . _portA 0 ]
+[; ;IO_Controls.h: 107: return;
 "107
+[e $UE 297  ]
+[; ;IO_Controls.h: 108: }
+"108
 [e :UE 297 ]
 }
-"109
+"110
 [v _PIN6 `(v ~T0 @X0 1 ef1`uc ]
 {
-[; ;IO_Controls.h: 109: void PIN6(char OnOff){
+[; ;IO_Controls.h: 110: void PIN6(char OnOff){
 [e :U _PIN6 ]
 [v _OnOff `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;IO_Controls.h: 111: portC.portCByte = PORTC;
-"111
-[e = . _portC 0 _PORTC ]
-[; ;IO_Controls.h: 112: portC.bits.Pin6 = OnOff;
+[; ;IO_Controls.h: 112: portC.portCByte = PORTC;
 "112
-[e = . . _portC 1 4 _OnOff ]
-[; ;IO_Controls.h: 113: PORTC=portC.portCByte;
+[e = . _portC 0 _PORTC ]
+[; ;IO_Controls.h: 113: portC.bits.Pin6 = OnOff;
 "113
-[e = _PORTC . _portC 0 ]
-[; ;IO_Controls.h: 114: return;
+[e = . . _portC 1 4 _OnOff ]
+[; ;IO_Controls.h: 114: PORTC=portC.portCByte;
 "114
-[e $UE 298  ]
-[; ;IO_Controls.h: 115: }
+[e = _PORTC . _portC 0 ]
+[; ;IO_Controls.h: 115: return;
 "115
+[e $UE 298  ]
+[; ;IO_Controls.h: 116: }
+"116
 [e :UE 298 ]
+}
+"118
+[v _PIN5 `(v ~T0 @X0 1 ef1`uc ]
+{
+[; ;IO_Controls.h: 118: void PIN5(char OnOff){
+[e :U _PIN5 ]
+[v _OnOff `uc ~T0 @X0 1 r1 ]
+[f ]
+[; ;IO_Controls.h: 120: portC.portCByte = PORTC;
+"120
+[e = . _portC 0 _PORTC ]
+[; ;IO_Controls.h: 121: portC.bits.Pin5 = OnOff;
+"121
+[e = . . _portC 1 5 _OnOff ]
+[; ;IO_Controls.h: 122: PORTC=portC.portCByte;
+"122
+[e = _PORTC . _portC 0 ]
+[; ;IO_Controls.h: 123: return;
+"123
+[e $UE 299  ]
+[; ;IO_Controls.h: 124: }
+"124
+[e :UE 299 ]
 }
 [; ;ADC.h: 10: void InitialiseADC(void);
 [; ;ADC.h: 11: unsigned short ReadADC(void);
@@ -2617,72 +2642,75 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ADC.h: 18: ADCON1bits.ADCS = 0b000;
 "18
 [e = . . _ADCON1bits 1 2 -> -> 0 `i `uc ]
-[; ;ADC.h: 20: ADCON1bits.ADPREF = 0b000;
+[; ;ADC.h: 20: ADCON1bits.ADPREF = 0b011;
 "20
-[e = . . _ADCON1bits 1 0 -> -> 0 `i `uc ]
-[; ;ADC.h: 22: _delay((unsigned long)((10)*(1000000/4000000.0)));
+[e = . . _ADCON1bits 1 0 -> -> 3 `i `uc ]
+[; ;ADC.h: 22: FVRCON = 0b11000010;
 "22
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 1000000 `l `d .4000000.0 `ul ]
-[; ;ADC.h: 23: ADIE=0;
-"23
-[e = _ADIE -> -> 0 `i `b ]
-[; ;ADC.h: 24: ADON=0;
+[e = _FVRCON -> -> 194 `i `uc ]
+[; ;ADC.h: 24: _delay((unsigned long)((10)*(1000000/4000000.0)));
 "24
-[e = _ADON -> -> 0 `i `b ]
-[; ;ADC.h: 25: GO_nDONE=0;
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 1000000 `l `d .4000000.0 `ul ]
+[; ;ADC.h: 25: ADIE=0;
 "25
-[e = _GO_nDONE -> -> 0 `i `b ]
-[; ;ADC.h: 26: return;
+[e = _ADIE -> -> 0 `i `b ]
+[; ;ADC.h: 26: ADON=0;
 "26
-[e $UE 299  ]
-[; ;ADC.h: 27: }
+[e = _ADON -> -> 0 `i `b ]
+[; ;ADC.h: 27: GO_nDONE=0;
 "27
-[e :UE 299 ]
-}
+[e = _GO_nDONE -> -> 0 `i `b ]
+[; ;ADC.h: 28: return;
+"28
+[e $UE 300  ]
+[; ;ADC.h: 29: }
 "29
+[e :UE 300 ]
+}
+"31
 [v _ReadADC `(us ~T0 @X0 1 ef ]
 {
-[; ;ADC.h: 29: unsigned short ReadADC(){
+[; ;ADC.h: 31: unsigned short ReadADC(){
 [e :U _ReadADC ]
 [f ]
-"31
-[v _adcData `us ~T0 @X0 1 a ]
-[; ;ADC.h: 31: unsigned short adcData = 0;
-[e = _adcData -> -> 0 `i `us ]
-[; ;ADC.h: 33: GO_nDONE = 1;
 "33
-[e = _GO_nDONE -> -> 1 `i `b ]
-[; ;ADC.h: 34: while (GO_nDONE){
-"34
-[e $U 301  ]
-[e :U 302 ]
-{
+[v _adcData `us ~T0 @X0 1 a ]
+[; ;ADC.h: 33: unsigned short adcData = 0;
+[e = _adcData -> -> 0 `i `us ]
+[; ;ADC.h: 35: GO_nDONE = 1;
 "35
-}
-[e :U 301 ]
-"34
-[e $ _GO_nDONE 302  ]
+[e = _GO_nDONE -> -> 1 `i `b ]
+[; ;ADC.h: 36: while (GO_nDONE){
+"36
+[e $U 302  ]
 [e :U 303 ]
-[; ;ADC.h: 35: }
-[; ;ADC.h: 38: adcData = (ADRESH & 0x03);
-"38
-[e = _adcData -> & -> _ADRESH `i -> 3 `i `us ]
-[; ;ADC.h: 39: adcData<<=8;
-"39
-[e =<< _adcData -> 8 `i ]
-[; ;ADC.h: 40: adcData+=ADRESL;
+{
+"37
+}
+[e :U 302 ]
+"36
+[e $ _GO_nDONE 303  ]
+[e :U 304 ]
+[; ;ADC.h: 37: }
+[; ;ADC.h: 40: adcData = (ADRESH & 0x03);
 "40
-[e =+ _adcData -> _ADRESL `us ]
-[; ;ADC.h: 42: GO_nDONE = 0;
+[e = _adcData -> & -> _ADRESH `i -> 3 `i `us ]
+[; ;ADC.h: 41: adcData<<=8;
+"41
+[e =<< _adcData -> 8 `i ]
+[; ;ADC.h: 42: adcData+=ADRESL;
 "42
+[e =+ _adcData -> _ADRESL `us ]
+[; ;ADC.h: 44: GO_nDONE = 0;
+"44
 [e = _GO_nDONE -> -> 0 `i `b ]
-[; ;ADC.h: 45: return adcData;
-"45
+[; ;ADC.h: 46: return adcData;
+"46
 [e ) _adcData ]
-[e $UE 300  ]
-[; ;ADC.h: 47: }
-"47
-[e :UE 300 ]
+[e $UE 301  ]
+[; ;ADC.h: 48: }
+"48
+[e :UE 301 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
 "18 newmain.c
@@ -2696,15 +2724,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _OSCCON -> -> 88 `i `uc ]
 [; ;newmain.c: 32: while(HFIOFR==0){
 "32
-[e $U 305  ]
-[e :U 306 ]
+[e $U 306  ]
+[e :U 307 ]
 {
 "33
 }
-[e :U 305 ]
+[e :U 306 ]
 "32
-[e $ == -> _HFIOFR `i -> 0 `i 306  ]
-[e :U 307 ]
+[e $ == -> _HFIOFR `i -> 0 `i 307  ]
+[e :U 308 ]
 [; ;newmain.c: 33: }
 [; ;newmain.c: 36: INTCON = 0b00000000;
 "36
@@ -2721,111 +2749,80 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;newmain.c: 41: ADON=1;
 "41
 [e = _ADON -> -> 1 `i `b ]
-"42
-[v _Vread `us ~T0 @X0 1 a ]
 "43
-[v _chDelay `uc ~T0 @X0 1 a ]
-[; ;newmain.c: 42: unsigned short Vread;
-[; ;newmain.c: 43: char chDelay=500;
-[e = _chDelay -> -> 500 `i `uc ]
-[; ;newmain.c: 44: while(1){
+[v _Vread `us ~T0 @X0 1 a ]
 "44
-[e :U 309 ]
-{
+[v _chDelay `uc ~T0 @X0 1 a ]
+[; ;newmain.c: 43: unsigned short Vread;
+[; ;newmain.c: 44: char chDelay=500;
+[e = _chDelay -> -> 500 `i `uc ]
+[; ;newmain.c: 46: while(1){
 "46
-[v _temp `uc ~T0 @X0 1 a ]
-[; ;newmain.c: 46: char temp = PORTA;
-[e = _temp _PORTA ]
-[; ;newmain.c: 50: if((PORTA & 0x10) != 0) {
+[e :U 310 ]
+{
+[; ;newmain.c: 48: if((PORTA & 0x10) != 0) {
+"48
+[e $ ! != & -> _PORTA `i -> 16 `i -> 0 `i 312  ]
+{
+[; ;newmain.c: 50: Vread = ReadADC();
 "50
-[e $ ! != & -> _PORTA `i -> 16 `i -> 0 `i 311  ]
-{
-[; ;newmain.c: 52: Vread = ReadADC();
-"52
 [e = _Vread ( _ReadADC ..  ]
-[; ;newmain.c: 54: chDelay = 0;
-"54
-[e = _chDelay -> -> 0 `i `uc ]
-[; ;newmain.c: 55: if (Vread>500){
-"55
-[e $ ! > -> _Vread `ui -> -> 500 `i `ui 312  ]
+[; ;newmain.c: 52: if(Vread>1022){
+"52
+[e $ ! > -> _Vread `ui -> -> 1022 `i `ui 313  ]
 {
-[; ;newmain.c: 56: chDelay = 1;
-"56
-[e = _chDelay -> -> 1 `i `uc ]
+[; ;newmain.c: 54: PIN5(0);
+"54
+[e ( _PIN5 (1 -> -> 0 `i `uc ]
+[; ;newmain.c: 55: PIN6(1);
+"55
+[e ( _PIN6 (1 -> -> 1 `i `uc ]
 "57
 }
-[e :U 312 ]
 [; ;newmain.c: 57: }
-[; ;newmain.c: 61: _delay((unsigned long)((10)*(1000000/4000000.0)));
-"61
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 1000000 `l `d .4000000.0 `ul ]
-[; ;newmain.c: 63: PIN6(1);
-"63
-[e ( _PIN6 (1 -> -> 1 `i `uc ]
-[; ;newmain.c: 66: if (chDelay==0) {
-"66
-[e $ ! == -> _chDelay `i -> 0 `i 313  ]
-{
-[; ;newmain.c: 67: _delay((unsigned long)((250)*(1000000/4000.0)));
-"67
-[e ( __delay (1 -> * -> -> 250 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
-"69
-}
-[; ;newmain.c: 69: }
 [e $U 314  ]
-"70
+"58
 [e :U 313 ]
-[; ;newmain.c: 70: else {
+[; ;newmain.c: 58: else if (Vread<1){
+[e $ ! < -> _Vread `ui -> -> 1 `i `ui 315  ]
 {
-[; ;newmain.c: 71: _delay((unsigned long)((500)*(1000000/4000.0)));
-"71
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
-"72
-}
-[e :U 314 ]
-[; ;newmain.c: 72: }
-[; ;newmain.c: 73: PIN6(0);
-"73
+[; ;newmain.c: 60: PIN6(0);
+"60
 [e ( _PIN6 (1 -> -> 0 `i `uc ]
-[; ;newmain.c: 76: if (chDelay==0) {
-"76
-[e $ ! == -> _chDelay `i -> 0 `i 315  ]
-{
-[; ;newmain.c: 77: _delay((unsigned long)((250)*(1000000/4000.0)));
-"77
-[e ( __delay (1 -> * -> -> 250 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
-"79
+[; ;newmain.c: 61: PIN5(1);
+"61
+[e ( _PIN5 (1 -> -> 1 `i `uc ]
+"62
 }
-[; ;newmain.c: 79: }
+[; ;newmain.c: 62: }
 [e $U 316  ]
-"80
+"63
 [e :U 315 ]
-[; ;newmain.c: 80: else {
-{
-[; ;newmain.c: 81: _delay((unsigned long)((500)*(1000000/4000.0)));
-"81
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
-"82
-}
+[; ;newmain.c: 63: else
+[; ;newmain.c: 64: PIN6(0);
+"64
+[e ( _PIN6 (1 -> -> 0 `i `uc ]
 [e :U 316 ]
-"83
+[e :U 314 ]
+[; ;newmain.c: 65: PIN5(0);
+"65
+[e ( _PIN5 (1 -> -> 0 `i `uc ]
+"92
 }
+[e :U 312 ]
+"93
+}
+[e :U 309 ]
+"46
+[e $U 310  ]
 [e :U 311 ]
-"86
-}
-[e :U 308 ]
-"44
-[e $U 309  ]
-[e :U 310 ]
-[; ;newmain.c: 82: }
-[; ;newmain.c: 83: }
-[; ;newmain.c: 86: }
-[; ;newmain.c: 89: return (0);
-"89
+[; ;newmain.c: 92: }
+[; ;newmain.c: 93: }
+[; ;newmain.c: 94: return (0);
+"94
 [e ) -> 0 `i ]
-[e $UE 304  ]
-[; ;newmain.c: 90: }
-"90
-[e :UE 304 ]
+[e $UE 305  ]
+[; ;newmain.c: 95: }
+"95
+[e :UE 305 ]
 }

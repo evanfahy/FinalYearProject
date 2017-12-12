@@ -41,7 +41,7 @@ union {
         unsigned ClosePinOut:1;        //RC2 (DO) Output to close M7
         unsigned MainsSensePinAIN:1;   //RC3 (A7) Mains Level Sense
         unsigned Pin6:1;               //RC4 (DO) Avail for TEST/DEBUG
-        unsigned TripPinOut:1;         //RC5 (DO) trip M7 Output
+        unsigned Pin5:1;               //RC5 (DO) trip M7 Output
         unsigned NoPin_RC6:1;           //no such port pin, filling up Byte with extra bit
         unsigned NoPin_RC7:1;           //no such port pin, filling up Byte with extra bit
     } bits;
@@ -69,10 +69,10 @@ void InitialisePorts(void){
     
     portA.portAByte = 0;     // initialise the A shadow register to zero
     LATA   = 0;              // Switch off all port A output pins before enabling
-    ANSELA = 0b00000000;     // Disable all port A Analog inputs (1=Analog In)
-    
     TRISA  = 0b00011000;     // 0 = Digital Outputs; 1 = Digital IN.
                              // RA3 pin4 bit is always ?1? as RA3 is an input only
+    ANSELA = 0b00000000;     // Disable all port A Analog inputs (1=Analog In)
+    
     
     //INLVLA2 =1;             // select Schmitt Trigger levels for IOC A2 pin
     //************* PORT A end *************
@@ -87,10 +87,11 @@ void InitialisePorts(void){
     
     portC.portCByte = 0;    // initialise the C shadow register to zero
     LATC = 0;               // Switch off all port C output pins before enabling
+    TRISC  = 0b00001000;    // 0 = Digital Outputs; 1 = Digital IN.
+                            //AN7 / RC3 set to Analog IN 
     ANSELC = 0b00001000;    // Disable all port C Analog inputs (1=Analog In)
-                            // Enable PortC.0 as Analog: AN5 (pin9) (RC1:VCC Sense)
                             // Enable PortC.3 as Analog: AN7 (pin7) (RC3:Mains Sense)
-    TRISC  = 0b00001000;     // 0 = Digital Outputs; 1 = Digital IN.
+  
     //************* PORT C end *************
 
     return;
@@ -110,6 +111,14 @@ void PIN6(char OnOff){
 
     portC.portCByte = PORTC;
     portC.bits.Pin6 = OnOff;
+    PORTC=portC.portCByte;
+    return; 
+}
+
+void PIN5(char OnOff){
+
+    portC.portCByte = PORTC;
+    portC.bits.Pin5 = OnOff;
     PORTC=portC.portCByte;
     return; 
 }

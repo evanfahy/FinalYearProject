@@ -3275,7 +3275,7 @@ unsigned FaultLEDPinOut:1;
 unsigned ClosePinOut:1;
 unsigned MainsSensePinAIN:1;
 unsigned Pin6:1;
-unsigned TripPinOut:1;
+unsigned Pin5:1;
 unsigned NoPin_RC6:1;
 unsigned NoPin_RC7:1;
 } bits;
@@ -3289,17 +3289,18 @@ OPTION_REG = 0b10000000;
 # 70
 portA.portAByte = 0;
 LATA = 0;
-ANSELA = 0b00000000;
-
 TRISA = 0b00011000;
+
+ANSELA = 0b00000000;
 
 # 88
 portC.portCByte = 0;
 LATC = 0;
+TRISC = 0b00001000;
+
 ANSELC = 0b00001000;
 
 
-TRISC = 0b00001000;
 
 
 return;
@@ -3323,6 +3324,14 @@ PORTC=portC.portCByte;
 return;
 }
 
+void PIN5(char OnOff){
+
+portC.portCByte = PORTC;
+portC.bits.Pin5 = OnOff;
+PORTC=portC.portCByte;
+return;
+}
+
 # 10 "ADC.h"
 void InitialiseADC(void);
 unsigned short ReadADC(void);
@@ -3334,7 +3343,9 @@ ADCON0bits.CHS = 0b0111;
 ADFM = 1;
 ADCON1bits.ADCS = 0b000;
 
-ADCON1bits.ADPREF = 0b000;
+ADCON1bits.ADPREF = 0b011;
+
+FVRCON = 0b11000010;
 
 _delay((unsigned long)((10)*(1000000/4000000.0)));
 ADIE=0;
@@ -3358,7 +3369,6 @@ adcData+=ADRESL;
 
 GO_nDONE = 0;
 
-
 return adcData;
 
 }
@@ -3380,52 +3390,33 @@ GIE = 0;
 InitialisePorts();
 InitialiseADC();
 ADON=1;
+
 unsigned short Vread;
 char chDelay=500;
+
 while(1){
-
-char temp = PORTA;
-
-
 
 if((PORTA & 0x10) != 0) {
 
 Vread = ReadADC();
 
-chDelay = 0;
-if (Vread>500){
-chDelay = 1;
-}
+if(Vread>1022){
 
-
-
-_delay((unsigned long)((10)*(1000000/4000000.0)));
-
+PIN5(0);
 PIN6(1);
 
-
-if (chDelay==0) {
-_delay((unsigned long)((250)*(1000000/4000.0)));
-
 }
-else {
-_delay((unsigned long)((500)*(1000000/4000.0)));
-}
+else if (Vread<1){
+
 PIN6(0);
-
-
-if (chDelay==0) {
-_delay((unsigned long)((250)*(1000000/4000.0)));
-
+PIN5(1);
 }
-else {
-_delay((unsigned long)((500)*(1000000/4000.0)));
+else
+PIN6(0);
+PIN5(0);
+
+# 92
 }
 }
-
-
-}
-
-
 return (0);
 }

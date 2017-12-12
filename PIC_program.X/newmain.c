@@ -38,53 +38,32 @@ int main() {
     
     InitialisePorts();      // routine to setup ports
     InitialiseADC();
-    ADON=Enable;
+    ADON=Enable;            //ADC enable
+    
     unsigned short Vread;
     char chDelay=500;
+    
     while(1){
-        
-        char temp = PORTA;
-        
-        //if(portA.bits.Pin3 == 0){
         
         if((PORTA & 0x10) != 0) {
             
             Vread = ReadADC();
             
-            chDelay = shortDelay;
-            if (Vread>500){
-                chDelay = longDelay;
-            }    
+            if(Vread>1022){
             
-        
-            
-            __delay_us(10);
-            
-            PIN6(Set);
-            //portC.bits.Pin6 = 1;
-            //PORTC=portC.portCByte;
-            if (chDelay==shortDelay) {
-            __delay_ms(250);   //#define __delay_ms(x) _delay((unsigned long)((x)*(_XTAL_FREQ/4000.0)))
-                            // NOTE: To use the __delay_ms() function, YOU must have previously defined _XTAL_FREQ
+                PIN5(Clear);
+                PIN6(Set);
+              
             }
-            else  {
-                __delay_ms(500);   //#define __delay_ms(x) _delay((unsigned long)((x)*(_XTAL_FREQ/4000.0)))
+            else if (Vread<1){
+                
+                PIN6(Clear);
+                PIN5(Set);
             }
-            PIN6(Clear);
-            //portC.bits.Pin6 = 0;
-            //PORTC=portC.portCByte;
-            if (chDelay==shortDelay) {
-            __delay_ms(250);   //#define __delay_ms(x) _delay((unsigned long)((x)*(_XTAL_FREQ/4000.0)))
-                            // NOTE: To use the __delay_ms() function, YOU must have previously defined _XTAL_FREQ
-            }
-            else  {
-                __delay_ms(500);   //#define __delay_ms(x) _delay((unsigned long)((x)*(_XTAL_FREQ/4000.0)))
-            }
+            else
+                PIN6(Clear);
+                PIN5(Clear);
         }
-            
-    //}
-    }
-   
-   
+    } 
     return (0);
 }
