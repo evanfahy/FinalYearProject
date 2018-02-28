@@ -13,6 +13,12 @@
 #include "DeviceConfig.h"
 #include "IO_Controls.h"
 #include "ADC.h"
+#include "Usart.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+//unsigned short VreadArray[40];
+//int i = 0;
 
 
 int main() {
@@ -36,19 +42,36 @@ int main() {
     INTCON = 0b00000000;    // bit7= Global Int Enable; bit4= Int Pin ENable (RA2, Pin11)
     GIE = Disable;          // Disable Global Interrupt
     
+    InitUSART();
     InitialisePorts();      // routine to setup ports
     InitialiseADC();
     ADON=Enable;            //ADC enable
     
+    
     unsigned short Vread;
+    
     char chDelay=500;
+    char VreadChar[5];
+    
+//    while(1){
+//    
+//        __delay_ms(1000);
+//        printf("Hello");
+//    }
     
     while(1){
         
-        if((PORTA & 0x10) != 0) {
+        //if((PORTA & 0x10) != 0) {
             
             Vread = ReadADC();
-            
+            printf("Vread: ");
+            printf("%d", Vread);
+            //__delay_ms(100);
+//            if(i < 100){
+//                VreadArray[i] = Vread;
+//                i++;
+//            }
+//            
             if(Vread>1022){
             
                 PIN5(Clear);
@@ -64,6 +87,6 @@ int main() {
                 PIN6(Clear);
                 PIN5(Clear);
         }
-    } 
+    //} 
     return (0);
 }

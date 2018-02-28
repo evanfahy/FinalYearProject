@@ -88,9 +88,10 @@ void InitialisePorts(void){
     portC.portCByte = 0;    // initialise the C shadow register to zero
     LATC = 0;               // Switch off all port C output pins before enabling
     TRISC  = 0b00001000;    // 0 = Digital Outputs; 1 = Digital IN.
-                            //AN7 / RC3 set to Analog IN 
+                            //AN7 / RC3 and AN6 / RC2 set to Analog IN 
     ANSELC = 0b00001000;    // Disable all port C Analog inputs (1=Analog In)
-                            // Enable PortC.3 as Analog: AN7 (pin7) (RC3:Mains Sense)
+                            // Enable PortC.3 as Analog: AN7 (pin7) (RC3:Positive cycle Sense)
+                            // Enable PortC.2 as Analog: AN6 (pin8) (RC2:Negative cycle Sense)
   
     //************* PORT C end *************
 

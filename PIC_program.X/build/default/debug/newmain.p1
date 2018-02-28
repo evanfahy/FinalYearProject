@@ -2934,123 +2934,123 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 315 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"24 newmain.c
+"22 newmain.c
 [v _main `(i ~T0 @X0 1 ef ]
 {
-[; ;newmain.c: 24: int main() {
+[; ;newmain.c: 22: int main() {
 [e :U _main ]
 [f ]
-[; ;newmain.c: 27: OSCCON = 0b01011000;
-"27
+[; ;newmain.c: 25: OSCCON = 0b01011000;
+"25
 [e = _OSCCON -> -> 88 `i `uc ]
-[; ;newmain.c: 38: while(HFIOFR==0){
-"38
+[; ;newmain.c: 36: while(HFIOFR==0){
+"36
 [e $U 320  ]
 [e :U 321 ]
 {
-"39
+"37
 }
 [e :U 320 ]
-"38
+"36
 [e $ == -> _HFIOFR `i -> 0 `i 321  ]
 [e :U 322 ]
-[; ;newmain.c: 39: }
-[; ;newmain.c: 42: INTCON = 0b00000000;
-"42
+[; ;newmain.c: 37: }
+[; ;newmain.c: 40: INTCON = 0b00000000;
+"40
 [e = _INTCON -> -> 0 `i `uc ]
-[; ;newmain.c: 43: GIE = 0;
-"43
+[; ;newmain.c: 41: GIE = 0;
+"41
 [e = _GIE -> -> 0 `i `b ]
-[; ;newmain.c: 45: InitUSART();
-"45
+[; ;newmain.c: 43: InitUSART();
+"43
 [e ( _InitUSART ..  ]
-[; ;newmain.c: 46: InitialisePorts();
-"46
+[; ;newmain.c: 44: InitialisePorts();
+"44
 [e ( _InitialisePorts ..  ]
-[; ;newmain.c: 47: InitialiseADC();
-"47
+[; ;newmain.c: 45: InitialiseADC();
+"45
 [e ( _InitialiseADC ..  ]
-[; ;newmain.c: 48: ADON=1;
-"48
+[; ;newmain.c: 46: ADON=1;
+"46
 [e = _ADON -> -> 1 `i `b ]
-"51
+"49
 [v _Vread `us ~T0 @X0 1 a ]
-"53
+"51
 [v _chDelay `uc ~T0 @X0 1 a ]
-[; ;newmain.c: 51: unsigned short Vread;
-[; ;newmain.c: 53: char chDelay=500;
+[; ;newmain.c: 49: unsigned short Vread;
+[; ;newmain.c: 51: char chDelay=500;
 [e = _chDelay -> -> 500 `i `uc ]
-"54
-[v _VreadChar `uc ~T0 @X0 -> 5 `i a ]
-[; ;newmain.c: 54: char VreadChar[5];
-[; ;newmain.c: 62: while(1){
-"62
+[; ;newmain.c: 59: while(1){
+"59
 [e :U 324 ]
 {
-[; ;newmain.c: 66: Vread = ReadADC();
-"66
+[; ;newmain.c: 63: Vread = ReadADC();
+"63
 [e = _Vread ( _ReadADC ..  ]
-[; ;newmain.c: 67: printf("Vread: ");
-"67
+[; ;newmain.c: 64: printf("Vread: ");
+"64
 [e ( _printf :s 1C ]
-[; ;newmain.c: 68: printf("%d", Vread);
-"68
-[e ( _printf , (. :s 2C -> _Vread `i ]
-[; ;newmain.c: 75: if(Vread>1022){
-"75
+[; ;newmain.c: 65: printf(Vread);
+"65
+[e ( _printf -> _Vread `*Cuc ]
+[; ;newmain.c: 66: _delay((unsigned long)((500)*(1000000/4000.0)));
+"66
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+[; ;newmain.c: 72: if(Vread>1022){
+"72
 [e $ ! > -> _Vread `ui -> -> 1022 `i `ui 326  ]
 {
-[; ;newmain.c: 77: PIN5(0);
-"77
+[; ;newmain.c: 74: PIN5(0);
+"74
 [e ( _PIN5 (1 -> -> 0 `i `uc ]
-[; ;newmain.c: 78: PIN6(1);
-"78
+[; ;newmain.c: 75: PIN6(1);
+"75
 [e ( _PIN6 (1 -> -> 1 `i `uc ]
-"80
+"77
 }
-[; ;newmain.c: 80: }
+[; ;newmain.c: 77: }
 [e $U 327  ]
-"81
+"78
 [e :U 326 ]
-[; ;newmain.c: 81: else if (Vread<1){
+[; ;newmain.c: 78: else if (Vread<1){
 [e $ ! < -> _Vread `ui -> -> 1 `i `ui 328  ]
 {
-[; ;newmain.c: 83: PIN6(0);
-"83
+[; ;newmain.c: 80: PIN6(0);
+"80
 [e ( _PIN6 (1 -> -> 0 `i `uc ]
-[; ;newmain.c: 84: PIN5(1);
-"84
+[; ;newmain.c: 81: PIN5(1);
+"81
 [e ( _PIN5 (1 -> -> 1 `i `uc ]
-"85
+"82
 }
-[; ;newmain.c: 85: }
+[; ;newmain.c: 82: }
 [e $U 329  ]
-"86
+"83
 [e :U 328 ]
-[; ;newmain.c: 86: else
-[; ;newmain.c: 87: PIN6(0);
-"87
+[; ;newmain.c: 83: else
+[; ;newmain.c: 84: PIN6(0);
+"84
 [e ( _PIN6 (1 -> -> 0 `i `uc ]
 [e :U 329 ]
 [e :U 327 ]
-[; ;newmain.c: 88: PIN5(0);
-"88
+[; ;newmain.c: 85: PIN5(0);
+"85
 [e ( _PIN5 (1 -> -> 0 `i `uc ]
-"89
+"86
 }
 [e :U 323 ]
-"62
+"59
 [e $U 324  ]
 [e :U 325 ]
-[; ;newmain.c: 89: }
-[; ;newmain.c: 91: return (0);
-"91
+[; ;newmain.c: 86: }
+[; ;newmain.c: 88: return (0);
+"88
 [e ) -> 0 `i ]
 [e $UE 319  ]
-[; ;newmain.c: 92: }
-"92
+[; ;newmain.c: 89: }
+"89
 [e :UE 319 ]
 }
-[p f _printf 8388736 ]
-[a 2C 37 100 0 ]
+[p f _printf 9437696 ]
 [a 1C 86 114 101 97 100 58 32 0 ]
+

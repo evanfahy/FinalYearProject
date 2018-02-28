@@ -3545,13 +3545,13 @@ while(!TXIF){
 return;
 }
 
-# 24 "newmain.c"
+# 22 "newmain.c"
 int main() {
 
 
 OSCCON = 0b01011000;
 
-# 38
+# 36
 while(HFIOFR==0){
 }
 
@@ -3568,18 +3568,18 @@ ADON=1;
 unsigned short Vread;
 
 char chDelay=500;
-char VreadChar[5];
 
-# 62
+# 59
 while(1){
 
 
 
 Vread = ReadADC();
 printf("Vread: ");
-printf("%d", Vread);
+printf(Vread);
+_delay((unsigned long)((500)*(1000000/4000.0)));
 
-# 75
+# 72
 if(Vread>1022){
 
 PIN5(0);

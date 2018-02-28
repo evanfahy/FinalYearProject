@@ -2,6 +2,8 @@
 // more than once. 
 
 #include "Constants.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 #ifndef ADC_H
 #define	ADC_H
@@ -13,7 +15,8 @@ unsigned short ReadADC(void);
 //Function Definitions
 void InitialiseADC(void){
 
-    ADCON0bits.CHS = 0b0111;    //selects Pin7 (AN7)
+    ADCON0bits.CHS = 0b0111;    //selects Pin7(AN7)
+    //ADCON0bits.CHS = 0b0110;    //selects Pin8(AN6)
     ADFM = Set;                 //Right Justified results
     ADCON1bits.ADCS = 0b000;    //selects clock = Fosc/2
     //ADCON1bits.ADNREF = 0;    //connects -Ref to Vss
@@ -42,6 +45,7 @@ unsigned short ReadADC(){
     adcData+=ADRESL;          //Store low byte into variable
     
     GO_nDONE = Stop;
+    
     
     return adcData;
     
