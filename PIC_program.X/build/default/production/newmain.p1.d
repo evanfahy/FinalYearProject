@@ -2,7 +2,9 @@
  build/default/production/newmain.p1:  \
  newmain.c  \
 DeviceConfig.h  \
+Variables.h  \
+USART.h  \
 IO_Controls.h  \
+Timer.h  \
 ADC.h  \
-Usart.h  \
 Constants.h 

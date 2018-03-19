@@ -1,5 +1,5 @@
 
-# 1 "newmain.c"
+# 1 "USART.c"
 
 # 26 "C:\Program Files (x86)\Microchip\xc8\v1.44\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -3194,323 +3194,12 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 
-# 30 "C:\Program Files (x86)\Microchip\xc8\v1.44\include\math.h"
-extern double fabs(double);
-extern double floor(double);
-extern double ceil(double);
-extern double modf(double, double *);
-extern double sqrt(double);
-extern double atof(const char *);
-extern double sin(double) ;
-extern double cos(double) ;
-extern double tan(double) ;
-extern double asin(double) ;
-extern double acos(double) ;
-extern double atan(double);
-extern double atan2(double, double) ;
-extern double log(double);
-extern double log10(double);
-extern double pow(double, double) ;
-extern double exp(double) ;
-extern double sinh(double) ;
-extern double cosh(double) ;
-extern double tanh(double);
-extern double eval_poly(double, const double *, int);
-extern double frexp(double, int *);
-extern double ldexp(double, int);
-extern double fmod(double, double);
-extern double trunc(double);
-extern double round(double);
-
-
-# 24 "DeviceConfig.h"
-#pragma config FOSC = INTOSC
-#pragma config CLKOUTEN = OFF
-#pragma config IESO = OFF
-#pragma config PLLEN = OFF
-#pragma config FCMEN = OFF
-
-
-#pragma config PWRTE = ON
-#pragma config MCLRE = OFF
-#pragma config BOREN = ON
-#pragma config BORV = LO
-#pragma config STVREN = ON
-#pragma config WDTE = OFF
-
-
-#pragma config WRT = OFF
-#pragma config CP = OFF
-#pragma config CPD = OFF
-#pragma config LVP = OFF
-
-# 14 "IO_Controls.h"
-void InitialisePorts (void);
-void LEDPin(char OnOff);
-void PIN3(char OnOff);
-void PIN6(char OnOff);
-
-
-
-union {
-unsigned char portAByte;
-struct{
-unsigned TxPin:1;
-unsigned RxPin:1;
-unsigned RCD_FaultPinDIN:1;
-unsigned ResetButtonPinDin:1;
-unsigned Pin3:1;
-unsigned ShortTripSCRPinOut:1;
-unsigned NoPin_RA6:1;
-unsigned NoPin_RA7:1;
-} bits;
-}portA;
-
-
-union {
-unsigned char portCByte;
-struct{
-unsigned VccSensePinAIN:1;
-unsigned FaultLEDPinOut:1;
-unsigned ClosePinOut:1;
-unsigned MainsSensePinAIN:1;
-unsigned Pin6:1;
-unsigned Pin5:1;
-unsigned NoPin_RC6:1;
-unsigned NoPin_RC7:1;
-} bits;
-}portC;
-
-
-void InitialisePorts(void){
-
-OPTION_REG = 0b10000000;
-
-# 70
-portA.portAByte = 0;
-LATA = 0;
-TRISA = 0b00011000;
-
-ANSELA = 0b00000000;
-
-# 88
-portC.portCByte = 0;
-LATC = 0;
-TRISC = 0b00001000;
-
-ANSELC = 0b00001000;
-
-# 98
-return;
-}
-
-
-void PIN3(char OnOff){
-
-
-portA.portAByte = PORTA;
-portA.bits.Pin3 = OnOff;
-PORTA=portA.portAByte;
-return;
-}
-
-void PIN6(char OnOff){
-
-portC.portCByte = PORTC;
-portC.bits.Pin6 = OnOff;
-PORTC=portC.portCByte;
-return;
-}
-
-void PIN5(char OnOff){
-
-portC.portCByte = PORTC;
-portC.bits.Pin5 = OnOff;
-PORTC=portC.portCByte;
-return;
-}
-
-# 4 "C:\Program Files (x86)\Microchip\xc8\v1.44\include\__size_t.h"
-typedef unsigned size_t;
-
-# 7 "C:\Program Files (x86)\Microchip\xc8\v1.44\include\stdarg.h"
-typedef void * va_list[1];
-
-#pragma intrinsic(__va_start)
-extern void * __va_start(void);
-
-#pragma intrinsic(__va_arg)
-extern void * __va_arg(void *, ...);
-
-# 43 "C:\Program Files (x86)\Microchip\xc8\v1.44\include\stdio.h"
-struct __prbuf
-{
-char * ptr;
-void (* func)(char);
-};
-
-# 29 "C:\Program Files (x86)\Microchip\xc8\v1.44\include\errno.h"
-extern int errno;
-
-# 12 "C:\Program Files (x86)\Microchip\xc8\v1.44\include\conio.h"
-extern void init_uart(void);
-
-extern char getch(void);
-extern char getche(void);
-extern void putch(char);
-extern void ungetch(char);
-
-extern __bit kbhit(void);
-
-# 23
-extern char * cgets(char *);
-extern void cputs(const char *);
-
-# 88 "C:\Program Files (x86)\Microchip\xc8\v1.44\include\stdio.h"
-extern int cprintf(char *, ...);
-#pragma printf_check(cprintf)
-
-
-
-extern int _doprnt(struct __prbuf *, const register char *, register va_list);
-
-
-# 180
-#pragma printf_check(vprintf) const
-#pragma printf_check(vsprintf) const
-
-extern char * gets(char *);
-extern int puts(const char *);
-extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
-extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
-extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
-extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
-extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
-extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
-
-#pragma printf_check(printf) const
-#pragma printf_check(sprintf) const
-extern int sprintf(char *, const char *, ...);
-extern int printf(const char *, ...);
-
-# 7 "C:\Program Files (x86)\Microchip\xc8\v1.44\include\stdlib.h"
-typedef unsigned short wchar_t;
-
-# 15
-typedef struct {
-int rem;
-int quot;
-} div_t;
-typedef struct {
-unsigned rem;
-unsigned quot;
-} udiv_t;
-typedef struct {
-long quot;
-long rem;
-} ldiv_t;
-typedef struct {
-unsigned long quot;
-unsigned long rem;
-} uldiv_t;
-
-# 53
-extern double atof(const char *);
-extern double strtod(const char *, const char **);
-extern int atoi(const char *);
-extern unsigned xtoi(const char *);
-extern long atol(const char *);
-extern long strtol(const char *, char **, int);
-
-extern int rand(void);
-extern void srand(unsigned int);
-extern void * calloc(size_t, size_t);
-extern div_t div(int numer, int denom);
-extern udiv_t udiv(unsigned numer, unsigned denom);
-extern ldiv_t ldiv(long numer, long denom);
-extern uldiv_t uldiv(unsigned long numer,unsigned long denom);
-extern unsigned long _lrotl(unsigned long value, unsigned int shift);
-extern unsigned long _lrotr(unsigned long value, unsigned int shift);
-extern unsigned int _rotl(unsigned int value, unsigned int shift);
-extern unsigned int _rotr(unsigned int value, unsigned int shift);
-
-
-
-
-extern void * malloc(size_t);
-extern void free(void *);
-extern void * realloc(void *, size_t);
-
-# 86
-extern int atexit(void (*)(void));
-extern char * getenv(const char *);
-extern char ** environ;
-extern int system(char *);
-extern void qsort(void *, size_t, size_t, int (*)(const void *, const void *));
-extern void * bsearch(const void *, void *, size_t, size_t, int(*)(const void *, const void *));
-extern int abs(int);
-extern long labs(long);
-
-extern char * itoa(char * buf, int val, int base);
-extern char * utoa(char * buf, unsigned val, int base);
-
-
-
-
-extern char * ltoa(char * buf, long val, int base);
-extern char * ultoa(char * buf, unsigned long val, int base);
-
-extern char * ftoa(float f, int * status);
-
-# 12 "ADC.h"
-void InitialiseADC(void);
-unsigned short ReadADC(void);
-
-
-void InitialiseADC(void){
-
-ADCON0bits.CHS = 0b0111;
-
-ADFM = 1;
-ADCON1bits.ADCS = 0b000;
-
-ADCON1bits.ADPREF = 0b011;
-
-FVRCON = 0b11000010;
-
-_delay((unsigned long)((10)*(1000000/4000000.0)));
-ADIE=0;
-ADON=0;
-GO_nDONE=0;
-return;
-}
-
-unsigned short ReadADC(){
-
-unsigned short adcData = 0;
-
-GO_nDONE = 1;
-while (GO_nDONE){
-}
-
-
-adcData = (ADRESH & 0x03);
-adcData<<=8;
-adcData+=ADRESL;
-
-GO_nDONE = 0;
-
-
-return adcData;
-
-}
-
-# 33 "Usart.h"
-void TxChar(char data);
+# 15 "USART.h"
+void TxChar(char);
 void InitUSART(void);
+void putch(char);
 
-
-
+# 12 "USART.c"
 void putch(char c)
 {
 while(!TRMT);
@@ -3520,7 +3209,6 @@ void InitUSART(void)
 {
 
 TXIE=0;
-
 TRISA0 =0;
 TXCKSEL =1;
 TXSTAbits.TXEN=1;
@@ -3530,7 +3218,7 @@ RCSTAbits.SPEN =1;
 TXSTAbits.SYNC=0;
 TXSTAbits.BRGH=1;
 BAUDCONbits.BRG16=0;
-SPBRG = 5;
+SPBRG = 23;
 
 return;
 }
@@ -3538,63 +3226,8 @@ return;
 void TxChar(char data){
 
 TXREG = data;
-_delay((unsigned long)((10)*(1000000/4000000.0)));
+_delay((unsigned long)((10)*(4000000/4000000.0)));
 while(!TXIF){
-
 }
 return;
-}
-
-# 22 "newmain.c"
-int main() {
-
-
-OSCCON = 0b01011000;
-
-# 36
-while(HFIOFR==0){
-}
-
-
-INTCON = 0b00000000;
-GIE = 0;
-
-InitUSART();
-InitialisePorts();
-InitialiseADC();
-ADON=1;
-
-
-unsigned short Vread;
-
-char chDelay=500;
-
-# 59
-while(1){
-
-
-
-Vread = ReadADC();
-printf("Vread: ");
-printf(Vread);
-_delay((unsigned long)((500)*(1000000/4000.0)));
-
-# 72
-if(Vread>1022){
-
-PIN5(0);
-PIN6(1);
-
-}
-else if (Vread<1){
-
-PIN6(0);
-PIN5(1);
-}
-else
-PIN6(0);
-PIN5(0);
-}
-
-return (0);
 }
