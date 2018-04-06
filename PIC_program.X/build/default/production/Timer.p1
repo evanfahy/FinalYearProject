@@ -16,22 +16,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _T1GCON `Vuc ~T0 @X0 0 e@25 ]
 "349
 [v _INTCON `Vuc ~T0 @X0 0 e@11 ]
-"6393
-[v _TMR0CS `Vb ~T0 @X0 0 e@1197 ]
-"6169
-[v _PSA `Vb ~T0 @X0 0 e@1195 ]
-"6163
-[v _PS0 `Vb ~T0 @X0 0 e@1192 ]
-"6165
-[v _PS1 `Vb ~T0 @X0 0 e@1193 ]
-"6167
-[v _PS2 `Vb ~T0 @X0 0 e@1194 ]
-"6395
-[v _TMR0IE `Vb ~T0 @X0 0 e@93 ]
-"6397
-[v _TMR0IF `Vb ~T0 @X0 0 e@90 ]
-"1056
-[v _TMR0 `Vuc ~T0 @X0 0 e@21 ]
 "1103
 [v _TMR1H `Vuc ~T0 @X0 0 e@23 ]
 "1083
@@ -2378,16 +2362,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 193: extern __bank0 unsigned char __resetbits;
 [; ;pic.h: 194: extern __bank0 __bit __powerdown;
 [; ;pic.h: 195: extern __bank0 __bit __timeout;
-[; ;Timer.h: 29: void Init_TMR0(void);
-[; ;Timer.h: 30: void Init_TMR1(void);
-[; ;Timer.h: 31: unsigned int Timer1(void);
-"41 Timer.h
+[; ;Timer.h: 25: void Init_TMR1(void);
+[; ;Timer.h: 26: unsigned int Timer1(void);
+"36 Timer.h
 [v _time_16bit `ui ~T0 @X0 1 e ]
-[; ;Timer.h: 41: unsigned int time_16bit;
+[; ;Timer.h: 36: unsigned int time_16bit;
 [; ;Variables.h: 7: unsigned int time_16bit;
-[; ;USART.h: 15: void TxChar(char);
-[; ;USART.h: 16: void InitUSART(void);
-[; ;USART.h: 17: void putch(char);
+[; ;USART.h: 4: void TxChar(char);
+[; ;USART.h: 5: void InitUSART(void);
+"7 USART.h
+[v _mydata `Vuc ~T0 @X0 1 e ]
+[; ;USART.h: 7: volatile unsigned char mydata;
 "15 Timer.c
 [v _temp_time `ui ~T0 @X0 1 e ]
 [; ;Timer.c: 15: unsigned int temp_time;
@@ -2425,81 +2410,42 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 292 ]
 }
 "32
-[v _Init_TMR0 `(v ~T0 @X0 1 ef ]
+[v _Timer1 `(ui ~T0 @X0 1 ef ]
 "33
 {
-[; ;Timer.c: 32: void Init_TMR0(void)
+[; ;Timer.c: 32: unsigned int Timer1(void)
 [; ;Timer.c: 33: {
-[e :U _Init_TMR0 ]
-[f ]
-[; ;Timer.c: 34: TMR0CS = 0;
-"34
-[e = _TMR0CS -> -> 0 `i `b ]
-[; ;Timer.c: 35: PSA = 1;
-"35
-[e = _PSA -> -> 1 `i `b ]
-[; ;Timer.c: 36: PS0 = 0;
-"36
-[e = _PS0 -> -> 0 `i `b ]
-[; ;Timer.c: 37: PS1 = 0;
-"37
-[e = _PS1 -> -> 0 `i `b ]
-[; ;Timer.c: 38: PS2 = 0;
-"38
-[e = _PS2 -> -> 0 `i `b ]
-[; ;Timer.c: 40: TMR0IE = 1;
-"40
-[e = _TMR0IE -> -> 1 `i `b ]
-[; ;Timer.c: 41: TMR0IF = 0;
-"41
-[e = _TMR0IF -> -> 0 `i `b ]
-[; ;Timer.c: 42: TMR0 = 0;
-"42
-[e = _TMR0 -> -> 0 `i `uc ]
-[; ;Timer.c: 44: return;
-"44
-[e $UE 293  ]
-[; ;Timer.c: 45: }
-"45
-[e :UE 293 ]
-}
-"47
-[v _Timer1 `(ui ~T0 @X0 1 ef ]
-"48
-{
-[; ;Timer.c: 47: unsigned int Timer1(void)
-[; ;Timer.c: 48: {
 [e :U _Timer1 ]
 [f ]
-[; ;Timer.c: 49: T1CONbits.TMR1ON = 0;
-"49
+[; ;Timer.c: 34: T1CONbits.TMR1ON = 0;
+"34
 [e = . . _T1CONbits 0 0 -> -> 0 `i `uc ]
-[; ;Timer.c: 51: temp_time = TMR1H;
-"51
+[; ;Timer.c: 36: temp_time = TMR1H;
+"36
 [e = _temp_time -> _TMR1H `ui ]
-[; ;Timer.c: 52: temp_time <<= 8;
-"52
+[; ;Timer.c: 37: temp_time <<= 8;
+"37
 [e =<< _temp_time -> 8 `i ]
-[; ;Timer.c: 53: temp_time += TMR1L;
-"53
+[; ;Timer.c: 38: temp_time += TMR1L;
+"38
 [e =+ _temp_time -> _TMR1L `ui ]
-[; ;Timer.c: 55: time = temp_time;
-"55
+[; ;Timer.c: 40: time = temp_time;
+"40
 [e = _time _temp_time ]
-[; ;Timer.c: 57: TMR1L = 0x00;
-"57
+[; ;Timer.c: 42: TMR1L = 0x00;
+"42
 [e = _TMR1L -> -> 0 `i `uc ]
-[; ;Timer.c: 58: TMR1H = 0x00;
-"58
+[; ;Timer.c: 43: TMR1H = 0x00;
+"43
 [e = _TMR1H -> -> 0 `i `uc ]
-[; ;Timer.c: 59: temp_time = 0;
-"59
+[; ;Timer.c: 44: temp_time = 0;
+"44
 [e = _temp_time -> -> 0 `i `ui ]
-[; ;Timer.c: 61: return time;
-"61
+[; ;Timer.c: 46: return time;
+"46
 [e ) _time ]
-[e $UE 294  ]
-[; ;Timer.c: 62: }
-"62
-[e :UE 294 ]
+[e $UE 293  ]
+[; ;Timer.c: 47: }
+"47
+[e :UE 293 ]
 }

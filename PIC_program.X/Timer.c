@@ -22,24 +22,9 @@ void Init_TMR1(void)
     T1CONbits.TMR1CS = 0b00;    //Timer1 clock source is instruction clock (Fosc/4)
     T1CONbits.T1CKPS = 0b01;    //Prescale value 1:2
     
-    T1GCON = 0b01000000;
+    T1GCON = 0b01000000;        //bit 6 is setting timer1 gate is active high (timer1 counts when gate is high)
     
     INTCON = 0b10000000;
-    
-    return;
-}
-
-void Init_TMR0(void)
-{
-    TMR0CS = 0;  //Internal instruction cycle (Fosc/4))
-    PSA = 1;     //Prescaler enabled
-    PS0 = 0;    //Prescaler 1:64
-    PS1 = 0;    //Prescaler 1:64
-    PS2 = 0;    //Prescaler 1:64
-    
-    TMR0IE = 1;
-    TMR0IF = 0;
-    TMR0 = 0;
     
     return;
 }

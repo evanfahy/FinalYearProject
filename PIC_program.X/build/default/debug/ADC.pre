@@ -1,5 +1,5 @@
 
-# 1 "IO_Controls.c"
+# 1 "ADC.c"
 
 # 26 "C:\Program Files (x86)\Microchip\xc8\v1.44\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -3194,125 +3194,50 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 
-# 14 "IO_Controls.h"
-void InitialisePorts (void);
-void LEDPin(char );
-void PIN3(char );
-void PIN5(char );
-void PIN6(char );
-void TogglePIN6(void);
-void TogglePIN5(void);
+# 7 "ADC.h"
+void InitialiseADC(void);
+unsigned short ReadADC(void);
 
 
+unsigned short adcData = 0;
 
-union {
-unsigned char portAByte;
-struct{
-unsigned TxPin:1;
-unsigned RxPin:1;
-unsigned RCD_FaultPinDIN:1;
-unsigned ResetButtonPinDin:1;
-unsigned Pin3:1;
-unsigned RA5:1;
-unsigned NoPin_RA6:1;
-unsigned NoPin_RA7:1;
-} bits;
-}portA;
+# 15 "ADC.c"
+void InitialiseADC(void){
 
+ADCON0bits.CHS = 0b0111;
 
-union {
-unsigned char portCByte;
-struct{
-unsigned VccSensePinAIN:1;
-unsigned FaultLEDPinOut:1;
-unsigned ClosePinOut:1;
-unsigned MainsSensePinAIN:1;
-unsigned Pin6:1;
-unsigned Pin5:1;
-unsigned NoPin_RC6:1;
-unsigned NoPin_RC7:1;
-} bits;
-}portC;
+ADFM = 1;
+ADCON1bits.ADCS = 0b000;
 
-# 13 "IO_Controls.c"
-void InitialisePorts(void){
+ADCON1bits.ADPREF = 0b011;
 
-OPTION_REG = 0b11000000;
+FVRCON = 0b11000010;
 
-# 33
-portA.portAByte = 0;
-LATA = 0;
-
-TRISA = 0b00111110;
-
-# 44
-ANSELA = 0b00000000;
-
-IOCAPbits.IOCAP4 = 1;
-
-# 61
-portC.portCByte = 0;
-LATC = 0;
-TRISC = 0b00001000;
-
-ANSELC = 0b00001000;
-
-
-
-
+_delay((unsigned long)((10)*(4000000/4000000.0)));
+ADIE=0;
+ADON=0;
+GO_nDONE=0;
 return;
 }
 
+unsigned short ReadADC(){
 
-void PIN3(char OnOff){
+adcData = 0;
 
-
-portA.portAByte = PORTA;
-portA.bits.Pin3 = OnOff;
-PORTA=portA.portAByte;
-return;
+GO_nDONE = 1;
+while (GO_nDONE){
 }
 
-void PIN5(char OnOff){
 
-portC.portCByte = PORTC;
-portC.bits.Pin5 = OnOff;
-PORTC=portC.portCByte;
-return;
-}
+adcData = (ADRESH & 0x03);
+adcData<<=8;
+adcData+=ADRESL;
 
-void PIN6(char OnOff){
 
-portC.portCByte = PORTC;
-portC.bits.Pin6 = OnOff;
-PORTC=portC.portCByte;
-return;
-}
 
-void TogglePIN6(void){
 
-portC.portCByte = PORTC;
-if(portC.bits.Pin6 == 1){
+GO_nDONE = 0;
 
-portC.bits.Pin6 = 0;
-}
-else{
-portC.bits.Pin6 = 1;
-}
-PORTC=portC.portCByte;
-return;
-}
+return adcData;
 
-void TogglePIN5(void){
-
-portC.portCByte = PORTC;
-if(portC.bits.Pin5 == 1){
-
-portC.bits.Pin5 = 0;
-}
-else{
-portC.bits.Pin5 = 1;
-}
-PORTC=portC.portCByte;
-return;
 }

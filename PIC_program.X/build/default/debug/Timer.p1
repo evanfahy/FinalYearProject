@@ -1,112 +1,6 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"26 IO_Controls.h
-[s S298 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S298 . TxPin RxPin RCD_FaultPinDIN ResetButtonPinDin Pin3 RA5 NoPin_RA6 NoPin_RA7 ]
-"24
-[u S297 `uc 1 `S298 1 ]
-[n S297 . portAByte bits ]
-"41
-[s S300 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S300 . VccSensePinAIN FaultLEDPinOut ClosePinOut MainsSensePinAIN Pin6 Pin5 NoPin_RC6 NoPin_RC7 ]
-"39
-[u S299 `uc 1 `S300 1 ]
-[n S299 . portCByte bits ]
-[p mainexit ]
-"1947 C:\Program Files (x86)\Microchip\xc8\v1.44\include\pic16f1823.h
-[v _OSCCON `Vuc ~T0 @X0 0 e@153 ]
-"5971
-[v _HFIOFR `Vb ~T0 @X0 0 e@1236 ]
-"349
-[v _INTCON `Vuc ~T0 @X0 0 e@11 ]
-"355
-[s S26 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S26 . IOCIF INTF TMR0IF IOCIE INTE TMR0IE PEIE GIE ]
-"365
-[s S27 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
-[n S27 . . T0IF . T0IE ]
-"354
-[u S25 `S26 1 `S27 1 ]
-[n S25 . . . ]
-"372
-[v _INTCONbits `VS25 ~T0 @X0 0 e@11 ]
-"14 IO_Controls.h
-[v _InitialisePorts `(v ~T0 @X0 0 ef ]
-"5 USART.h
-[v _InitUSART `(v ~T0 @X0 0 ef ]
-"25 Timer.h
-[v _Init_TMR1 `(v ~T0 @X0 0 ef ]
-"7 ADC.h
-[v _InitialiseADC `(v ~T0 @X0 0 ef ]
-"1595 C:\Program Files (x86)\Microchip\xc8\v1.44\include\pic16f1823.h
-[s S81 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S81 . TMR1IE TMR2IE CCP1IE SSP1IE TXIE RCIE ADIE TMR1GIE ]
-"1594
-[u S80 `S81 1 ]
-[n S80 . . ]
-"1606
-[v _PIE1bits `VS80 ~T0 @X0 0 e@145 ]
-"5042
-[s S254 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S254 . IOCAF0 IOCAF1 IOCAF2 IOCAF3 IOCAF4 IOCAF5 ]
-"5050
-[s S255 :6 `uc 1 ]
-[n S255 . IOCAF ]
-"5041
-[u S253 `S254 1 `S255 1 ]
-[n S253 . . . ]
-"5054
-[v _IOCAFbits `VS253 ~T0 @X0 0 e@915 ]
-"955
-[s S48 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S48 . TMR1IF TMR2IF CCP1IF SSP1IF TXIF RCIF ADIF TMR1GIF ]
-"954
-[u S47 `S48 1 ]
-[n S47 . . ]
-"966
-[v _PIR1bits `VS47 ~T0 @X0 0 e@17 ]
-"3545
-[s S185 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S185 . RX9D OERR FERR ADDEN CREN SREN RX9 SPEN ]
-"3544
-[u S184 `S185 1 ]
-[n S184 . . ]
-"3556
-[v _RCSTAbits `VS184 ~T0 @X0 0 e@413 ]
-"5673
-[v _ADON `Vb ~T0 @X0 0 e@1256 ]
-"18 IO_Controls.h
-[v _PIN6 `(v ~T0 @X0 0 ef1`uc ]
-"195 C:\Program Files (x86)\Microchip\xc8\v1.44\include\stdio.h
-[v _printf `(i ~T0 @X0 0 ev`*Cuc ]
-"433 C:\Program Files (x86)\Microchip\xc8\v1.44\include\pic16f1823.h
-[s S29 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S29 . RA0 RA1 RA2 RA3 RA4 RA5 ]
-"441
-[s S30 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S30 . AN0 AN1 AN2 . AN3 ]
-"448
-[s S31 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S31 . CPS0 CPS1 CPS2 . CPS3 ]
-"455
-[s S32 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S32 . C1INP C12IN0N C1OUT nSS SDO ]
-"462
-[s S33 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S33 . TX RX T0CKI nMCLR CLKR T1OSI ]
-"470
-[s S34 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S34 . CK DT FLT0 . T1OSO T1CKI ]
-"478
-[s S35 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S35 . DACOUT SRI SRQ . OSC2 OSC1 ]
-"486
-[s S36 :4 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S36 . . CLKOUT CLKIN ]
-"432
-[u S28 `S29 1 `S30 1 `S31 1 `S32 1 `S33 1 `S34 1 `S35 1 `S36 1 ]
-[n S28 . . . . . . . . . ]
-"492
-[v _PORTAbits `VS28 ~T0 @X0 0 e@12 ]
+"1123 C:\Program Files (x86)\Microchip\xc8\v1.44\include\pic16f1823.h
+[v _T1CON `Vuc ~T0 @X0 0 e@24 ]
 "1129
 [s S58 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S58 . TMR1ON . nT1SYNC T1OSCEN T1CKPS0 T1CKPS1 TMR1CS0 TMR1CS1 ]
@@ -118,14 +12,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S57 . . . ]
 "1145
 [v _T1CONbits `VS57 ~T0 @X0 0 e@24 ]
-"17 IO_Controls.h
-[v _PIN5 `(v ~T0 @X0 0 ef1`uc ]
-"26 Timer.h
-[v _Timer1 `(ui ~T0 @X0 0 ef ]
-"14 C:\Program Files (x86)\Microchip\xc8\v1.44\include\conio.h
-[v _getch `(uc ~T0 @X0 0 ef ]
-"3400 C:\Program Files (x86)\Microchip\xc8\v1.44\include\pic16f1823.h
-[v _RCREG `Vuc ~T0 @X0 0 e@409 ]
+"1195
+[v _T1GCON `Vuc ~T0 @X0 0 e@25 ]
+"349
+[v _INTCON `Vuc ~T0 @X0 0 e@11 ]
+"1103
+[v _TMR1H `Vuc ~T0 @X0 0 e@23 ]
+"1083
+[v _TMR1L `Vuc ~T0 @X0 0 e@22 ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -2468,402 +2362,90 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 193: extern __bank0 unsigned char __resetbits;
 [; ;pic.h: 194: extern __bank0 __bit __powerdown;
 [; ;pic.h: 195: extern __bank0 __bit __timeout;
-[; ;__size_t.h: 4: typedef unsigned size_t;
-[; ;stdarg.h: 7: typedef void * va_list[1];
-[; ;stdarg.h: 10: extern void * __va_start(void);
-[; ;stdarg.h: 13: extern void * __va_arg(void *, ...);
-[; ;stdio.h: 43: struct __prbuf
-[; ;stdio.h: 44: {
-[; ;stdio.h: 45: char * ptr;
-[; ;stdio.h: 46: void (* func)(char);
-[; ;stdio.h: 47: };
-[; ;errno.h: 29: extern int errno;
-[; ;conio.h: 12: extern void init_uart(void);
-[; ;conio.h: 14: extern char getch(void);
-[; ;conio.h: 15: extern char getche(void);
-[; ;conio.h: 16: extern void putch(char);
-[; ;conio.h: 17: extern void ungetch(char);
-[; ;conio.h: 19: extern __bit kbhit(void);
-[; ;conio.h: 23: extern char * cgets(char *);
-[; ;conio.h: 24: extern void cputs(const char *);
-[; ;stdio.h: 88: extern int cprintf(char *, ...);
-[; ;stdio.h: 93: extern int _doprnt(struct __prbuf *, const register char *, register va_list);
-[; ;stdio.h: 183: extern char * gets(char *);
-[; ;stdio.h: 184: extern int puts(const char *);
-[; ;stdio.h: 185: extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
-[; ;stdio.h: 186: extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
-[; ;stdio.h: 187: extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
-[; ;stdio.h: 188: extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
-[; ;stdio.h: 189: extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
-[; ;stdio.h: 190: extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
-[; ;stdio.h: 194: extern int sprintf(char *, const char *, ...);
-[; ;stdio.h: 195: extern int printf(const char *, ...);
-[; ;stdlib.h: 7: typedef unsigned short wchar_t;
-[; ;stdlib.h: 15: typedef struct {
-[; ;stdlib.h: 16: int rem;
-[; ;stdlib.h: 17: int quot;
-[; ;stdlib.h: 18: } div_t;
-[; ;stdlib.h: 19: typedef struct {
-[; ;stdlib.h: 20: unsigned rem;
-[; ;stdlib.h: 21: unsigned quot;
-[; ;stdlib.h: 22: } udiv_t;
-[; ;stdlib.h: 23: typedef struct {
-[; ;stdlib.h: 24: long quot;
-[; ;stdlib.h: 25: long rem;
-[; ;stdlib.h: 26: } ldiv_t;
-[; ;stdlib.h: 27: typedef struct {
-[; ;stdlib.h: 28: unsigned long quot;
-[; ;stdlib.h: 29: unsigned long rem;
-[; ;stdlib.h: 30: } uldiv_t;
-[; ;stdlib.h: 53: extern double atof(const char *);
-[; ;stdlib.h: 54: extern double strtod(const char *, const char **);
-[; ;stdlib.h: 55: extern int atoi(const char *);
-[; ;stdlib.h: 56: extern unsigned xtoi(const char *);
-[; ;stdlib.h: 57: extern long atol(const char *);
-[; ;stdlib.h: 58: extern long strtol(const char *, char **, int);
-[; ;stdlib.h: 60: extern int rand(void);
-[; ;stdlib.h: 61: extern void srand(unsigned int);
-[; ;stdlib.h: 62: extern void * calloc(size_t, size_t);
-[; ;stdlib.h: 63: extern div_t div(int numer, int denom);
-[; ;stdlib.h: 64: extern udiv_t udiv(unsigned numer, unsigned denom);
-[; ;stdlib.h: 65: extern ldiv_t ldiv(long numer, long denom);
-[; ;stdlib.h: 66: extern uldiv_t uldiv(unsigned long numer,unsigned long denom);
-[; ;stdlib.h: 67: extern unsigned long _lrotl(unsigned long value, unsigned int shift);
-[; ;stdlib.h: 68: extern unsigned long _lrotr(unsigned long value, unsigned int shift);
-[; ;stdlib.h: 69: extern unsigned int _rotl(unsigned int value, unsigned int shift);
-[; ;stdlib.h: 70: extern unsigned int _rotr(unsigned int value, unsigned int shift);
-[; ;stdlib.h: 75: extern void * malloc(size_t);
-[; ;stdlib.h: 76: extern void free(void *);
-[; ;stdlib.h: 77: extern void * realloc(void *, size_t);
-[; ;stdlib.h: 86: extern int atexit(void (*)(void));
-[; ;stdlib.h: 87: extern char * getenv(const char *);
-[; ;stdlib.h: 88: extern char ** environ;
-[; ;stdlib.h: 89: extern int system(char *);
-[; ;stdlib.h: 90: extern void qsort(void *, size_t, size_t, int (*)(const void *, const void *));
-[; ;stdlib.h: 91: extern void * bsearch(const void *, void *, size_t, size_t, int(*)(const void *, const void *));
-[; ;stdlib.h: 92: extern int abs(int);
-[; ;stdlib.h: 93: extern long labs(long);
-[; ;stdlib.h: 95: extern char * itoa(char * buf, int val, int base);
-[; ;stdlib.h: 96: extern char * utoa(char * buf, unsigned val, int base);
-[; ;stdlib.h: 101: extern char * ltoa(char * buf, long val, int base);
-[; ;stdlib.h: 102: extern char * ultoa(char * buf, unsigned long val, int base);
-[; ;stdlib.h: 104: extern char * ftoa(float f, int * status);
-"24 DeviceConfig.h
-[p x FOSC=INTOSC ]
-"25
-[p x CLKOUTEN=OFF ]
-"26
-[p x IESO=OFF ]
-"27
-[p x PLLEN=OFF ]
-"28
-[p x FCMEN=OFF ]
-"31
-[p x PWRTE=ON ]
-"32
-[p x MCLRE=OFF ]
-"33
-[p x BOREN=ON ]
-"34
-[p x BORV=LO ]
-"35
-[p x STVREN=ON ]
-"36
-[p x WDTE=OFF ]
-"39
-[p x WRT=OFF ]
-"40
-[p x CP=OFF ]
-"41
-[p x CPD=OFF ]
-"42
-[p x LVP=OFF ]
-[; ;IO_Controls.h: 14: void InitialisePorts (void);
-[; ;IO_Controls.h: 15: void LEDPin(char );
-[; ;IO_Controls.h: 16: void PIN3(char );
-[; ;IO_Controls.h: 17: void PIN5(char );
-[; ;IO_Controls.h: 18: void PIN6(char );
-[; ;IO_Controls.h: 19: void TogglePIN6(void);
-[; ;IO_Controls.h: 20: void TogglePIN5(void);
-"36 IO_Controls.h
-[v _portA `S297 ~T0 @X0 1 e ]
-[; ;IO_Controls.h: 24: union {
-[; ;IO_Controls.h: 25: unsigned char portAByte;
-[; ;IO_Controls.h: 26: struct{
-[; ;IO_Controls.h: 27: unsigned TxPin:1;
-[; ;IO_Controls.h: 28: unsigned RxPin:1;
-[; ;IO_Controls.h: 29: unsigned RCD_FaultPinDIN:1;
-[; ;IO_Controls.h: 30: unsigned ResetButtonPinDin:1;
-[; ;IO_Controls.h: 31: unsigned Pin3:1;
-[; ;IO_Controls.h: 32: unsigned RA5:1;
-[; ;IO_Controls.h: 33: unsigned NoPin_RA6:1;
-[; ;IO_Controls.h: 34: unsigned NoPin_RA7:1;
-[; ;IO_Controls.h: 35: } bits;
-[; ;IO_Controls.h: 36: }portA;
-"51
-[v _portC `S299 ~T0 @X0 1 e ]
-[; ;IO_Controls.h: 39: union {
-[; ;IO_Controls.h: 40: unsigned char portCByte;
-[; ;IO_Controls.h: 41: struct{
-[; ;IO_Controls.h: 42: unsigned VccSensePinAIN:1;
-[; ;IO_Controls.h: 43: unsigned FaultLEDPinOut:1;
-[; ;IO_Controls.h: 44: unsigned ClosePinOut:1;
-[; ;IO_Controls.h: 45: unsigned MainsSensePinAIN:1;
-[; ;IO_Controls.h: 46: unsigned Pin6:1;
-[; ;IO_Controls.h: 47: unsigned Pin5:1;
-[; ;IO_Controls.h: 48: unsigned NoPin_RC6:1;
-[; ;IO_Controls.h: 49: unsigned NoPin_RC7:1;
-[; ;IO_Controls.h: 50: } bits;
-[; ;IO_Controls.h: 51: }portC;
-[; ;ADC.h: 7: void InitialiseADC(void);
-[; ;ADC.h: 8: unsigned short ReadADC(void);
-"11 ADC.h
-[v _adcData `us ~T0 @X0 1 e ]
-[i _adcData
--> -> 0 `i `us
-]
-[; ;ADC.h: 11: unsigned short adcData = 0;
-[; ;USART.h: 4: void TxChar(char);
-[; ;USART.h: 5: void InitUSART(void);
-"7 USART.h
-[v _mydata `Vuc ~T0 @X0 1 e ]
-[; ;USART.h: 7: volatile unsigned char mydata;
 [; ;Timer.h: 25: void Init_TMR1(void);
 [; ;Timer.h: 26: unsigned int Timer1(void);
 "36 Timer.h
 [v _time_16bit `ui ~T0 @X0 1 e ]
 [; ;Timer.h: 36: unsigned int time_16bit;
 [; ;Variables.h: 7: unsigned int time_16bit;
-[; ;newmain.c: 26: void interrupt ISR (void);
-"29 newmain.c
-[v _sampleVal `Vi ~T0 @X0 1 e ]
-[i _sampleVal
--> 0 `i
-]
-[v _count `Vi ~T0 @X0 1 e ]
-[i _count
--> 0 `i
-]
-[v _startFlag `Vi ~T0 @X0 1 e ]
-[i _startFlag
--> 0 `i
-]
-[v _posFlag `Vi ~T0 @X0 1 e ]
-[i _posFlag
--> 1 `i
-]
-[v _negFlag `Vi ~T0 @X0 1 e ]
-[i _negFlag
--> 0 `i
-]
-[v _zeroCount `Vi ~T0 @X0 1 e ]
-[i _zeroCount
--> 0 `i
-]
-[v _printCount `Vi ~T0 @X0 1 e ]
-[i _printCount
--> 0 `i
-]
-[; ;newmain.c: 29: volatile int sampleVal = 0, count = 0, startFlag = 0, posFlag = 1, negFlag = 0, zeroCount = 0, printCount = 0;
-[v $root$_main `(v ~T0 @X0 0 e ]
-"32
-[v _main `(i ~T0 @X0 1 ef ]
+[; ;USART.h: 4: void TxChar(char);
+[; ;USART.h: 5: void InitUSART(void);
+"7 USART.h
+[v _mydata `Vuc ~T0 @X0 1 e ]
+[; ;USART.h: 7: volatile unsigned char mydata;
+"15 Timer.c
+[v _temp_time `ui ~T0 @X0 1 e ]
+[; ;Timer.c: 15: unsigned int temp_time;
+"16
+[v _time `ui ~T0 @X0 1 e ]
+[; ;Timer.c: 16: unsigned int time;
+"18
+[v _Init_TMR1 `(v ~T0 @X0 1 ef ]
+"19
 {
-[; ;newmain.c: 32: int main() {
-[e :U _main ]
+[; ;Timer.c: 18: void Init_TMR1(void)
+[; ;Timer.c: 19: {
+[e :U _Init_TMR1 ]
 [f ]
-[; ;newmain.c: 35: OSCCON = 0b01101000;
-"35
-[e = _OSCCON -> -> 104 `i `uc ]
-[; ;newmain.c: 46: while(HFIOFR==0){
-"46
-[e $U 302  ]
-[e :U 303 ]
-{
+[; ;Timer.c: 21: T1CON = 0b00000000;
+"21
+[e = _T1CON -> -> 0 `i `uc ]
+[; ;Timer.c: 22: T1CONbits.TMR1CS = 0b00;
+"22
+[e = . . _T1CONbits 1 2 -> -> 0 `i `uc ]
+[; ;Timer.c: 23: T1CONbits.T1CKPS = 0b01;
+"23
+[e = . . _T1CONbits 1 1 -> -> 1 `i `uc ]
+[; ;Timer.c: 25: T1GCON = 0b01000000;
+"25
+[e = _T1GCON -> -> 64 `i `uc ]
+[; ;Timer.c: 27: INTCON = 0b10000000;
+"27
+[e = _INTCON -> -> 128 `i `uc ]
+[; ;Timer.c: 29: return;
+"29
+[e $UE 292  ]
+[; ;Timer.c: 30: }
+"30
+[e :UE 292 ]
+}
 "47
-}
-[e :U 302 ]
-"46
-[e $ == -> _HFIOFR `i -> 0 `i 303  ]
-[e :U 304 ]
-[; ;newmain.c: 47: }
-[; ;newmain.c: 50: INTCON = 0b00000000;
-"50
-[e = _INTCON -> -> 0 `i `uc ]
-[; ;newmain.c: 51: INTCONbits.GIE = 0;
-"51
-[e = . . _INTCONbits 0 7 -> -> 0 `i `uc ]
-[; ;newmain.c: 53: InitialisePorts();
-"53
-[e ( _InitialisePorts ..  ]
-[; ;newmain.c: 54: InitUSART();
-"54
-[e ( _InitUSART ..  ]
-[; ;newmain.c: 55: Init_TMR1();
-"55
-[e ( _Init_TMR1 ..  ]
-[; ;newmain.c: 56: InitialiseADC();
-"56
-[e ( _InitialiseADC ..  ]
-[; ;newmain.c: 58: INTCONbits.INTE = 1;
-"58
-[e = . . _INTCONbits 0 4 -> -> 1 `i `uc ]
-[; ;newmain.c: 59: INTCONbits.IOCIE = 1;
-"59
-[e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
-[; ;newmain.c: 60: INTCONbits.PEIE = 1;
-"60
-[e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
-[; ;newmain.c: 61: PIE1bits.RCIE = 1;
-"61
-[e = . . _PIE1bits 0 5 -> -> 1 `i `uc ]
-[; ;newmain.c: 62: INTCONbits.GIE = 1;
-"62
-[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
-[; ;newmain.c: 64: IOCAFbits.IOCAF4 = 0;
-"64
-[e = . . _IOCAFbits 0 4 -> -> 0 `i `uc ]
-[; ;newmain.c: 65: INTCONbits.INTF = 0;
-"65
-[e = . . _INTCONbits 0 1 -> -> 0 `i `uc ]
-[; ;newmain.c: 66: PIR1bits.RCIF = 0;
-"66
-[e = . . _PIR1bits 0 5 -> -> 0 `i `uc ]
-[; ;newmain.c: 69: RCSTAbits.SPEN = 1;
-"69
-[e = . . _RCSTAbits 0 7 -> -> 1 `i `uc ]
-[; ;newmain.c: 70: RCSTAbits.CREN = 0; RCSTAbits.CREN = 1;
-"70
-[e = . . _RCSTAbits 0 4 -> -> 0 `i `uc ]
-[e = . . _RCSTAbits 0 4 -> -> 1 `i `uc ]
-[; ;newmain.c: 71: ADON=1;
-"71
-[e = _ADON -> -> 1 `i `b ]
-"73
-[v _ADC_sample `us ~T0 @X0 1 a ]
-[; ;newmain.c: 73: unsigned short ADC_sample;
-[; ;newmain.c: 75: PIN6(0);
-"75
-[e ( _PIN6 (1 -> -> 0 `i `uc ]
-[; ;newmain.c: 76: printf("Start...");
-"76
-[e ( _printf :s 1C ]
-[; ;newmain.c: 77: while(1) {
-"77
-[e :U 306 ]
+[v _Timer1 `(ui ~T0 @X0 1 ef ]
+"48
 {
-"108
-}
-[e :U 305 ]
-"77
-[e $U 306  ]
-[e :U 307 ]
-[; ;newmain.c: 108: }
-[; ;newmain.c: 110: return (0);
-"110
-[e ) -> 0 `i ]
-[e $UE 301  ]
-[; ;newmain.c: 111: }
-"111
-[e :UE 301 ]
-}
-[v $root$_ISR `(v ~T0 @X0 0 e ]
-[v F2684 `(v ~T0 @X0 1 tf ]
-"113
-[v _ISR `IF2684 ~T0 @X0 1 e ]
-"114
-{
-[; ;newmain.c: 113: void interrupt ISR (void)
-[; ;newmain.c: 114: {
-[e :U _ISR ]
+[; ;Timer.c: 47: unsigned int Timer1(void)
+[; ;Timer.c: 48: {
+[e :U _Timer1 ]
 [f ]
-[; ;newmain.c: 115: if((INTCONbits.INTF == 1) && (INTCONbits.INTE == 1)){
-"115
-[e $ ! && == -> . . _INTCONbits 0 1 `i -> 1 `i == -> . . _INTCONbits 0 4 `i -> 1 `i 309  ]
-{
-[; ;newmain.c: 118: if((PORTAbits.AN2 == 1)){
-"118
-[e $ ! == -> . . _PORTAbits 1 2 `i -> 1 `i 310  ]
-{
-[; ;newmain.c: 122: T1CONbits.TMR1ON = 1;
-"122
-[e = . . _T1CONbits 0 0 -> -> 1 `i `uc ]
-[; ;newmain.c: 124: PIN6(1);
-"124
-[e ( _PIN6 (1 -> -> 1 `i `uc ]
-[; ;newmain.c: 125: PIN5(0);
-"125
-[e ( _PIN5 (1 -> -> 0 `i `uc ]
-"127
+[; ;Timer.c: 49: T1CONbits.TMR1ON = 0;
+"49
+[e = . . _T1CONbits 0 0 -> -> 0 `i `uc ]
+[; ;Timer.c: 51: temp_time = TMR1H;
+"51
+[e = _temp_time -> _TMR1H `ui ]
+[; ;Timer.c: 52: temp_time <<= 8;
+"52
+[e =<< _temp_time -> 8 `i ]
+[; ;Timer.c: 53: temp_time += TMR1L;
+"53
+[e =+ _temp_time -> _TMR1L `ui ]
+[; ;Timer.c: 55: time = temp_time;
+"55
+[e = _time _temp_time ]
+[; ;Timer.c: 57: TMR1L = 0x00;
+"57
+[e = _TMR1L -> -> 0 `i `uc ]
+[; ;Timer.c: 58: TMR1H = 0x00;
+"58
+[e = _TMR1H -> -> 0 `i `uc ]
+[; ;Timer.c: 59: temp_time = 0;
+"59
+[e = _temp_time -> -> 0 `i `ui ]
+[; ;Timer.c: 61: return time;
+"61
+[e ) _time ]
+[e $UE 293  ]
+[; ;Timer.c: 62: }
+"62
+[e :UE 293 ]
 }
-[e :U 310 ]
-[; ;newmain.c: 127: }
-[; ;newmain.c: 164: INTCONbits.INTF = 0;
-"164
-[e = . . _INTCONbits 0 1 -> -> 0 `i `uc ]
-"165
-}
-[; ;newmain.c: 165: }
-[e $U 311  ]
-"167
-[e :U 309 ]
-[; ;newmain.c: 167: else if(( IOCAFbits.IOCAF4 == 1 ) && (INTCONbits.IOCIE == 1)){
-[e $ ! && == -> . . _IOCAFbits 0 4 `i -> 1 `i == -> . . _INTCONbits 0 3 `i -> 1 `i 312  ]
-{
-[; ;newmain.c: 169: if((PORTAbits.AN3 == 1)){
-"169
-[e $ ! == -> . . _PORTAbits 1 4 `i -> 1 `i 313  ]
-{
-[; ;newmain.c: 174: PIN6(0);
-"174
-[e ( _PIN6 (1 -> -> 0 `i `uc ]
-[; ;newmain.c: 175: PIN5(1);
-"175
-[e ( _PIN5 (1 -> -> 1 `i `uc ]
-[; ;newmain.c: 176: time_16bit = Timer1();
-"176
-[e = _time_16bit ( _Timer1 ..  ]
-[; ;newmain.c: 177: printf("%d ", time_16bit);
-"177
-[e ( _printf , (. :s 2C _time_16bit ]
-"179
-}
-[e :U 313 ]
-[; ;newmain.c: 179: }
-[; ;newmain.c: 181: IOCAFbits.IOCAF4 = 0;
-"181
-[e = . . _IOCAFbits 0 4 -> -> 0 `i `uc ]
-"182
-}
-[; ;newmain.c: 182: }
-[e $U 314  ]
-"184
-[e :U 312 ]
-[; ;newmain.c: 184: else if (PIR1bits.RCIF){
-[e $ ! != -> . . _PIR1bits 0 5 `i -> -> -> 0 `i `Vuc `i 315  ]
-{
-[; ;newmain.c: 188: mydata = getch();
-"188
-[e = _mydata ( _getch ..  ]
-[; ;newmain.c: 191: RCREG = 0;
-"191
-[e = _RCREG -> -> 0 `i `uc ]
-[; ;newmain.c: 192: PIR1bits.RCIF = 0;
-"192
-[e = . . _PIR1bits 0 5 -> -> 0 `i `uc ]
-"193
-}
-[e :U 315 ]
-"195
-[e :U 314 ]
-[e :U 311 ]
-[; ;newmain.c: 193: }
-[; ;newmain.c: 195: return;
-[e $UE 308  ]
-[; ;newmain.c: 196: }
-"196
-[e :UE 308 ]
-}
-[p f _printf 8388736 ]
-[a 1C 83 116 97 114 116 46 46 46 0 ]
-[a 2C 37 100 32 0 ]

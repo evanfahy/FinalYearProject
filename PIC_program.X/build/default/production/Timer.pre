@@ -3194,21 +3194,21 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 
-# 29 "Timer.h"
-void Init_TMR0(void);
+# 25 "Timer.h"
 void Init_TMR1(void);
 unsigned int Timer1(void);
 
-# 41
+# 36
 unsigned int time_16bit;
 
 # 7 "Variables.h"
 unsigned int time_16bit;
 
-# 15 "USART.h"
+# 4 "USART.h"
 void TxChar(char);
 void InitUSART(void);
-void putch(char);
+
+volatile unsigned char mydata;
 
 # 15 "Timer.c"
 unsigned int temp_time;
@@ -3224,21 +3224,6 @@ T1CONbits.T1CKPS = 0b01;
 T1GCON = 0b01000000;
 
 INTCON = 0b10000000;
-
-return;
-}
-
-void Init_TMR0(void)
-{
-TMR0CS = 0;
-PSA = 1;
-PS0 = 0;
-PS1 = 0;
-PS2 = 0;
-
-TMR0IE = 1;
-TMR0IF = 0;
-TMR0 = 0;
 
 return;
 }

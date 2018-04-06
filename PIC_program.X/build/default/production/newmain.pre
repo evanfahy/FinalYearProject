@@ -3350,9 +3350,10 @@ extern char * ftoa(float f, int * status);
 
 # 14 "IO_Controls.h"
 void InitialisePorts (void);
-void LEDPin(char OnOff);
-void PIN3(char OnOff);
-void PIN6(char OnOff);
+void LEDPin(char );
+void PIN3(char );
+void PIN5(char );
+void PIN6(char );
 void TogglePIN6(void);
 void TogglePIN5(void);
 
@@ -3366,7 +3367,7 @@ unsigned RxPin:1;
 unsigned RCD_FaultPinDIN:1;
 unsigned ResetButtonPinDin:1;
 unsigned Pin3:1;
-unsigned ShortTripSCRPinOut:1;
+unsigned RA5:1;
 unsigned NoPin_RA6:1;
 unsigned NoPin_RA7:1;
 } bits;
@@ -3394,27 +3395,27 @@ unsigned short ReadADC(void);
 
 unsigned short adcData = 0;
 
-# 15 "USART.h"
+# 4 "USART.h"
 void TxChar(char);
 void InitUSART(void);
-void putch(char);
 
-# 29 "Timer.h"
-void Init_TMR0(void);
+volatile unsigned char mydata;
+
+# 25 "Timer.h"
 void Init_TMR1(void);
 unsigned int Timer1(void);
 
-# 41
+# 36
 unsigned int time_16bit;
 
 # 7 "Variables.h"
 unsigned int time_16bit;
 
-# 25 "newmain.c"
+# 26 "newmain.c"
 void interrupt ISR (void);
 
 
-volatile int sampleVal = 0, count = 0, startFlag = 0, zeroCount = 0;
+volatile int sampleVal = 0, count = 0, startFlag = 0, posFlag = 1, negFlag = 0, zeroCount = 0, printCount = 0;
 
 
 int main() {
@@ -3422,7 +3423,7 @@ int main() {
 
 OSCCON = 0b01101000;
 
-# 45
+# 46
 while(HFIOFR==0){
 }
 
@@ -3430,51 +3431,33 @@ while(HFIOFR==0){
 INTCON = 0b00000000;
 INTCONbits.GIE = 0;
 
-InitUSART();
 InitialisePorts();
-InitialiseADC();
-ADON=1;
-
+InitUSART();
 Init_TMR1();
+InitialiseADC();
 
 INTCONbits.INTE = 1;
+INTCONbits.IOCIE = 1;
+INTCONbits.PEIE = 1;
+PIE1bits.RCIE = 1;
 INTCONbits.GIE = 1;
+
+IOCAFbits.IOCAF4 = 0;
 INTCONbits.INTF = 0;
+PIR1bits.RCIF = 0;
+
+
+RCSTAbits.SPEN = 1;
+RCSTAbits.CREN = 0; RCSTAbits.CREN = 1;
+ADON=1;
 
 unsigned short ADC_sample;
 
+PIN6(0);
+printf("Start...");
 while(1) {
 
-
-
-if((ADC_sample > 768) && (startFlag == 0)) {
-
-sampleVal = ADC_sample;
-
-if(count == 0) {
-
-T1CONbits.TMR1ON = 1;
-PIN6(1);
-count = 1;
-}
-else {
-
-PIN6(0);
-time_16bit = Timer1();
-
-count = 0;
-}
-
-
-startFlag = 1;
-}
-else if((ADC_sample < 128) && (startFlag == 1)) {
-
-
-startFlag = 0;
-}
-else{}
-
+# 108
 }
 
 return (0);
@@ -3482,19 +3465,51 @@ return (0);
 
 void interrupt ISR (void)
 {
-if( (INTCONbits.INTF==1) && (INTCONbits.INTE==1) ){
+if((INTCONbits.INTF == 1) && (INTCONbits.INTE == 1)){
+
 
 if((PORTAbits.AN2 == 1)){
 
-zeroCount++;
-if(zeroCount == 2){
 
-zeroCount = 0;
-TogglePIN6();
+
+T1CONbits.TMR1ON = 1;
+
+PIN6(1);
+PIN5(0);
+
 }
-}
-}
+
+# 164
 INTCONbits.INTF = 0;
+}
+
+else if(( IOCAFbits.IOCAF4 == 1 ) && (INTCONbits.IOCIE == 1)){
+
+if((PORTAbits.AN3 == 1)){
+
+
+
+
+PIN6(0);
+PIN5(1);
+time_16bit = Timer1();
+printf("%d ", time_16bit);
+
+}
+
+IOCAFbits.IOCAF4 = 0;
+}
+
+else if (PIR1bits.RCIF){
+
+
+
+mydata = getch();
+
+
+RCREG = 0;
+PIR1bits.RCIF = 0;
+}
 
 return;
 }

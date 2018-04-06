@@ -35,8 +35,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _InitUSART `(v ~T0 @X0 0 ef ]
 "25 Timer.h
 [v _Init_TMR1 `(v ~T0 @X0 0 ef ]
-"7 ADC.h
-[v _InitialiseADC `(v ~T0 @X0 0 ef ]
 "1595 C:\Program Files (x86)\Microchip\xc8\v1.44\include\pic16f1823.h
 [s S81 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S81 . TMR1IE TMR2IE CCP1IE SSP1IE TXIE RCIE ADIE TMR1GIE ]
@@ -45,25 +43,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S80 . . ]
 "1606
 [v _PIE1bits `VS80 ~T0 @X0 0 e@145 ]
-"5042
-[s S254 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S254 . IOCAF0 IOCAF1 IOCAF2 IOCAF3 IOCAF4 IOCAF5 ]
-"5050
-[s S255 :6 `uc 1 ]
-[n S255 . IOCAF ]
-"5041
-[u S253 `S254 1 `S255 1 ]
-[n S253 . . . ]
-"5054
-[v _IOCAFbits `VS253 ~T0 @X0 0 e@915 ]
-"955
-[s S48 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S48 . TMR1IF TMR2IF CCP1IF SSP1IF TXIF RCIF ADIF TMR1GIF ]
-"954
-[u S47 `S48 1 ]
-[n S47 . . ]
-"966
-[v _PIR1bits `VS47 ~T0 @X0 0 e@17 ]
 "3545
 [s S185 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S185 . RX9D OERR FERR ADDEN CREN SREN RX9 SPEN ]
@@ -76,8 +55,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _ADON `Vb ~T0 @X0 0 e@1256 ]
 "18 IO_Controls.h
 [v _PIN6 `(v ~T0 @X0 0 ef1`uc ]
-"195 C:\Program Files (x86)\Microchip\xc8\v1.44\include\stdio.h
-[v _printf `(i ~T0 @X0 0 ev`*Cuc ]
 "433 C:\Program Files (x86)\Microchip\xc8\v1.44\include\pic16f1823.h
 [s S29 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S29 . RA0 RA1 RA2 RA3 RA4 RA5 ]
@@ -120,8 +97,27 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _T1CONbits `VS57 ~T0 @X0 0 e@24 ]
 "17 IO_Controls.h
 [v _PIN5 `(v ~T0 @X0 0 ef1`uc ]
+"5042 C:\Program Files (x86)\Microchip\xc8\v1.44\include\pic16f1823.h
+[s S254 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S254 . IOCAF0 IOCAF1 IOCAF2 IOCAF3 IOCAF4 IOCAF5 ]
+"5050
+[s S255 :6 `uc 1 ]
+[n S255 . IOCAF ]
+"5041
+[u S253 `S254 1 `S255 1 ]
+[n S253 . . . ]
+"5054
+[v _IOCAFbits `VS253 ~T0 @X0 0 e@915 ]
 "26 Timer.h
 [v _Timer1 `(ui ~T0 @X0 0 ef ]
+"955 C:\Program Files (x86)\Microchip\xc8\v1.44\include\pic16f1823.h
+[s S48 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S48 . TMR1IF TMR2IF CCP1IF SSP1IF TXIF RCIF ADIF TMR1GIF ]
+"954
+[u S47 `S48 1 ]
+[n S47 . . ]
+"966
+[v _PIR1bits `VS47 ~T0 @X0 0 e@17 ]
 "14 C:\Program Files (x86)\Microchip\xc8\v1.44\include\conio.h
 [v _getch `(uc ~T0 @X0 0 ef ]
 "3400 C:\Program Files (x86)\Microchip\xc8\v1.44\include\pic16f1823.h
@@ -2699,12 +2695,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;newmain.c: 54: InitUSART();
 "54
 [e ( _InitUSART ..  ]
-[; ;newmain.c: 55: Init_TMR1();
-"55
-[e ( _Init_TMR1 ..  ]
-[; ;newmain.c: 56: InitialiseADC();
+[; ;newmain.c: 56: Init_TMR1();
 "56
-[e ( _InitialiseADC ..  ]
+[e ( _Init_TMR1 ..  ]
 [; ;newmain.c: 58: INTCONbits.INTE = 1;
 "58
 [e = . . _INTCONbits 0 4 -> -> 1 `i `uc ]
@@ -2720,150 +2713,132 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;newmain.c: 62: INTCONbits.GIE = 1;
 "62
 [e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
-[; ;newmain.c: 64: IOCAFbits.IOCAF4 = 0;
-"64
-[e = . . _IOCAFbits 0 4 -> -> 0 `i `uc ]
-[; ;newmain.c: 65: INTCONbits.INTF = 0;
+[; ;newmain.c: 65: RCSTAbits.SPEN = 1;
 "65
-[e = . . _INTCONbits 0 1 -> -> 0 `i `uc ]
-[; ;newmain.c: 66: PIR1bits.RCIF = 0;
-"66
-[e = . . _PIR1bits 0 5 -> -> 0 `i `uc ]
-[; ;newmain.c: 69: RCSTAbits.SPEN = 1;
-"69
 [e = . . _RCSTAbits 0 7 -> -> 1 `i `uc ]
-[; ;newmain.c: 70: RCSTAbits.CREN = 0; RCSTAbits.CREN = 1;
-"70
+[; ;newmain.c: 66: RCSTAbits.CREN = 0; RCSTAbits.CREN = 1;
+"66
 [e = . . _RCSTAbits 0 4 -> -> 0 `i `uc ]
 [e = . . _RCSTAbits 0 4 -> -> 1 `i `uc ]
-[; ;newmain.c: 71: ADON=1;
-"71
+[; ;newmain.c: 67: ADON=1;
+"67
 [e = _ADON -> -> 1 `i `b ]
-"73
+"69
 [v _ADC_sample `us ~T0 @X0 1 a ]
-[; ;newmain.c: 73: unsigned short ADC_sample;
-[; ;newmain.c: 75: PIN6(0);
-"75
+[; ;newmain.c: 69: unsigned short ADC_sample;
+[; ;newmain.c: 71: PIN6(0);
+"71
 [e ( _PIN6 (1 -> -> 0 `i `uc ]
-[; ;newmain.c: 76: printf("Start...");
-"76
-[e ( _printf :s 1C ]
-[; ;newmain.c: 77: while(1) {
-"77
+[; ;newmain.c: 73: while(1) {
+"73
 [e :U 306 ]
 {
-"108
+"104
 }
 [e :U 305 ]
-"77
+"73
 [e $U 306  ]
 [e :U 307 ]
-[; ;newmain.c: 108: }
-[; ;newmain.c: 110: return (0);
-"110
+[; ;newmain.c: 104: }
+[; ;newmain.c: 106: return (0);
+"106
 [e ) -> 0 `i ]
 [e $UE 301  ]
-[; ;newmain.c: 111: }
-"111
+[; ;newmain.c: 107: }
+"107
 [e :UE 301 ]
 }
 [v $root$_ISR `(v ~T0 @X0 0 e ]
 [v F2684 `(v ~T0 @X0 1 tf ]
-"113
+"109
 [v _ISR `IF2684 ~T0 @X0 1 e ]
-"114
+"110
 {
-[; ;newmain.c: 113: void interrupt ISR (void)
-[; ;newmain.c: 114: {
+[; ;newmain.c: 109: void interrupt ISR (void)
+[; ;newmain.c: 110: {
 [e :U _ISR ]
 [f ]
-[; ;newmain.c: 115: if((INTCONbits.INTF == 1) && (INTCONbits.INTE == 1)){
-"115
+[; ;newmain.c: 111: if((INTCONbits.INTF == 1) && (INTCONbits.INTE == 1)){
+"111
 [e $ ! && == -> . . _INTCONbits 0 1 `i -> 1 `i == -> . . _INTCONbits 0 4 `i -> 1 `i 309  ]
 {
-[; ;newmain.c: 118: if((PORTAbits.AN2 == 1)){
-"118
+[; ;newmain.c: 114: if((PORTAbits.AN2 == 1)){
+"114
 [e $ ! == -> . . _PORTAbits 1 2 `i -> 1 `i 310  ]
 {
-[; ;newmain.c: 122: T1CONbits.TMR1ON = 1;
-"122
+[; ;newmain.c: 118: T1CONbits.TMR1ON = 1;
+"118
 [e = . . _T1CONbits 0 0 -> -> 1 `i `uc ]
-[; ;newmain.c: 124: PIN6(1);
-"124
+[; ;newmain.c: 120: PIN6(1);
+"120
 [e ( _PIN6 (1 -> -> 1 `i `uc ]
-[; ;newmain.c: 125: PIN5(0);
-"125
+[; ;newmain.c: 121: PIN5(0);
+"121
 [e ( _PIN5 (1 -> -> 0 `i `uc ]
-"127
+"123
 }
 [e :U 310 ]
-[; ;newmain.c: 127: }
-[; ;newmain.c: 164: INTCONbits.INTF = 0;
-"164
+[; ;newmain.c: 123: }
+[; ;newmain.c: 160: INTCONbits.INTF = 0;
+"160
 [e = . . _INTCONbits 0 1 -> -> 0 `i `uc ]
-"165
+"161
 }
-[; ;newmain.c: 165: }
+[; ;newmain.c: 161: }
 [e $U 311  ]
-"167
+"163
 [e :U 309 ]
-[; ;newmain.c: 167: else if(( IOCAFbits.IOCAF4 == 1 ) && (INTCONbits.IOCIE == 1)){
+[; ;newmain.c: 163: else if(( IOCAFbits.IOCAF4 == 1 ) && (INTCONbits.IOCIE == 1)){
 [e $ ! && == -> . . _IOCAFbits 0 4 `i -> 1 `i == -> . . _INTCONbits 0 3 `i -> 1 `i 312  ]
 {
-[; ;newmain.c: 169: if((PORTAbits.AN3 == 1)){
-"169
+[; ;newmain.c: 165: if((PORTAbits.AN3 == 1)){
+"165
 [e $ ! == -> . . _PORTAbits 1 4 `i -> 1 `i 313  ]
 {
-[; ;newmain.c: 174: PIN6(0);
-"174
+[; ;newmain.c: 170: PIN6(0);
+"170
 [e ( _PIN6 (1 -> -> 0 `i `uc ]
-[; ;newmain.c: 175: PIN5(1);
-"175
+[; ;newmain.c: 171: PIN5(1);
+"171
 [e ( _PIN5 (1 -> -> 1 `i `uc ]
-[; ;newmain.c: 176: time_16bit = Timer1();
-"176
+[; ;newmain.c: 172: time_16bit = Timer1();
+"172
 [e = _time_16bit ( _Timer1 ..  ]
-[; ;newmain.c: 177: printf("%d ", time_16bit);
-"177
-[e ( _printf , (. :s 2C _time_16bit ]
-"179
+"173
 }
 [e :U 313 ]
-[; ;newmain.c: 179: }
-[; ;newmain.c: 181: IOCAFbits.IOCAF4 = 0;
-"181
+[; ;newmain.c: 173: }
+[; ;newmain.c: 175: IOCAFbits.IOCAF4 = 0;
+"175
 [e = . . _IOCAFbits 0 4 -> -> 0 `i `uc ]
-"182
+"176
 }
-[; ;newmain.c: 182: }
+[; ;newmain.c: 176: }
 [e $U 314  ]
-"184
+"178
 [e :U 312 ]
-[; ;newmain.c: 184: else if (PIR1bits.RCIF){
+[; ;newmain.c: 178: else if (PIR1bits.RCIF){
 [e $ ! != -> . . _PIR1bits 0 5 `i -> -> -> 0 `i `Vuc `i 315  ]
 {
-[; ;newmain.c: 188: mydata = getch();
-"188
+[; ;newmain.c: 182: mydata = getch();
+"182
 [e = _mydata ( _getch ..  ]
-[; ;newmain.c: 191: RCREG = 0;
-"191
+[; ;newmain.c: 185: RCREG = 0;
+"185
 [e = _RCREG -> -> 0 `i `uc ]
-[; ;newmain.c: 192: PIR1bits.RCIF = 0;
-"192
+[; ;newmain.c: 186: PIR1bits.RCIF = 0;
+"186
 [e = . . _PIR1bits 0 5 -> -> 0 `i `uc ]
-"193
+"187
 }
 [e :U 315 ]
-"195
+"189
 [e :U 314 ]
 [e :U 311 ]
-[; ;newmain.c: 193: }
-[; ;newmain.c: 195: return;
+[; ;newmain.c: 187: }
+[; ;newmain.c: 189: return;
 [e $UE 308  ]
-[; ;newmain.c: 196: }
-"196
+[; ;newmain.c: 190: }
+"190
 [e :UE 308 ]
 }
-[p f _printf 8388736 ]
-[a 1C 83 116 97 114 116 46 46 46 0 ]
-[a 2C 37 100 32 0 ]

@@ -14,6 +14,7 @@
 #include <xc.h>
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "Constants.h"
 #include "DeviceConfig.h"
 #include "IO_Controls.h"
@@ -25,7 +26,7 @@
 void interrupt ISR (void);
 
 //Global Scope
-volatile int sampleVal = 0, count = False, startFlag = False, zeroCount = 0;
+volatile int sampleVal = 0, count = False, startFlag = False, posFlag = 1, negFlag = 0, zeroCount = 0, printCount = 0;
 
 
 int main() {
@@ -49,51 +50,61 @@ int main() {
     INTCON = 0b00000000;    // bit7= Global Int Enable; bit4= Int Pin ENable (RA2, Pin11)
     INTCONbits.GIE = Disable;          // Disable Global Interrupt
     
-    InitUSART();
     InitialisePorts();      // routine to setup ports
-    InitialiseADC();
-    ADON=Enable;            //ADC enable
-    //Init_TMR0();
+    InitUSART();
     Init_TMR1();
+    InitialiseADC();
     
     INTCONbits.INTE = Enable;           //Enable External interrupt
+    INTCONbits.IOCIE = 1;               // Enable interrupt-on-change
+    INTCONbits.PEIE = 1;                //enables all active peripheral interrupts
+    PIE1bits.RCIE = 1;                  //enable USART receive interrupt
     INTCONbits.GIE = Enable;            //Enable Global Interrupt
-    INTCONbits.INTF = 0;                //make interrupt flag clear.
     
+    IOCAFbits.IOCAF4 = 0;
+    INTCONbits.INTF = 0;
+    PIR1bits.RCIF = 0; // reset receive interrupt flag
+
+    
+    RCSTAbits.SPEN = 1;                     //enable USART
+    RCSTAbits.CREN = 0; RCSTAbits.CREN = 1; // resets continous receiver
+    ADON=Enable;                            //ADC enable
+   
     unsigned short ADC_sample;  //16bit
     
+    PIN6(Clear);
+    printf("Start...");
     while(1) {
                 
         //ADC_sample = ReadADC();
         
-        if((ADC_sample > 768) && (startFlag == False)) {
-        
-            sampleVal = ADC_sample;
-            
-            if(count == 0) {
-            
-                T1CONbits.TMR1ON = Enable;   //Timer on
-                PIN6(Set);
-                count = 1;
-            }
-            else {
-                
-                PIN6(Clear);
-                time_16bit = Timer1();           //Function call to calculate time
-                //printf("Time: %d\r", time_16bit);
-                count = 0;
-            }
-            
-            //Timer has been started
-            startFlag = True;
-        }
-        else if((ADC_sample < 128) && (startFlag == True)) {
-            
-            //Timer will stop on when ADC_sample > 768
-            startFlag = False;
-        }
-        else{}
-        
+//        if((ADC_sample > 768) && (startFlag == False)) {
+//        
+//            sampleVal = ADC_sample;
+//            
+//            if(count == 0) {
+//            
+//               // T1CONbits.TMR1ON = Enable;   //Timer on
+//                PIN6(Set);
+//                count = 1;
+//            }
+//            else {
+//                
+//                PIN6(Clear);
+//                //time_16bit = Timer1();           //Function call to calculate time
+//                count = 0;
+//            }
+//            
+//            //Timer has been started
+//            startFlag = True;
+//        }
+//        else if((ADC_sample < 128) && (startFlag == True)) {
+//            
+//            //Timer will stop on when ADC_sample > 768
+//            startFlag = False;
+//        }
+//        else{}
+//        
     }
     
     return (0);
@@ -101,20 +112,85 @@ int main() {
 
 void interrupt ISR (void)
 {
-    if( (INTCONbits.INTF==1) && (INTCONbits.INTE==1) ){
-        
-        if((PORTAbits.AN2 == 1)){
-        
-            zeroCount++;
-            //Toggles at every period
-            if(zeroCount == 2){
+    if((INTCONbits.INTF == 1) && (INTCONbits.INTE == 1)){
+       
+
+         if((PORTAbits.AN2 == 1)){
+            
+            //if((T1CONbits.TMR1ON == Disable) /* && (zeroCount == 0)*/){
+            
+                T1CONbits.TMR1ON = Enable;
                 
-                zeroCount = 0;
-                TogglePIN6();
+                PIN6(Set);
+                PIN5(Clear);
+                
             }
-        }
+       
+            
+//            zeroCount++;
+//            printCount++;
+//            
+//            //Toggles at every period
+//            if(zeroCount == 0){
+//                
+//                //PIN6(Clear);
+//                time_16bit = Timer1();
+//                zeroCount = 0;
+//                //__delay_ms(11);
+//                if(printCount > 100){
+//                
+//                    //printf("%d ", time_16bit);
+//                    printCount = 0;
+//                }
+//            }
+//     }
+            
+//            zeroCount++;
+//            printCount++;
+//            
+//            //Toggles at every period
+//            if(zeroCount == 0){
+//                
+//                //PIN6(Clear);
+//                time_16bit = Timer1();
+//                zeroCount = 0;
+//                //__delay_ms(11);
+//                if(printCount > 100){
+//                
+//                    //printf("%d ", time_16bit);
+//                    printCount = 0;
+//                }
+//            }
+        INTCONbits.INTF = 0;
     }
-    INTCONbits.INTF = 0;
+    
+    else if(( IOCAFbits.IOCAF4 == 1 ) && (INTCONbits.IOCIE == 1)){
+    
+        if((PORTAbits.AN3 == 1)){
+            
+            //if((T1CONbits.TMR1ON == Disable) /* && (zeroCount == 0)*/){
+            
+                //T1CONbits.TMR1ON = Enable;
+            PIN6(Clear);
+            PIN5(Set);
+            time_16bit = Timer1();
+            printf("%d ", time_16bit);
+
+        }
+        
+        IOCAFbits.IOCAF4 = 0;   //clears flag
+    }
+    
+    else if (PIR1bits.RCIF){
+        
+        //TogglePIN6();
+            
+        mydata = getch(); // read received character to buffer
+        //printf("%c", mydata);
+
+        RCREG = 0;
+        PIR1bits.RCIF = 0; // reset receive interrupt flag
+    }
     
     return;
 }

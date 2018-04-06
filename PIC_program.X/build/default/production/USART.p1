@@ -3,20 +3,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TRMT `Vb ~T0 @X0 0 e@3313 ]
 "3420
 [v _TXREG `Vuc ~T0 @X0 0 e@410 ]
-"6473
-[v _TXIE `Vb ~T0 @X0 0 e@1164 ]
-"6423
-[v _TRISA0 `Vb ~T0 @X0 0 e@1120 ]
-"6469
-[v _TXCKSEL `Vb ~T0 @X0 0 e@2282 ]
-"3607
-[s S187 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S187 . TX9D TRMT BRGH SENDB SYNC TXEN TX9 CSRC ]
-"3606
-[u S186 `S187 1 ]
-[n S186 . . ]
-"3618
-[v _TXSTAbits `VS186 ~T0 @X0 0 e@414 ]
+"6209
+[v _RCIF `Vb ~T0 @X0 0 e@141 ]
+"3400
+[v _RCREG `Vuc ~T0 @X0 0 e@409 ]
+"1595
+[s S81 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S81 . TMR1IE TMR2IE CCP1IE SSP1IE TXIE RCIE ADIE TMR1GIE ]
+"1594
+[u S80 `S81 1 ]
+[n S80 . . ]
+"1606
+[v _PIE1bits `VS80 ~T0 @X0 0 e@145 ]
 "3545
 [s S185 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S185 . RX9D OERR FERR ADDEN CREN SREN RX9 SPEN ]
@@ -25,6 +23,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S184 . . ]
 "3556
 [v _RCSTAbits `VS184 ~T0 @X0 0 e@413 ]
+"3607
+[s S187 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S187 . TX9D TRMT BRGH SENDB SYNC TXEN TX9 CSRC ]
+"3606
+[u S186 `S187 1 ]
+[n S186 . . ]
+"3618
+[v _TXSTAbits `VS186 ~T0 @X0 0 e@414 ]
 "3669
 [s S189 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S189 . ABDEN WUE . BRG16 SCKP . RCIDL ABDOVF ]
@@ -35,6 +41,36 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _BAUDCONbits `VS188 ~T0 @X0 0 e@415 ]
 "3452
 [v _SPBRG `Vuc ~T0 @X0 0 e@411 ]
+"1495
+[s S77 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S77 . TRISA0 TRISA1 TRISA2 TRISA3 TRISA4 TRISA5 ]
+"1494
+[u S76 `S77 1 ]
+[n S76 . . ]
+"1504
+[v _TRISAbits `VS76 ~T0 @X0 0 e@140 ]
+"3119
+[s S151 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S151 . ANSA0 ANSA1 ANSA2 . ANSA4 ]
+"3126
+[s S152 :5 `uc 1 ]
+[n S152 . ANSELA ]
+"3118
+[u S150 `S151 1 `S152 1 ]
+[n S150 . . . ]
+"3130
+[v _ANSELAbits `VS150 ~T0 @X0 0 e@396 ]
+"3004
+[s S145 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S145 . . TXCKSEL T1GSEL . SSSEL SDOSEL RXDTSEL ]
+"3013
+[s S146 :5 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S146 . . SS1SEL SDO1SEL ]
+"3003
+[u S144 `S145 1 `S146 1 ]
+[n S144 . . . ]
+"3019
+[v _APFCONbits `VS144 ~T0 @X0 0 e@285 ]
 [v F2436 `(v ~T0 @X0 1 tf1`ul ]
 "153 C:\Program Files (x86)\Microchip\xc8\v1.44\include\pic.h
 [v __delay `JF2436 ~T0 @X0 0 e ]
@@ -2383,105 +2419,143 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 193: extern __bank0 unsigned char __resetbits;
 [; ;pic.h: 194: extern __bank0 __bit __powerdown;
 [; ;pic.h: 195: extern __bank0 __bit __timeout;
-[; ;USART.h: 15: void TxChar(char);
-[; ;USART.h: 16: void InitUSART(void);
-[; ;USART.h: 17: void putch(char);
-"12 USART.c
+[; ;USART.h: 4: void TxChar(char);
+[; ;USART.h: 5: void InitUSART(void);
+"7 USART.h
+[v _mydata `Vuc ~T0 @X0 1 e ]
+[; ;USART.h: 7: volatile unsigned char mydata;
+"15 USART.c
 [v _putch `(v ~T0 @X0 1 ef1`uc ]
-"13
+"16
 {
-[; ;USART.c: 12: void putch(char c)
-[; ;USART.c: 13: {
+[; ;USART.c: 15: void putch(char c)
+[; ;USART.c: 16: {
 [e :U _putch ]
-"12
+"15
 [v _c `uc ~T0 @X0 1 r1 ]
-"13
+"16
 [f ]
-[; ;USART.c: 14: while(!TRMT);
-"14
+[; ;USART.c: 17: while(!TRMT);
+"17
 [e $U 293  ]
 [e :U 294 ]
 [e :U 293 ]
 [e $ ! _TRMT 294  ]
 [e :U 295 ]
-[; ;USART.c: 15: TXREG=c;
-"15
+[; ;USART.c: 18: TXREG=c;
+"18
 [e = _TXREG _c ]
-[; ;USART.c: 16: }
-"16
+[; ;USART.c: 19: }
+"19
 [e :UE 292 ]
 }
-"17
-[v _InitUSART `(v ~T0 @X0 1 ef ]
-"18
-{
-[; ;USART.c: 17: void InitUSART(void)
-[; ;USART.c: 18: {
-[e :U _InitUSART ]
-[f ]
-[; ;USART.c: 20: TXIE=0;
-"20
-[e = _TXIE -> -> 0 `i `b ]
-[; ;USART.c: 21: TRISA0 =0;
 "21
-[e = _TRISA0 -> -> 0 `i `b ]
-[; ;USART.c: 22: TXCKSEL =1;
+[v _getch `(uc ~T0 @X0 1 ef ]
 "22
-[e = _TXCKSEL -> -> 1 `i `b ]
-[; ;USART.c: 23: TXSTAbits.TXEN=1;
+{
+[; ;USART.c: 21: unsigned char getch(void)
+[; ;USART.c: 22: {
+[e :U _getch ]
+[f ]
+[; ;USART.c: 23: while(!RCIF)
 "23
-[e = . . _TXSTAbits 0 5 -> -> 1 `i `uc ]
-[; ;USART.c: 24: RCSTAbits.SPEN =1;
+[e $U 297  ]
+[e :U 298 ]
+[; ;USART.c: 24: continue;
 "24
-[e = . . _RCSTAbits 0 7 -> -> 1 `i `uc ]
-[; ;USART.c: 27: TXSTAbits.SYNC=0;
-"27
-[e = . . _TXSTAbits 0 4 -> -> 0 `i `uc ]
-[; ;USART.c: 28: TXSTAbits.BRGH=1;
-"28
-[e = . . _TXSTAbits 0 2 -> -> 1 `i `uc ]
-[; ;USART.c: 29: BAUDCONbits.BRG16=0;
-"29
-[e = . . _BAUDCONbits 0 3 -> -> 0 `i `uc ]
-[; ;USART.c: 30: SPBRG = 23;
-"30
-[e = _SPBRG -> -> 23 `i `uc ]
-[; ;USART.c: 32: return;
-"32
+[e $U 297  ]
+[e :U 297 ]
+"23
+[e $ ! _RCIF 298  ]
+[e :U 299 ]
+[; ;USART.c: 25: return RCREG;
+"25
+[e ) _RCREG ]
 [e $UE 296  ]
-[; ;USART.c: 33: }
-"33
+[; ;USART.c: 26: }
+"26
 [e :UE 296 ]
 }
-"35
+"28
+[v _InitUSART `(v ~T0 @X0 1 ef ]
+"29
+{
+[; ;USART.c: 28: void InitUSART(void)
+[; ;USART.c: 29: {
+[e :U _InitUSART ]
+[f ]
+[; ;USART.c: 31: PIE1bits.TXIE = 0;
+"31
+[e = . . _PIE1bits 0 4 -> -> 0 `i `uc ]
+[; ;USART.c: 32: RCREG = 0;
+"32
+[e = _RCREG -> -> 0 `i `uc ]
+[; ;USART.c: 33: RCSTAbits.CREN = 1;
+"33
+[e = . . _RCSTAbits 0 4 -> -> 1 `i `uc ]
+[; ;USART.c: 34: TXSTAbits.TXEN = 1;
+"34
+[e = . . _TXSTAbits 0 5 -> -> 1 `i `uc ]
+[; ;USART.c: 37: TXSTAbits.SYNC = 0;
+"37
+[e = . . _TXSTAbits 0 4 -> -> 0 `i `uc ]
+[; ;USART.c: 38: TXSTAbits.BRGH = 1;
+"38
+[e = . . _TXSTAbits 0 2 -> -> 1 `i `uc ]
+[; ;USART.c: 39: BAUDCONbits.BRG16 = 0;
+"39
+[e = . . _BAUDCONbits 0 3 -> -> 0 `i `uc ]
+[; ;USART.c: 40: SPBRG = 23;
+"40
+[e = _SPBRG -> -> 23 `i `uc ]
+[; ;USART.c: 42: TRISAbits.TRISA1 = 1;
+"42
+[e = . . _TRISAbits 0 1 -> -> 1 `i `uc ]
+[; ;USART.c: 43: ANSELAbits.ANSA1 = 0;
+"43
+[e = . . _ANSELAbits 0 1 -> -> 0 `i `uc ]
+[; ;USART.c: 44: APFCONbits.RXDTSEL = 1;
+"44
+[e = . . _APFCONbits 0 6 -> -> 1 `i `uc ]
+[; ;USART.c: 45: APFCONbits.TXCKSEL = 1;
+"45
+[e = . . _APFCONbits 0 1 -> -> 1 `i `uc ]
+[; ;USART.c: 47: return;
+"47
+[e $UE 300  ]
+[; ;USART.c: 48: }
+"48
+[e :UE 300 ]
+}
+"50
 [v _TxChar `(v ~T0 @X0 1 ef1`uc ]
 {
-[; ;USART.c: 35: void TxChar(char data){
+[; ;USART.c: 50: void TxChar(char data){
 [e :U _TxChar ]
 [v _data `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;USART.c: 37: TXREG = data;
-"37
+[; ;USART.c: 52: TXREG = data;
+"52
 [e = _TXREG _data ]
-[; ;USART.c: 38: _delay((unsigned long)((10)*(4000000/4000000.0)));
-"38
+[; ;USART.c: 53: _delay((unsigned long)((10)*(4000000/4000000.0)));
+"53
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 4000000 `l `d .4000000.0 `ul ]
-[; ;USART.c: 39: while(!TXIF){
-"39
-[e $U 298  ]
-[e :U 299 ]
+[; ;USART.c: 54: while(!TXIF){
+"54
+[e $U 302  ]
+[e :U 303 ]
 {
-"40
+"55
 }
-[e :U 298 ]
-"39
-[e $ ! _TXIF 299  ]
-[e :U 300 ]
-[; ;USART.c: 40: }
-[; ;USART.c: 41: return;
-"41
-[e $UE 297  ]
-[; ;USART.c: 42: }
-"42
-[e :UE 297 ]
+[e :U 302 ]
+"54
+[e $ ! _TXIF 303  ]
+[e :U 304 ]
+[; ;USART.c: 55: }
+[; ;USART.c: 56: return;
+"56
+[e $UE 301  ]
+[; ;USART.c: 57: }
+"57
+[e :UE 301 ]
 }

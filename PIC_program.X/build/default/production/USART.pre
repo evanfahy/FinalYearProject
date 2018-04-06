@@ -3194,31 +3194,44 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 
-# 15 "USART.h"
+# 4 "USART.h"
 void TxChar(char);
 void InitUSART(void);
-void putch(char);
 
-# 12 "USART.c"
+volatile unsigned char mydata;
+
+# 15 "USART.c"
 void putch(char c)
 {
 while(!TRMT);
 TXREG=c;
 }
+
+unsigned char getch(void)
+{
+while(!RCIF)
+continue;
+return RCREG;
+}
+
 void InitUSART(void)
 {
 
-TXIE=0;
-TRISA0 =0;
-TXCKSEL =1;
-TXSTAbits.TXEN=1;
-RCSTAbits.SPEN =1;
+PIE1bits.TXIE = 0;
+RCREG = 0;
+RCSTAbits.CREN = 1;
+TXSTAbits.TXEN = 1;
 
 
-TXSTAbits.SYNC=0;
-TXSTAbits.BRGH=1;
-BAUDCONbits.BRG16=0;
+TXSTAbits.SYNC = 0;
+TXSTAbits.BRGH = 1;
+BAUDCONbits.BRG16 = 0;
 SPBRG = 23;
+
+TRISAbits.TRISA1 = 1;
+ANSELAbits.ANSA1 = 0;
+APFCONbits.RXDTSEL = 1;
+APFCONbits.TXCKSEL = 1;
 
 return;
 }

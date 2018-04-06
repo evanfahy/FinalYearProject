@@ -21,6 +21,7 @@ void InitialisePorts(void){
     //The ports automatically start up as tri-state inputs and are enabled as analog inputs
     //Ensure IO ports are configured to output zeros before enabling as outputs
     
+    
     //************* PORT A *************
     // A0 TxPin (PGM)        Digital In
     // A1 RxPin (PGM)        Digital In
@@ -31,11 +32,19 @@ void InitialisePorts(void){
     
     portA.portAByte = 0;     // initialise the A shadow register to zero
     LATA   = 0;              // Switch off all port A output pins before enabling
-    TRISA  = 0b00011100;     // 0 = Digital Outputs; 1 = Digital IN.
+    
+    TRISA  = 0b00111110;     /// 0 = Digital Outputs; 1 = Digital IN.
+                             // RA5 is set to digital input for INT_NEG (Interrupt-on-change))
+                             // RA4 is set to digital input for safety button
                              // RA3 pin4 bit is always ?1? as RA3 is an input only
-                             // RA2 (INTPIN) is set to input
-    ANSELA = 0b00000000;     // Disable all port A Analog inputs (1=Analog In)
-                             // RA2 Digital IN
+                             // RA2 is set to digital input for INT_POS
+                             // RA1 (RXPIN) is set to digital input
+                             // RA0 (TXPIN) is set to digital output
+    
+    ANSELA = 0b00000000;     // Disable all port A Analog inputs (1 = Analog In/Out, 0 = digital In/Out)
+    
+    IOCAPbits.IOCAP4 = 1;   //Enable IOCIE on RA4/Pin3
+
     
     
     //INLVLA2 =1;             // select Schmitt Trigger levels for IOC A2 pin
@@ -52,10 +61,9 @@ void InitialisePorts(void){
     portC.portCByte = 0;    // initialise the C shadow register to zero
     LATC = 0;               // Switch off all port C output pins before enabling
     TRISC  = 0b00001000;    // 0 = Digital Outputs; 1 = Digital IN.
-                            //AN7 / RC3 and AN6 / RC2 set to Analog IN 
+                            //AN7 / RC3 and AN6 / RC2 set to Analog IN for ADC 
     ANSELC = 0b00001000;    // Disable all port C Analog inputs (1=Analog In)
                             // Enable PortC.3 as Analog: AN7 (pin7) (RC3:Positive cycle Sense)
-                            // Enable PortC.2 as Analog: AN6 (pin8) (RC2:Negative cycle Sense)
   
     //************* PORT C end *************
 
@@ -70,6 +78,14 @@ void PIN3(char OnOff){
     portA.bits.Pin3 = OnOff;//change bit in mask
     PORTA=portA.portAByte;//write to mask
     return;
+}
+
+void PIN5(char OnOff){
+
+    portC.portCByte = PORTC;
+    portC.bits.Pin5 = OnOff;
+    PORTC=portC.portCByte;
+    return; 
 }
 
 void PIN6(char OnOff){

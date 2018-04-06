@@ -12,9 +12,10 @@
 
 //Function Declarations
 void InitialisePorts (void);    //Setup I/O ports
-void LEDPin(char OnOff);        //direct Pin control
-void PIN3(char OnOff);
-void PIN6(char OnOff);
+void LEDPin(char );        //direct Pin control
+void PIN3(char );
+void PIN5(char );
+void PIN6(char );
 void TogglePIN6(void);
 void TogglePIN5(void);
 
@@ -28,7 +29,7 @@ union {
         unsigned RCD_FaultPinDIN:1;     //RA2 (DI) INTERRUPT PIN - RCD Fault Input
         unsigned ResetButtonPinDin:1;   //RA3 (DI) Reset Button Input (shared with MCLR=>IN only)
         unsigned Pin3:1;                //RA4 (DO) Avail for TEST/DEBUG
-        unsigned ShortTripSCRPinOut:1;  //RA5 (DO) Short Trip SCR
+        unsigned RA5:1;  //RA5 (DO) Short Trip SCR
         unsigned NoPin_RA6:1;           //no such port pin, filling up Byte with extra bit
         unsigned NoPin_RA7:1;           //no such port pin, filling up Byte with extra bit
     } bits;
