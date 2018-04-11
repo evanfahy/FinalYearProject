@@ -9,7 +9,6 @@
 #include <xc.h>
 #include "Timer.h"
 #include "Constants.h"
-#include "Variables.h"
 #include "USART.h"
 
 unsigned int temp_time;   //16 bit number
@@ -36,13 +35,10 @@ void Init_TMR1(void)
         temp_time = TMR1H;
         temp_time <<= 8;
         temp_time += TMR1L;
-        
-        time = temp_time;
-        
+                
         TMR1L = 0x00;
         TMR1H = 0x00;
-        temp_time = 0;
         
-        return time;
+        return temp_time;
 }
  

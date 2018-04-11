@@ -3326,6 +3326,34 @@ extern char * ultoa(char * buf, unsigned long val, int base);
 
 extern char * ftoa(float f, int * status);
 
+# 30 "C:\Program Files (x86)\Microchip\xc8\v1.44\include\math.h"
+extern double fabs(double);
+extern double floor(double);
+extern double ceil(double);
+extern double modf(double, double *);
+extern double sqrt(double);
+extern double atof(const char *);
+extern double sin(double) ;
+extern double cos(double) ;
+extern double tan(double) ;
+extern double asin(double) ;
+extern double acos(double) ;
+extern double atan(double);
+extern double atan2(double, double) ;
+extern double log(double);
+extern double log10(double);
+extern double pow(double, double) ;
+extern double exp(double) ;
+extern double sinh(double) ;
+extern double cosh(double) ;
+extern double tanh(double);
+extern double eval_poly(double, const double *, int);
+extern double frexp(double, int *);
+extern double ldexp(double, int);
+extern double fmod(double, double);
+extern double trunc(double);
+extern double round(double);
+
 
 # 24 "DeviceConfig.h"
 #pragma config FOSC = INTOSC
@@ -3394,36 +3422,67 @@ unsigned short ReadADC(void);
 
 
 unsigned short adcData = 0;
+unsigned short adcSample;
+unsigned short previousADCsample;
 
-# 4 "USART.h"
-void TxChar(char);
+# 6 "USART.h"
+void putch(char );
+void UART_TX(char );
+unsigned char getch(void );
+
 void InitUSART(void);
 
-volatile unsigned char mydata;
+unsigned char charData;
+unsigned int intData;
 
-# 25 "Timer.h"
+# 24 "Timer.h"
 void Init_TMR1(void);
 unsigned int Timer1(void);
 
-# 36
-unsigned int time_16bit;
+# 34
+unsigned int tmr1Val;
+unsigned long aveTmr1Val;
 
-# 7 "Variables.h"
-unsigned int time_16bit;
-
-# 26 "newmain.c"
+# 23 "newmain.c"
+void initPIC(void);
+void pi3Connect(void);
+void verifyACSignal(void);
+void beginHighCurrentTest(void);
 void interrupt ISR (void);
 
 
 volatile int sampleVal = 0, count = 0, startFlag = 0, posFlag = 1, negFlag = 0, zeroCount = 0, printCount = 0;
+int tmr1Count = 0;
+
+int main()
+{
+
+initPIC();
+
+for(int i = 0; i < 6; i++){
+
+TogglePIN6();
+_delay((unsigned long)((250)*(4000000/4000.0)));
+}
+
+while(1)
+{
 
 
-int main() {
+pi3Connect();
+
+}
+
+return (0);
+}
+
+void initPIC(void)
+{
 
 
 OSCCON = 0b01101000;
 
-# 46
+# 70
 while(HFIOFR==0){
 }
 
@@ -3432,39 +3491,103 @@ INTCON = 0b00000000;
 INTCONbits.GIE = 0;
 
 InitialisePorts();
-InitUSART();
 Init_TMR1();
 InitialiseADC();
+InitUSART();
 
-INTCONbits.INTE = 1;
-INTCONbits.IOCIE = 1;
-INTCONbits.PEIE = 1;
-PIE1bits.RCIE = 1;
 INTCONbits.GIE = 1;
 
-IOCAFbits.IOCAF4 = 0;
-INTCONbits.INTF = 0;
-PIR1bits.RCIF = 0;
+_delay((unsigned long)((500)*(4000000/4000.0)));
 
+return;
+}
+
+
+void pi3Connect(void)
+{
+PIE1bits.RCIE = 1;
+INTCONbits.PEIE = 1;
 
 RCSTAbits.SPEN = 1;
 RCSTAbits.CREN = 0; RCSTAbits.CREN = 1;
+
+while(1){
+
+
+
+
+}
+
+return;
+}
+
+
+void verifyACSignal(void)
+{
 ADON=1;
 
-unsigned short ADC_sample;
+aveTmr1Val = 0;
+
+PIN5(0);
+
+while(tmr1Count < 100 ){
+
+adcSample = ReadADC();
+
+if((adcSample > 512) && (startFlag == 0)) {
+
+
+
+if(count == 0) {
+
+T1CONbits.TMR1ON = 1;
+PIN6(1);
+count = 1;
+}
+else {
 
 PIN6(0);
-printf("Start...");
-while(1) {
+tmr1Val = Timer1();
+aveTmr1Val = aveTmr1Val + tmr1Val;
 
-# 108
+tmr1Count = tmr1Count + 1 ;
+count = 0;
 }
 
-return (0);
+
+startFlag = 1;
 }
+else if((adcSample < 128) && (startFlag == 1)) {
+
+
+startFlag = 0;
+}
+else{}
+}
+
+ADON=0;
+tmr1Count = 0;
+aveTmr1Val = fabs((double)(aveTmr1Val/100));
+PIN5(1);
+
+
+
+return;
+}
+
+
+void beginHighCurrentTest(void)
+{
+INTCONbits.INTE = 1;
+INTCONbits.IOCIE = 1;
+
+return;
+}
+
 
 void interrupt ISR (void)
 {
+
 if((INTCONbits.INTF == 1) && (INTCONbits.INTE == 1)){
 
 
@@ -3472,16 +3595,17 @@ if((PORTAbits.AN2 == 1)){
 
 
 
-T1CONbits.TMR1ON = 1;
+if(count == 0){
 
+T1CONbits.TMR1ON = 1;
+count++;
+}
 PIN6(1);
 PIN5(0);
-
 }
-
-# 164
 INTCONbits.INTF = 0;
 }
+
 
 else if(( IOCAFbits.IOCAF4 == 1 ) && (INTCONbits.IOCIE == 1)){
 
@@ -3490,10 +3614,19 @@ if((PORTAbits.AN3 == 1)){
 
 
 
-PIN6(0);
+if(count == 1){
+tmr1Val = Timer1();
+printCount++;
+count = 0;
+if(printCount == 200)
+{
+
+printCount = 0;
+}
+}
+
 PIN5(1);
-time_16bit = Timer1();
-printf("%d ", time_16bit);
+PIN6(0);
 
 }
 
@@ -3502,10 +3635,12 @@ IOCAFbits.IOCAF4 = 0;
 
 else if (PIR1bits.RCIF){
 
+TogglePIN5();
 
+charData = getch();
 
-mydata = getch();
-
+# 230
+printf("%c\0", charData);
 
 RCREG = 0;
 PIR1bits.RCIF = 0;

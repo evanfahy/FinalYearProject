@@ -2362,90 +2362,91 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 193: extern __bank0 unsigned char __resetbits;
 [; ;pic.h: 194: extern __bank0 __bit __powerdown;
 [; ;pic.h: 195: extern __bank0 __bit __timeout;
-[; ;Timer.h: 25: void Init_TMR1(void);
-[; ;Timer.h: 26: unsigned int Timer1(void);
-"36 Timer.h
-[v _time_16bit `ui ~T0 @X0 1 e ]
-[; ;Timer.h: 36: unsigned int time_16bit;
-[; ;Variables.h: 7: unsigned int time_16bit;
-[; ;USART.h: 4: void TxChar(char);
-[; ;USART.h: 5: void InitUSART(void);
-"7 USART.h
-[v _mydata `Vuc ~T0 @X0 1 e ]
-[; ;USART.h: 7: volatile unsigned char mydata;
-"15 Timer.c
+[; ;Timer.h: 24: void Init_TMR1(void);
+[; ;Timer.h: 25: unsigned int Timer1(void);
+"34 Timer.h
+[v _tmr1Val `ui ~T0 @X0 1 e ]
+[; ;Timer.h: 34: unsigned int tmr1Val;
+"35
+[v _aveTmr1Val `ul ~T0 @X0 1 e ]
+[; ;Timer.h: 35: unsigned long aveTmr1Val;
+[; ;USART.h: 6: void putch(char );
+[; ;USART.h: 7: void UART_TX(char );
+[; ;USART.h: 8: unsigned char getch(void );
+[; ;USART.h: 10: void InitUSART(void);
+"12 USART.h
+[v _charData `uc ~T0 @X0 1 e ]
+[; ;USART.h: 12: unsigned char charData;
+"13
+[v _intData `ui ~T0 @X0 1 e ]
+[; ;USART.h: 13: unsigned int intData;
+"14 Timer.c
 [v _temp_time `ui ~T0 @X0 1 e ]
-[; ;Timer.c: 15: unsigned int temp_time;
-"16
+[; ;Timer.c: 14: unsigned int temp_time;
+"15
 [v _time `ui ~T0 @X0 1 e ]
-[; ;Timer.c: 16: unsigned int time;
-"18
+[; ;Timer.c: 15: unsigned int time;
+"17
 [v _Init_TMR1 `(v ~T0 @X0 1 ef ]
-"19
+"18
 {
-[; ;Timer.c: 18: void Init_TMR1(void)
-[; ;Timer.c: 19: {
+[; ;Timer.c: 17: void Init_TMR1(void)
+[; ;Timer.c: 18: {
 [e :U _Init_TMR1 ]
 [f ]
-[; ;Timer.c: 21: T1CON = 0b00000000;
-"21
+[; ;Timer.c: 20: T1CON = 0b00000000;
+"20
 [e = _T1CON -> -> 0 `i `uc ]
-[; ;Timer.c: 22: T1CONbits.TMR1CS = 0b00;
-"22
+[; ;Timer.c: 21: T1CONbits.TMR1CS = 0b00;
+"21
 [e = . . _T1CONbits 1 2 -> -> 0 `i `uc ]
-[; ;Timer.c: 23: T1CONbits.T1CKPS = 0b01;
-"23
+[; ;Timer.c: 22: T1CONbits.T1CKPS = 0b01;
+"22
 [e = . . _T1CONbits 1 1 -> -> 1 `i `uc ]
-[; ;Timer.c: 25: T1GCON = 0b01000000;
-"25
+[; ;Timer.c: 24: T1GCON = 0b01000000;
+"24
 [e = _T1GCON -> -> 64 `i `uc ]
-[; ;Timer.c: 27: INTCON = 0b10000000;
-"27
+[; ;Timer.c: 26: INTCON = 0b10000000;
+"26
 [e = _INTCON -> -> 128 `i `uc ]
-[; ;Timer.c: 29: return;
-"29
+[; ;Timer.c: 28: return;
+"28
 [e $UE 292  ]
-[; ;Timer.c: 30: }
-"30
+[; ;Timer.c: 29: }
+"29
 [e :UE 292 ]
 }
-"32
+"31
 [v _Timer1 `(ui ~T0 @X0 1 ef ]
-"33
+"32
 {
-[; ;Timer.c: 32: unsigned int Timer1(void)
-[; ;Timer.c: 33: {
+[; ;Timer.c: 31: unsigned int Timer1(void)
+[; ;Timer.c: 32: {
 [e :U _Timer1 ]
 [f ]
-[; ;Timer.c: 34: T1CONbits.TMR1ON = 0;
-"34
+[; ;Timer.c: 33: T1CONbits.TMR1ON = 0;
+"33
 [e = . . _T1CONbits 0 0 -> -> 0 `i `uc ]
-[; ;Timer.c: 36: temp_time = TMR1H;
-"36
+[; ;Timer.c: 35: temp_time = TMR1H;
+"35
 [e = _temp_time -> _TMR1H `ui ]
-[; ;Timer.c: 37: temp_time <<= 8;
-"37
+[; ;Timer.c: 36: temp_time <<= 8;
+"36
 [e =<< _temp_time -> 8 `i ]
-[; ;Timer.c: 38: temp_time += TMR1L;
-"38
+[; ;Timer.c: 37: temp_time += TMR1L;
+"37
 [e =+ _temp_time -> _TMR1L `ui ]
-[; ;Timer.c: 40: time = temp_time;
-"40
-[e = _time _temp_time ]
-[; ;Timer.c: 42: TMR1L = 0x00;
-"42
+[; ;Timer.c: 39: TMR1L = 0x00;
+"39
 [e = _TMR1L -> -> 0 `i `uc ]
-[; ;Timer.c: 43: TMR1H = 0x00;
-"43
+[; ;Timer.c: 40: TMR1H = 0x00;
+"40
 [e = _TMR1H -> -> 0 `i `uc ]
-[; ;Timer.c: 44: temp_time = 0;
-"44
-[e = _temp_time -> -> 0 `i `ui ]
-[; ;Timer.c: 46: return time;
-"46
-[e ) _time ]
+[; ;Timer.c: 42: return temp_time;
+"42
+[e ) _temp_time ]
 [e $UE 293  ]
-[; ;Timer.c: 47: }
-"47
+[; ;Timer.c: 43: }
+"43
 [e :UE 293 ]
 }

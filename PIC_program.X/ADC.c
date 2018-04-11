@@ -21,7 +21,7 @@ void InitialiseADC(void){
     //ADCON1bits.ADNREF = 0;    //connects -Ref to Vss
     ADCON1bits.ADPREF = 0b011;  //connects +Ref Voltage to... VDD
                                 //00=VDD, 01=n/a, 10=Pin, 11=FVR
-    FVRCON = 0b11000010;        //ADFVR configured to 2.048V
+    FVRCON = 0b11000011;        //ADFVR configured to 4.096V
     
     __delay_us(10);
     ADIE=Disable;               //disable ADC interrupts, Poll instead

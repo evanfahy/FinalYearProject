@@ -2395,6 +2395,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 0 `i `us
 ]
 [; ;ADC.h: 11: unsigned short adcData = 0;
+"12
+[v _adcSample `us ~T0 @X0 1 e ]
+[; ;ADC.h: 12: unsigned short adcSample;
+"13
+[v _previousADCsample `us ~T0 @X0 1 e ]
+[; ;ADC.h: 13: unsigned short previousADCsample;
 "15 ADC.c
 [v _InitialiseADC `(v ~T0 @X0 1 ef ]
 {
@@ -2413,9 +2419,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ADC.c: 22: ADCON1bits.ADPREF = 0b011;
 "22
 [e = . . _ADCON1bits 1 0 -> -> 3 `i `uc ]
-[; ;ADC.c: 24: FVRCON = 0b11000010;
+[; ;ADC.c: 24: FVRCON = 0b11000011;
 "24
-[e = _FVRCON -> -> 194 `i `uc ]
+[e = _FVRCON -> -> 195 `i `uc ]
 [; ;ADC.c: 26: _delay((unsigned long)((10)*(4000000/4000000.0)));
 "26
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 4000000 `l `d .4000000.0 `ul ]

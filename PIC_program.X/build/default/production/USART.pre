@@ -3194,32 +3194,28 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 
-# 4 "USART.h"
-void TxChar(char);
+# 6 "USART.h"
+void putch(char );
+void UART_TX(char );
+unsigned char getch(void );
+
 void InitUSART(void);
 
-volatile unsigned char mydata;
+unsigned char charData;
+unsigned int intData;
 
-# 15 "USART.c"
-void putch(char c)
-{
-while(!TRMT);
-TXREG=c;
-}
-
-unsigned char getch(void)
-{
-while(!RCIF)
-continue;
-return RCREG;
-}
-
+# 12 "USART.c"
 void InitUSART(void)
 {
 
 PIE1bits.TXIE = 0;
 RCREG = 0;
+
+RCSTAbits.RX9 = 0;
 RCSTAbits.CREN = 1;
+
+
+TXSTAbits.TX9 = 0;
 TXSTAbits.TXEN = 1;
 
 
@@ -3230,17 +3226,36 @@ SPBRG = 23;
 
 TRISAbits.TRISA1 = 1;
 ANSELAbits.ANSA1 = 0;
+
+TRISAbits.TRISA0 = 0;
+ANSELAbits.ANSA1 = 0;
+
 APFCONbits.RXDTSEL = 1;
 APFCONbits.TXCKSEL = 1;
 
 return;
 }
 
+void putch(char c)
+{
+while(!TRMT)
+continue;
+TXREG = c;
+}
+
 void TxChar(char data){
 
 TXREG = data;
-_delay((unsigned long)((10)*(4000000/4000000.0)));
+_delay((unsigned long)((5)*(4000000/4000000.0)));
 while(!TXIF){
 }
 return;
 }
+
+unsigned char getch(void)
+{
+while(!RCIF)
+continue;
+return RCREG;
+}
+

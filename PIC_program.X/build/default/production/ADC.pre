@@ -3200,6 +3200,8 @@ unsigned short ReadADC(void);
 
 
 unsigned short adcData = 0;
+unsigned short adcSample;
+unsigned short previousADCsample;
 
 # 15 "ADC.c"
 void InitialiseADC(void){
@@ -3211,7 +3213,7 @@ ADCON1bits.ADCS = 0b000;
 
 ADCON1bits.ADPREF = 0b011;
 
-FVRCON = 0b11000010;
+FVRCON = 0b11000011;
 
 _delay((unsigned long)((10)*(4000000/4000000.0)));
 ADIE=0;

@@ -21,10 +21,8 @@
 
 #include <xc.h> // include processor files - each processor file is guarded.
 
-//void Init_TMR0(void);
 void Init_TMR1(void);
 unsigned int Timer1(void);
-//void interrupt INTERRUPT_InterruptManager (void);
 
 #define _XTAL_FREQ          4000000  //Declare Oscillator value (1Mhz) for use in __delay_ms, etc.
 #define TMR1_cnt            65536    // value to be subtracted away from timer0 register (max of 65535 allowed)
@@ -33,7 +31,10 @@ unsigned int Timer1(void);
 
 
 //Variables
-unsigned int time_16bit;  //for main
+unsigned int tmr1Val;  //for main
+unsigned long aveTmr1Val;
+
+
 
 
 

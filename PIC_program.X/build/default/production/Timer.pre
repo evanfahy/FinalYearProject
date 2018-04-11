@@ -3194,23 +3194,25 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 
-# 25 "Timer.h"
+# 24 "Timer.h"
 void Init_TMR1(void);
 unsigned int Timer1(void);
 
-# 36
-unsigned int time_16bit;
+# 34
+unsigned int tmr1Val;
+unsigned long aveTmr1Val;
 
-# 7 "Variables.h"
-unsigned int time_16bit;
+# 6 "USART.h"
+void putch(char );
+void UART_TX(char );
+unsigned char getch(void );
 
-# 4 "USART.h"
-void TxChar(char);
 void InitUSART(void);
 
-volatile unsigned char mydata;
+unsigned char charData;
+unsigned int intData;
 
-# 15 "Timer.c"
+# 14 "Timer.c"
 unsigned int temp_time;
 unsigned int time;
 
@@ -3236,12 +3238,9 @@ temp_time = TMR1H;
 temp_time <<= 8;
 temp_time += TMR1L;
 
-time = temp_time;
-
 TMR1L = 0x00;
 TMR1H = 0x00;
-temp_time = 0;
 
-return time;
+return temp_time;
 }
 
