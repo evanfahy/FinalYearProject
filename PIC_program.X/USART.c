@@ -45,7 +45,8 @@ void InitUSART(void)
     return;
 }
 
-void UART_TX(unsigned char *data){
+void UART_TX(unsigned char *data)
+{
     
     while(!TRMT)           //Do nothing while Transmit shift reg is full/is not empty (is not set)
                             //TRMT flag in TXSTA it is set when the shift register is empty 
@@ -84,7 +85,8 @@ void UART_RX_String()
     ptr++;
 }
 
-void empty_RX_BUFF(){
+void empty_RX_BUFF()
+{
     for(int i = 0; i < 20; i++)
     {
         

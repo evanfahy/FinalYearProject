@@ -3890,20 +3890,18 @@ unsigned short adcData = 0;
 unsigned short adcSample;
 unsigned short previousADCsample;
 
-# 8 "USART.h"
-void InitUSART(void );
-unsigned char UART_RX_Byte(void);
-void UART_RX_String(void );
-
+# 9 "USART.h"
+void InitUSART(void);
 void UART_TX(unsigned char *);
-void UART_TX_String(unsigned char * );
+void UART_TX_String(unsigned char *);
+unsigned char UART_RX_Byte();
+void UART_RX_String();
+void empty_RX_BUFF();
 void putch(char );
-void empty_RX_BUFF(void);
-unsigned char rxByte, txByte;
 
-unsigned int intData = 0;
 unsigned char rxArray[20];
 unsigned char ptr;
+unsigned char txByte, rxByte;
 
 # 24 "Timer.h"
 void Init_TMR1(void);
@@ -3943,12 +3941,11 @@ ToggleGLED();
 _delay((unsigned long)((100)*(4000000/4000.0)));
 }
 
-# 98
 pi3Connect();
 _delay((unsigned long)((10)*(4000000/4000.0)));
 verifyACSignal();
 
-# 108
+
 return (0);
 }
 
@@ -3958,7 +3955,7 @@ void initPIC(void)
 
 OSCCON = 0b01101000;
 
-# 126
+# 73
 while(HFIOFR==0){
 }
 
@@ -4103,6 +4100,7 @@ for(int i = 0; i < 6; i++){
 ToggleGLED();
 _delay((unsigned long)((100)*(4000000/4000.0)));
 }
+
 ADC_OPTO_Relay(1);
 
 setupTestParameters();
@@ -4159,15 +4157,12 @@ cycles = atoi(rxArray);
 empty_RX_BUFF();
 
 
-
-
 PoW = ((PoW*100)/360);
 PoW = ((10000/100)*PoW);
 
 
 beginHighCurrentTest();
 
-# 341
 return;
 }
 
@@ -4177,7 +4172,7 @@ void beginHighCurrentTest(void)
 mainTest = 1;
 PIE1bits.RCIE = 0;
 
-# 367
+# 301
 if(PoW > 5000)
 {
 
@@ -4190,10 +4185,14 @@ else if (PoW < 4999){
 SCR_Relay(0);
 PosCycle = 1;
 
-# 383
+# 317
 }
 
-# 390
+
+for(int i = 0; i < cycles; i++){
+
+
+
 INTCONbits.INTE = 1;
 INTCONbits.IOCIE = 1;
 
@@ -4206,6 +4205,7 @@ INTCONbits.IOCIE = 0;
 SCR(1);
 SCR_On = 0;
 TMR1Reset();
+}
 
 NegCycle = 0;
 PosCycle = 0;
@@ -4236,7 +4236,6 @@ else if(PosCycle == 1){
 
 TMR1ON = 1;
 }
-
 }
 INTCONbits.INTF = 0;
 }

@@ -3664,20 +3664,18 @@ unsigned int Timer1Read(void);
 unsigned long tmr1Val;
 unsigned long aveTmr1Val, Tmr1Val_Ms;
 
-# 8 "USART.h"
-void InitUSART(void );
-unsigned char UART_RX_Byte(void);
-void UART_RX_String(void );
-
+# 9 "USART.h"
+void InitUSART(void);
 void UART_TX(unsigned char *);
-void UART_TX_String(unsigned char * );
+void UART_TX_String(unsigned char *);
+unsigned char UART_RX_Byte();
+void UART_RX_String();
+void empty_RX_BUFF();
 void putch(char );
-void empty_RX_BUFF(void);
-unsigned char rxByte, txByte;
 
-unsigned int intData = 0;
 unsigned char rxArray[20];
 unsigned char ptr;
+unsigned char txByte, rxByte;
 
 # 14 "Timer.c"
 unsigned int temp_time;

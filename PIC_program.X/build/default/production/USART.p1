@@ -2856,29 +2856,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;string.h: 58: extern char * strichr(const char *, int);
 [; ;string.h: 59: extern char * strrchr(const char *, int);
 [; ;string.h: 60: extern char * strrichr(const char *, int);
-[; ;USART.h: 8: void InitUSART(void );
-[; ;USART.h: 9: unsigned char UART_RX_Byte(void);
-[; ;USART.h: 10: void UART_RX_String(void );
-[; ;USART.h: 12: void UART_TX(unsigned char *);
-[; ;USART.h: 13: void UART_TX_String(unsigned char * );
-[; ;USART.h: 14: void putch(char );
-[; ;USART.h: 15: void empty_RX_BUFF(void);
-"16 USART.h
-[v _rxByte `uc ~T0 @X0 1 e ]
-[v _txByte `uc ~T0 @X0 1 e ]
-[; ;USART.h: 16: unsigned char rxByte, txByte;
-"18
-[v _intData `ui ~T0 @X0 1 e ]
-[i _intData
--> -> 0 `i `ui
-]
-[; ;USART.h: 18: unsigned int intData = 0;
-"19
+[; ;USART.h: 9: void InitUSART(void);
+[; ;USART.h: 10: void UART_TX(unsigned char *);
+[; ;USART.h: 11: void UART_TX_String(unsigned char *);
+[; ;USART.h: 12: unsigned char UART_RX_Byte();
+[; ;USART.h: 13: void UART_RX_String();
+[; ;USART.h: 14: void empty_RX_BUFF();
+[; ;USART.h: 15: void putch(char );
+"17 USART.h
 [v _rxArray `uc ~T0 @X0 -> 20 `i e ]
-[; ;USART.h: 19: unsigned char rxArray[20];
-"20
+[; ;USART.h: 17: unsigned char rxArray[20];
+"18
 [v _ptr `uc ~T0 @X0 1 e ]
-[; ;USART.h: 20: unsigned char ptr;
+[; ;USART.h: 18: unsigned char ptr;
+"19
+[v _txByte `uc ~T0 @X0 1 e ]
+[v _rxByte `uc ~T0 @X0 1 e ]
+[; ;USART.h: 19: unsigned char txByte, rxByte;
 "15 USART.c
 [v _InitUSART `(v ~T0 @X0 1 ef ]
 "16
@@ -2944,170 +2938,176 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 "48
 [v _UART_TX `(v ~T0 @X0 1 ef1`*uc ]
+"49
 {
-[; ;USART.c: 48: void UART_TX(unsigned char *data){
+[; ;USART.c: 48: void UART_TX(unsigned char *data)
+[; ;USART.c: 49: {
 [e :U _UART_TX ]
+"48
 [v _data `*uc ~T0 @X0 1 r1 ]
+"49
 [f ]
-[; ;USART.c: 50: while(!TRMT)
-"50
+[; ;USART.c: 51: while(!TRMT)
+"51
 [e $U 343  ]
 [e :U 344 ]
-[; ;USART.c: 52: continue;
-"52
+[; ;USART.c: 53: continue;
+"53
 [e $U 343  ]
 [e :U 343 ]
-"50
+"51
 [e $ ! _TRMT 344  ]
 [e :U 345 ]
-[; ;USART.c: 53: if(TXIF){
-"53
+[; ;USART.c: 54: if(TXIF){
+"54
 [e $ ! _TXIF 346  ]
 {
-[; ;USART.c: 56: TXREG = data;
-"56
-[e = _TXREG -> _data `Vuc ]
+[; ;USART.c: 57: TXREG = data;
 "57
+[e = _TXREG -> _data `Vuc ]
+"58
 }
 [e :U 346 ]
-[; ;USART.c: 57: }
-[; ;USART.c: 59: return;
-"59
-[e $UE 342  ]
-[; ;USART.c: 60: }
+[; ;USART.c: 58: }
+[; ;USART.c: 60: return;
 "60
+[e $UE 342  ]
+[; ;USART.c: 61: }
+"61
 [e :UE 342 ]
 }
-"62
+"63
 [v _UART_TX_String `(v ~T0 @X0 1 ef1`*uc ]
-"63
-{
-[; ;USART.c: 62: void UART_TX_String(unsigned char *string)
-[; ;USART.c: 63: {
-[e :U _UART_TX_String ]
-"62
-[v _string `*uc ~T0 @X0 1 r1 ]
-"63
-[f ]
 "64
-[v _i `i ~T0 @X0 1 a ]
-[; ;USART.c: 64: int i;
-[; ;USART.c: 65: for(i=0;string[i]!='\0';i++)
+{
+[; ;USART.c: 63: void UART_TX_String(unsigned char *string)
+[; ;USART.c: 64: {
+[e :U _UART_TX_String ]
+"63
+[v _string `*uc ~T0 @X0 1 r1 ]
+"64
+[f ]
 "65
+[v _i `i ~T0 @X0 1 a ]
+[; ;USART.c: 65: int i;
+[; ;USART.c: 66: for(i=0;string[i]!='\0';i++)
+"66
 {
 [e = _i -> 0 `i ]
 [e $U 351  ]
-"66
+"67
 [e :U 348 ]
-[; ;USART.c: 66: UART_TX(string[i]);
+[; ;USART.c: 67: UART_TX(string[i]);
 [e ( _UART_TX (1 -> *U + _string * -> _i `x -> -> # *U _string `i `x `*uc ]
-"65
+"66
 [e ++ _i -> 1 `i ]
 [e :U 351 ]
 [e $ != -> *U + _string * -> _i `x -> -> # *U _string `i `x `ui -> 0 `ui 348  ]
 [e :U 349 ]
-"66
-}
-[; ;USART.c: 67: }
 "67
+}
+[; ;USART.c: 68: }
+"68
 [e :UE 347 ]
 }
-"72
-[v _UART_RX_Byte `(uc ~T0 @X0 1 ef ]
 "73
+[v _UART_RX_Byte `(uc ~T0 @X0 1 ef ]
+"74
 {
-[; ;USART.c: 72: unsigned char UART_RX_Byte(void)
-[; ;USART.c: 73: {
+[; ;USART.c: 73: unsigned char UART_RX_Byte(void)
+[; ;USART.c: 74: {
 [e :U _UART_RX_Byte ]
 [f ]
-[; ;USART.c: 75: return RCREG;
-"75
+[; ;USART.c: 76: return RCREG;
+"76
 [e ) _RCREG ]
 [e $UE 352  ]
-[; ;USART.c: 76: }
-"76
+[; ;USART.c: 77: }
+"77
 [e :UE 352 ]
 }
-"79
-[v _UART_RX_String `(v ~T0 @X0 1 ef ]
 "80
+[v _UART_RX_String `(v ~T0 @X0 1 ef ]
+"81
 {
-[; ;USART.c: 79: void UART_RX_String()
-[; ;USART.c: 80: {
+[; ;USART.c: 80: void UART_RX_String()
+[; ;USART.c: 81: {
 [e :U _UART_RX_String ]
 [f ]
-[; ;USART.c: 83: *(rxArray+ptr)=RCREG;
-"83
-[e = *U + &U _rxArray * -> _ptr `ux -> -> # *U &U _rxArray `ui `ux _RCREG ]
-[; ;USART.c: 84: ptr++;
+[; ;USART.c: 84: *(rxArray+ptr)=RCREG;
 "84
-[e ++ _ptr -> -> 1 `i `uc ]
-[; ;USART.c: 85: }
+[e = *U + &U _rxArray * -> _ptr `ux -> -> # *U &U _rxArray `ui `ux _RCREG ]
+[; ;USART.c: 85: ptr++;
 "85
+[e ++ _ptr -> -> 1 `i `uc ]
+[; ;USART.c: 86: }
+"86
 [e :UE 353 ]
 }
-"87
+"88
 [v _empty_RX_BUFF `(v ~T0 @X0 1 ef ]
+"89
 {
-[; ;USART.c: 87: void empty_RX_BUFF(){
+[; ;USART.c: 88: void empty_RX_BUFF()
+[; ;USART.c: 89: {
 [e :U _empty_RX_BUFF ]
 [f ]
-[; ;USART.c: 88: for(int i = 0; i < 20; i++)
-"88
+[; ;USART.c: 90: for(int i = 0; i < 20; i++)
+"90
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
 [e $ < _i -> 20 `i 355  ]
 [e $U 356  ]
-"89
-[e :U 355 ]
-[; ;USART.c: 89: {
-{
-[; ;USART.c: 91: rxArray[i] = '\0';
 "91
+[e :U 355 ]
+[; ;USART.c: 91: {
+{
+[; ;USART.c: 93: rxArray[i] = '\0';
+"93
 [e = *U + &U _rxArray * -> -> _i `ui `ux -> -> # *U &U _rxArray `ui `ux -> -> 0 `ui `uc ]
-"92
+"94
 }
-"88
+"90
 [e ++ _i -> 1 `i ]
 [e $ < _i -> 20 `i 355  ]
 [e :U 356 ]
-"92
-}
-[; ;USART.c: 92: }
-[; ;USART.c: 93: ptr = 0;
-"93
-[e = _ptr -> -> 0 `i `uc ]
-[; ;USART.c: 94: }
 "94
+}
+[; ;USART.c: 94: }
+[; ;USART.c: 95: ptr = 0;
+"95
+[e = _ptr -> -> 0 `i `uc ]
+[; ;USART.c: 96: }
+"96
 [e :UE 354 ]
 }
-"96
-[v _putch `(v ~T0 @X0 1 ef1`uc ]
-"97
-{
-[; ;USART.c: 96: void putch(char c)
-[; ;USART.c: 97: {
-[e :U _putch ]
-"96
-[v _c `uc ~T0 @X0 1 r1 ]
-"97
-[f ]
-[; ;USART.c: 98: while(!TRMT)
 "98
-[e $U 359  ]
-[e :U 360 ]
-[; ;USART.c: 100: continue;
+[v _putch `(v ~T0 @X0 1 ef1`uc ]
+"99
+{
+[; ;USART.c: 98: void putch(char c)
+[; ;USART.c: 99: {
+[e :U _putch ]
+"98
+[v _c `uc ~T0 @X0 1 r1 ]
+"99
+[f ]
+[; ;USART.c: 100: while(!TRMT)
 "100
 [e $U 359  ]
+[e :U 360 ]
+[; ;USART.c: 102: continue;
+"102
+[e $U 359  ]
 [e :U 359 ]
-"98
+"100
 [e $ ! _TRMT 360  ]
 [e :U 361 ]
-[; ;USART.c: 101: TXREG = c;
-"101
+[; ;USART.c: 103: TXREG = c;
+"103
 [e = _TXREG _c ]
-[; ;USART.c: 102: }
-"102
+[; ;USART.c: 104: }
+"104
 [e :UE 358 ]
 }

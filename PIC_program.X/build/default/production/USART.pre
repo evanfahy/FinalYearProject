@@ -3800,20 +3800,18 @@ extern char * strichr(const char *, int);
 extern char * strrchr(const char *, int);
 extern char * strrichr(const char *, int);
 
-# 8 "USART.h"
-void InitUSART(void );
-unsigned char UART_RX_Byte(void);
-void UART_RX_String(void );
-
+# 9 "USART.h"
+void InitUSART(void);
 void UART_TX(unsigned char *);
-void UART_TX_String(unsigned char * );
+void UART_TX_String(unsigned char *);
+unsigned char UART_RX_Byte();
+void UART_RX_String();
+void empty_RX_BUFF();
 void putch(char );
-void empty_RX_BUFF(void);
-unsigned char rxByte, txByte;
 
-unsigned int intData = 0;
 unsigned char rxArray[20];
 unsigned char ptr;
+unsigned char txByte, rxByte;
 
 # 15 "USART.c"
 void InitUSART(void)
@@ -3849,7 +3847,8 @@ APFCON0bits.TXCKSEL = 1;
 return;
 }
 
-void UART_TX(unsigned char *data){
+void UART_TX(unsigned char *data)
+{
 
 while(!TRMT)
 
@@ -3888,7 +3887,8 @@ void UART_RX_String()
 ptr++;
 }
 
-void empty_RX_BUFF(){
+void empty_RX_BUFF()
+{
 for(int i = 0; i < 20; i++)
 {
 

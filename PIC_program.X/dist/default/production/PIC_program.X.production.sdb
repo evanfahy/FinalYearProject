@@ -43,33 +43,33 @@
 [v _memcpyee memcpyee `(v  1 e 1 0 ]
 "11 C:\Users\Evan\Documents\Year5\Project\PIC_program.X\IO_Controls.c
 [v _InitialisePorts InitialisePorts `(v  1 e 1 0 ]
-"72
+"52
 [v _SCR SCR `(v  1 e 1 0 ]
-"95
+"75
 [v _ADC_OPTO_Relay ADC_OPTO_Relay `(v  1 e 1 0 ]
-"117
+"97
 [v _SCR_Relay SCR_Relay `(v  1 e 1 0 ]
-"139
+"119
 [v _Fail_LED Fail_LED `(v  1 e 1 0 ]
 [v i1_Fail_LED Fail_LED `(v  1 e 1 0 ]
-"161
+"141
 [v _PassLED PassLED `(v  1 e 1 0 ]
 [v i1_PassLED PassLED `(v  1 e 1 0 ]
-"169
+"149
 [v _ToggleGLED ToggleGLED `(v  1 e 1 0 ]
 "39 C:\Users\Evan\Documents\Year5\Project\PIC_program.X\newmain.c
 [v _main main `(i  1 e 2 0 ]
-"111
+"58
 [v _initPIC initPIC `(v  1 e 1 0 ]
-"144
+"91
 [v _pi3Connect pi3Connect `(v  1 e 1 0 ]
-"173
+"120
 [v _verifyACSignal verifyACSignal `(v  1 e 1 0 ]
-"280
+"228
 [v _setupTestParameters setupTestParameters `(v  1 e 1 0 ]
-"345
+"284
 [v _beginHighCurrentTest beginHighCurrentTest `(v  1 e 1 0 ]
-"413
+"348
 [v _ISR ISR `II(v  1 e 1 0 ]
 "17 C:\Users\Evan\Documents\Year5\Project\PIC_program.X\Timer.c
 [v _Init_TMR1 Init_TMR1 `(v  1 e 1 0 ]
@@ -84,13 +84,13 @@
 [v _InitUSART InitUSART `(v  1 e 1 0 ]
 "48
 [v _UART_TX UART_TX `(v  1 e 1 0 ]
-"62
+"63
 [v _UART_TX_String UART_TX_String `(v  1 e 1 0 ]
-"79
+"80
 [v _UART_RX_String UART_RX_String `(v  1 e 1 0 ]
-"87
+"88
 [v _empty_RX_BUFF empty_RX_BUFF `(v  1 e 1 0 ]
-"96
+"98
 [v _putch putch `(v  1 e 1 0 ]
 "12 C:\Users\Evan\Documents\Year5\Project\PIC_program.X\ADC.h
 [v _adcData adcData `us  1 e 2 0 ]
@@ -311,7 +311,7 @@
 "3332
 [u S616 . 1 `S607 1 . 1 0 ]
 [v _BAUDCONbits BAUDCONbits `VES616  1 e 1 @415 ]
-[s S778 . 1 `uc 1 IOCAP0 1 0 :1:0 
+[s S777 . 1 `uc 1 IOCAP0 1 0 :1:0 
 `uc 1 IOCAP1 1 0 :1:1 
 `uc 1 IOCAP2 1 0 :1:2 
 `uc 1 IOCAP3 1 0 :1:3 
@@ -319,10 +319,10 @@
 `uc 1 IOCAP5 1 0 :1:5 
 ]
 "5485
-[s S785 . 1 `uc 1 IOCAP 1 0 :6:0 
+[s S784 . 1 `uc 1 IOCAP 1 0 :6:0 
 ]
-[u S787 . 1 `S778 1 . 1 0 `S785 1 . 1 0 ]
-[v _IOCAPbits IOCAPbits `VES787  1 e 1 @913 ]
+[u S786 . 1 `S777 1 . 1 0 `S784 1 . 1 0 ]
+[v _IOCAPbits IOCAPbits `VES786  1 e 1 @913 ]
 [s S285 . 1 `uc 1 IOCAF0 1 0 :1:0 
 `uc 1 IOCAF1 1 0 :1:1 
 `uc 1 IOCAF2 1 0 :1:2 
@@ -400,39 +400,41 @@
 [v _tmr1Val tmr1Val `ul  1 e 4 0 ]
 "37
 [v _aveTmr1Val aveTmr1Val `ul  1 e 4 0 ]
-"16 C:\Users\Evan\Documents\Year5\Project\PIC_program.X\USART.h
-[v _txByte txByte `uc  1 e 1 0 ]
-"19
+"17 C:\Users\Evan\Documents\Year5\Project\PIC_program.X\USART.h
 [v _rxArray rxArray `[20]uc  1 e 20 0 ]
-"20
+"18
 [v _ptr ptr `uc  1 e 1 0 ]
+"19
+[v _txByte txByte `uc  1 e 1 0 ]
 "39 C:\Users\Evan\Documents\Year5\Project\PIC_program.X\newmain.c
 [v _main main `(i  1 e 2 0 ]
 {
 "44
 [v main@i i `i  1 a 2 1 ]
-"109
+"56
 } 0
-"173
+"120
 [v _verifyACSignal verifyACSignal `(v  1 e 1 0 ]
 {
-"265
+"212
 [v verifyACSignal@i i `i  1 a 2 53 ]
-"175
+"122
 [v verifyACSignal@handshake2 handshake2 `uc  1 a 1 55 ]
-"278
+"226
 } 0
-"280
+"228
 [v _setupTestParameters setupTestParameters `(v  1 e 1 0 ]
 {
-"288
+"236
 [v setupTestParameters@handshake3 handshake3 `uc  1 a 1 28 ]
-"342
+"281
 } 0
-"345
+"284
 [v _beginHighCurrentTest beginHighCurrentTest `(v  1 e 1 0 ]
 {
-"411
+"320
+[v beginHighCurrentTest@i i `i  1 a 2 8 ]
+"346
 } 0
 "45 C:\Users\Evan\Documents\Year5\Project\PIC_program.X\Timer.c
 [v _Timer1Read Timer1Read `(ui  1 e 2 0 ]
@@ -444,32 +446,32 @@
 {
 "59
 } 0
-"117 C:\Users\Evan\Documents\Year5\Project\PIC_program.X\IO_Controls.c
+"97 C:\Users\Evan\Documents\Year5\Project\PIC_program.X\IO_Controls.c
 [v _SCR_Relay SCR_Relay `(v  1 e 1 0 ]
 {
 [v SCR_Relay@OnOff OnOff `uc  1 a 1 wreg ]
 [v SCR_Relay@OnOff OnOff `uc  1 a 1 wreg ]
-"119
+"99
 [v SCR_Relay@OnOff OnOff `uc  1 a 1 1 ]
-"123
+"103
 } 0
-"72
+"52
 [v _SCR SCR `(v  1 e 1 0 ]
 {
 [v SCR@OnOff OnOff `uc  1 a 1 wreg ]
 [v SCR@OnOff OnOff `uc  1 a 1 wreg ]
-"74
+"54
 [v SCR@OnOff OnOff `uc  1 a 1 1 ]
-"79
+"59
 } 0
-"95
+"75
 [v _ADC_OPTO_Relay ADC_OPTO_Relay `(v  1 e 1 0 ]
 {
 [v ADC_OPTO_Relay@OnOff OnOff `uc  1 a 1 wreg ]
 [v ADC_OPTO_Relay@OnOff OnOff `uc  1 a 1 wreg ]
-"97
+"77
 [v ADC_OPTO_Relay@OnOff OnOff `uc  1 a 1 1 ]
-"101
+"81
 } 0
 "5 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\atoi.c
 [v _atoi atoi `(i  1 e 2 0 ]
@@ -525,26 +527,26 @@
 [v ___lldiv@dividend dividend `ul  1 p 4 16 ]
 "31
 } 0
-"62 C:\Users\Evan\Documents\Year5\Project\PIC_program.X\USART.c
+"63 C:\Users\Evan\Documents\Year5\Project\PIC_program.X\USART.c
 [v _UART_TX_String UART_TX_String `(v  1 e 1 0 ]
 {
 [v UART_TX_String@string string `*.4uc  1 a 1 wreg ]
-"64
-[v UART_TX_String@i i `i  1 a 2 5 ]
-"62
-[v UART_TX_String@string string `*.4uc  1 a 1 wreg ]
 "65
+[v UART_TX_String@i i `i  1 a 2 5 ]
+"63
+[v UART_TX_String@string string `*.4uc  1 a 1 wreg ]
+"66
 [v UART_TX_String@string string `*.4uc  1 a 1 7 ]
-"67
+"68
 } 0
-"161 C:\Users\Evan\Documents\Year5\Project\PIC_program.X\IO_Controls.c
+"141 C:\Users\Evan\Documents\Year5\Project\PIC_program.X\IO_Controls.c
 [v _PassLED PassLED `(v  1 e 1 0 ]
 {
 [v PassLED@OnOff OnOff `uc  1 a 1 wreg ]
 [v PassLED@OnOff OnOff `uc  1 a 1 wreg ]
-"163
+"143
 [v PassLED@OnOff OnOff `uc  1 a 1 1 ]
-"167
+"147
 } 0
 "464 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\doprnt.c
 [v _printf printf `(i  1 e 2 0 ]
@@ -563,13 +565,13 @@
 [v printf@f f `*.25DCuc  1 p 2 14 ]
 "1541
 } 0
-"96 C:\Users\Evan\Documents\Year5\Project\PIC_program.X\USART.c
+"98 C:\Users\Evan\Documents\Year5\Project\PIC_program.X\USART.c
 [v _putch putch `(v  1 e 1 0 ]
 {
 [v putch@c c `uc  1 a 1 wreg ]
 [v putch@c c `uc  1 a 1 wreg ]
 [v putch@c c `uc  1 a 1 0 ]
-"102
+"104
 } 0
 "6 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\lwmod.c
 [v ___lwmod __lwmod `(ui  1 e 2 0 ]
@@ -641,10 +643,10 @@
 [v ___fttol@f1 f1 `f  1 p 3 35 ]
 "73
 } 0
-"169 C:\Users\Evan\Documents\Year5\Project\PIC_program.X\IO_Controls.c
+"149 C:\Users\Evan\Documents\Year5\Project\PIC_program.X\IO_Controls.c
 [v _ToggleGLED ToggleGLED `(v  1 e 1 0 ]
 {
-"181
+"161
 } 0
 "31 C:\Users\Evan\Documents\Year5\Project\PIC_program.X\Timer.c
 [v _Timer1 Timer1 `(ui  1 e 2 0 ]
@@ -656,44 +658,44 @@
 {
 "53
 } 0
-"144 C:\Users\Evan\Documents\Year5\Project\PIC_program.X\newmain.c
+"91 C:\Users\Evan\Documents\Year5\Project\PIC_program.X\newmain.c
 [v _pi3Connect pi3Connect `(v  1 e 1 0 ]
 {
-"152
+"99
 [v pi3Connect@handshake handshake `uc  1 a 1 5 ]
-"171
+"118
 } 0
-"87 C:\Users\Evan\Documents\Year5\Project\PIC_program.X\USART.c
+"88 C:\Users\Evan\Documents\Year5\Project\PIC_program.X\USART.c
 [v _empty_RX_BUFF empty_RX_BUFF `(v  1 e 1 0 ]
 {
-"88
+"90
 [v empty_RX_BUFF@i i `i  1 a 2 1 ]
-"94
+"96
 } 0
 "48
 [v _UART_TX UART_TX `(v  1 e 1 0 ]
 {
 [v UART_TX@data data `*.39uc  1 p 2 0 ]
-"60
+"61
 } 0
-"139 C:\Users\Evan\Documents\Year5\Project\PIC_program.X\IO_Controls.c
+"119 C:\Users\Evan\Documents\Year5\Project\PIC_program.X\IO_Controls.c
 [v _Fail_LED Fail_LED `(v  1 e 1 0 ]
 {
 [v Fail_LED@OnOff OnOff `uc  1 a 1 wreg ]
 [v Fail_LED@OnOff OnOff `uc  1 a 1 wreg ]
-"141
+"121
 [v Fail_LED@OnOff OnOff `uc  1 a 1 1 ]
-"145
+"125
 } 0
-"111 C:\Users\Evan\Documents\Year5\Project\PIC_program.X\newmain.c
+"58 C:\Users\Evan\Documents\Year5\Project\PIC_program.X\newmain.c
 [v _initPIC initPIC `(v  1 e 1 0 ]
 {
-"141
+"88
 } 0
 "11 C:\Users\Evan\Documents\Year5\Project\PIC_program.X\IO_Controls.c
 [v _InitialisePorts InitialisePorts `(v  1 e 1 0 ]
 {
-"69
+"49
 } 0
 "15 C:\Users\Evan\Documents\Year5\Project\PIC_program.X\ADC.c
 [v _InitialiseADC InitialiseADC `(v  1 e 1 0 ]
@@ -710,36 +712,36 @@
 {
 "46
 } 0
-"413 C:\Users\Evan\Documents\Year5\Project\PIC_program.X\newmain.c
+"348 C:\Users\Evan\Documents\Year5\Project\PIC_program.X\newmain.c
 [v _ISR ISR `II(v  1 e 1 0 ]
 {
-"476
+"410
 } 0
 "31 C:\Users\Evan\Documents\Year5\Project\PIC_program.X\Timer.c
 [v i1_Timer1 Timer1 `(ui  1 e 2 0 ]
 {
 "43
 } 0
-"161 C:\Users\Evan\Documents\Year5\Project\PIC_program.X\IO_Controls.c
+"141 C:\Users\Evan\Documents\Year5\Project\PIC_program.X\IO_Controls.c
 [v i1_PassLED PassLED `(v  1 e 1 0 ]
 {
 [v i1PassLED@OnOff OnOff `uc  1 a 1 wreg ]
 [v i1PassLED@OnOff OnOff `uc  1 a 1 wreg ]
-"163
+"143
 [v i1PassLED@OnOff OnOff `uc  1 a 1 1 ]
-"167
+"147
 } 0
-"139
+"119
 [v i1_Fail_LED Fail_LED `(v  1 e 1 0 ]
 {
 [v i1Fail_LED@OnOff OnOff `uc  1 a 1 wreg ]
 [v i1Fail_LED@OnOff OnOff `uc  1 a 1 wreg ]
-"141
+"121
 [v i1Fail_LED@OnOff OnOff `uc  1 a 1 1 ]
-"145
+"125
 } 0
-"79 C:\Users\Evan\Documents\Year5\Project\PIC_program.X\USART.c
+"80 C:\Users\Evan\Documents\Year5\Project\PIC_program.X\USART.c
 [v _UART_RX_String UART_RX_String `(v  1 e 1 0 ]
 {
-"85
+"86
 } 0

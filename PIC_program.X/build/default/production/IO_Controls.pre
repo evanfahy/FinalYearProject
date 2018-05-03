@@ -3704,18 +3704,18 @@ void InitialisePorts(void){
 
 OPTION_REG = 0b11000000;
 
-# 31
+# 23
 portA.portAByte = 0;
 LATA = 0;
 
 TRISA = 0b00011110;
 
-# 42
+# 34
 ANSELA = 0b00000000;
 
 IOCAPbits.IOCAP4 = 1;
 
-# 59
+
 portC.portCByte = 0;
 LATC = 0;
 TRISC = 0b00001000;

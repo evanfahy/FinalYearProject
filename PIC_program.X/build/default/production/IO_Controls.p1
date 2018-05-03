@@ -2765,357 +2765,357 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;IO_Controls.c: 13: OPTION_REG = 0b11000000;
 "13
 [e = _OPTION_REG -> -> 192 `i `uc ]
-[; ;IO_Controls.c: 31: portA.portAByte = 0;
-"31
+[; ;IO_Controls.c: 23: portA.portAByte = 0;
+"23
 [e = . _portA 0 -> -> 0 `i `uc ]
-[; ;IO_Controls.c: 32: LATA = 0;
-"32
+[; ;IO_Controls.c: 24: LATA = 0;
+"24
 [e = _LATA -> -> 0 `i `uc ]
-[; ;IO_Controls.c: 34: TRISA = 0b00011110;
-"34
+[; ;IO_Controls.c: 26: TRISA = 0b00011110;
+"26
 [e = _TRISA -> -> 30 `i `uc ]
-[; ;IO_Controls.c: 42: ANSELA = 0b00000000;
-"42
+[; ;IO_Controls.c: 34: ANSELA = 0b00000000;
+"34
 [e = _ANSELA -> -> 0 `i `uc ]
-[; ;IO_Controls.c: 44: IOCAPbits.IOCAP4 = 1;
-"44
+[; ;IO_Controls.c: 36: IOCAPbits.IOCAP4 = 1;
+"36
 [e = . . _IOCAPbits 0 4 -> -> 1 `i `uc ]
-[; ;IO_Controls.c: 59: portC.portCByte = 0;
-"59
+[; ;IO_Controls.c: 39: portC.portCByte = 0;
+"39
 [e = . _portC 0 -> -> 0 `i `uc ]
-[; ;IO_Controls.c: 60: LATC = 0;
-"60
+[; ;IO_Controls.c: 40: LATC = 0;
+"40
 [e = _LATC -> -> 0 `i `uc ]
-[; ;IO_Controls.c: 61: TRISC = 0b00001000;
-"61
+[; ;IO_Controls.c: 41: TRISC = 0b00001000;
+"41
 [e = _TRISC -> -> 8 `i `uc ]
-[; ;IO_Controls.c: 63: ANSELC = 0b00001000;
-"63
+[; ;IO_Controls.c: 43: ANSELC = 0b00001000;
+"43
 [e = _ANSELC -> -> 8 `i `uc ]
-[; ;IO_Controls.c: 68: return;
-"68
+[; ;IO_Controls.c: 48: return;
+"48
 [e $UE 340  ]
-[; ;IO_Controls.c: 69: }
-"69
+[; ;IO_Controls.c: 49: }
+"49
 [e :UE 340 ]
 }
-"72
+"52
 [v _SCR `(v ~T0 @X0 1 ef1`uc ]
 {
-[; ;IO_Controls.c: 72: void SCR(char OnOff){
+[; ;IO_Controls.c: 52: void SCR(char OnOff){
 [e :U _SCR ]
 [v _OnOff `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;IO_Controls.c: 74: portC.portCByte = PORTC;
-"74
+[; ;IO_Controls.c: 54: portC.portCByte = PORTC;
+"54
 [e = . _portC 0 _PORTC ]
-[; ;IO_Controls.c: 75: portC.bits.SCR = OnOff;
-"75
+[; ;IO_Controls.c: 55: portC.bits.SCR = OnOff;
+"55
 [e = . . _portC 1 2 _OnOff ]
-[; ;IO_Controls.c: 76: PORTC = portC.portCByte;
-"76
+[; ;IO_Controls.c: 56: PORTC = portC.portCByte;
+"56
 [e = _PORTC . _portC 0 ]
-[; ;IO_Controls.c: 77: return;
-"77
+[; ;IO_Controls.c: 57: return;
+"57
 [e $UE 341  ]
-[; ;IO_Controls.c: 79: }
-"79
+[; ;IO_Controls.c: 59: }
+"59
 [e :UE 341 ]
 }
-"81
+"61
 [v _ToggleSCR `(v ~T0 @X0 1 ef ]
 {
-[; ;IO_Controls.c: 81: void ToggleSCR(void){
+[; ;IO_Controls.c: 61: void ToggleSCR(void){
 [e :U _ToggleSCR ]
 [f ]
-[; ;IO_Controls.c: 83: portC.portCByte = PORTC;
-"83
+[; ;IO_Controls.c: 63: portC.portCByte = PORTC;
+"63
 [e = . _portC 0 _PORTC ]
-[; ;IO_Controls.c: 84: if(portC.bits.SCR == 1){
-"84
+[; ;IO_Controls.c: 64: if(portC.bits.SCR == 1){
+"64
 [e $ ! == -> . . _portC 1 2 `i -> 1 `i 343  ]
 {
-[; ;IO_Controls.c: 86: portC.bits.SCR = 0;
-"86
+[; ;IO_Controls.c: 66: portC.bits.SCR = 0;
+"66
 [e = . . _portC 1 2 -> -> 0 `i `uc ]
-"87
+"67
 }
-[; ;IO_Controls.c: 87: }
+[; ;IO_Controls.c: 67: }
 [e $U 344  ]
-"88
+"68
 [e :U 343 ]
-[; ;IO_Controls.c: 88: else{
+[; ;IO_Controls.c: 68: else{
 {
-[; ;IO_Controls.c: 89: portC.bits.SCR = 1;
-"89
+[; ;IO_Controls.c: 69: portC.bits.SCR = 1;
+"69
 [e = . . _portC 1 2 -> -> 1 `i `uc ]
-"90
+"70
 }
 [e :U 344 ]
-[; ;IO_Controls.c: 90: }
-[; ;IO_Controls.c: 91: PORTC=portC.portCByte;
-"91
+[; ;IO_Controls.c: 70: }
+[; ;IO_Controls.c: 71: PORTC=portC.portCByte;
+"71
 [e = _PORTC . _portC 0 ]
-[; ;IO_Controls.c: 92: return;
-"92
+[; ;IO_Controls.c: 72: return;
+"72
 [e $UE 342  ]
-[; ;IO_Controls.c: 93: }
-"93
+[; ;IO_Controls.c: 73: }
+"73
 [e :UE 342 ]
 }
-"95
+"75
 [v _ADC_OPTO_Relay `(v ~T0 @X0 1 ef1`uc ]
 {
-[; ;IO_Controls.c: 95: void ADC_OPTO_Relay(char OnOff){
+[; ;IO_Controls.c: 75: void ADC_OPTO_Relay(char OnOff){
 [e :U _ADC_OPTO_Relay ]
 [v _OnOff `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;IO_Controls.c: 97: portC.portCByte = PORTC;
-"97
+[; ;IO_Controls.c: 77: portC.portCByte = PORTC;
+"77
 [e = . _portC 0 _PORTC ]
-[; ;IO_Controls.c: 98: portC.bits.ADC_OPTORelay = OnOff;
-"98
+[; ;IO_Controls.c: 78: portC.bits.ADC_OPTORelay = OnOff;
+"78
 [e = . . _portC 1 4 _OnOff ]
-[; ;IO_Controls.c: 99: PORTC=portC.portCByte;
-"99
+[; ;IO_Controls.c: 79: PORTC=portC.portCByte;
+"79
 [e = _PORTC . _portC 0 ]
-[; ;IO_Controls.c: 100: return;
-"100
+[; ;IO_Controls.c: 80: return;
+"80
 [e $UE 345  ]
-[; ;IO_Controls.c: 101: }
-"101
+[; ;IO_Controls.c: 81: }
+"81
 [e :UE 345 ]
 }
-"103
+"83
 [v _ToggleADC_OPTO_Relay `(v ~T0 @X0 1 ef ]
 {
-[; ;IO_Controls.c: 103: void ToggleADC_OPTO_Relay(void){
+[; ;IO_Controls.c: 83: void ToggleADC_OPTO_Relay(void){
 [e :U _ToggleADC_OPTO_Relay ]
 [f ]
-[; ;IO_Controls.c: 105: portC.portCByte = PORTC;
-"105
+[; ;IO_Controls.c: 85: portC.portCByte = PORTC;
+"85
 [e = . _portC 0 _PORTC ]
-[; ;IO_Controls.c: 106: if(portC.bits.ADC_OPTORelay == 1){
-"106
+[; ;IO_Controls.c: 86: if(portC.bits.ADC_OPTORelay == 1){
+"86
 [e $ ! == -> . . _portC 1 4 `i -> 1 `i 347  ]
 {
-[; ;IO_Controls.c: 108: portC.bits.ADC_OPTORelay = 0;
-"108
+[; ;IO_Controls.c: 88: portC.bits.ADC_OPTORelay = 0;
+"88
 [e = . . _portC 1 4 -> -> 0 `i `uc ]
-"109
+"89
 }
-[; ;IO_Controls.c: 109: }
+[; ;IO_Controls.c: 89: }
 [e $U 348  ]
-"110
+"90
 [e :U 347 ]
-[; ;IO_Controls.c: 110: else{
+[; ;IO_Controls.c: 90: else{
 {
-[; ;IO_Controls.c: 111: portC.bits.ADC_OPTORelay = 1;
-"111
+[; ;IO_Controls.c: 91: portC.bits.ADC_OPTORelay = 1;
+"91
 [e = . . _portC 1 4 -> -> 1 `i `uc ]
-"112
+"92
 }
 [e :U 348 ]
-[; ;IO_Controls.c: 112: }
-[; ;IO_Controls.c: 113: PORTC=portC.portCByte;
-"113
+[; ;IO_Controls.c: 92: }
+[; ;IO_Controls.c: 93: PORTC=portC.portCByte;
+"93
 [e = _PORTC . _portC 0 ]
-[; ;IO_Controls.c: 114: return;
-"114
+[; ;IO_Controls.c: 94: return;
+"94
 [e $UE 346  ]
-[; ;IO_Controls.c: 115: }
-"115
+[; ;IO_Controls.c: 95: }
+"95
 [e :UE 346 ]
 }
-"117
+"97
 [v _SCR_Relay `(v ~T0 @X0 1 ef1`uc ]
 {
-[; ;IO_Controls.c: 117: void SCR_Relay(char OnOff){
+[; ;IO_Controls.c: 97: void SCR_Relay(char OnOff){
 [e :U _SCR_Relay ]
 [v _OnOff `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;IO_Controls.c: 119: portC.portCByte = PORTC;
-"119
+[; ;IO_Controls.c: 99: portC.portCByte = PORTC;
+"99
 [e = . _portC 0 _PORTC ]
-[; ;IO_Controls.c: 120: portC.bits.SCR_Relay = OnOff;
-"120
+[; ;IO_Controls.c: 100: portC.bits.SCR_Relay = OnOff;
+"100
 [e = . . _portC 1 1 _OnOff ]
-[; ;IO_Controls.c: 121: PORTC=portC.portCByte;
-"121
+[; ;IO_Controls.c: 101: PORTC=portC.portCByte;
+"101
 [e = _PORTC . _portC 0 ]
-[; ;IO_Controls.c: 122: return;
-"122
+[; ;IO_Controls.c: 102: return;
+"102
 [e $UE 349  ]
-[; ;IO_Controls.c: 123: }
-"123
+[; ;IO_Controls.c: 103: }
+"103
 [e :UE 349 ]
 }
-"125
+"105
 [v _ToggleSCR_Relay `(v ~T0 @X0 1 ef ]
 {
-[; ;IO_Controls.c: 125: void ToggleSCR_Relay(void){
+[; ;IO_Controls.c: 105: void ToggleSCR_Relay(void){
 [e :U _ToggleSCR_Relay ]
 [f ]
-[; ;IO_Controls.c: 127: portC.portCByte = PORTC;
-"127
+[; ;IO_Controls.c: 107: portC.portCByte = PORTC;
+"107
 [e = . _portC 0 _PORTC ]
-[; ;IO_Controls.c: 128: if(portC.bits.SCR_Relay == 1){
-"128
+[; ;IO_Controls.c: 108: if(portC.bits.SCR_Relay == 1){
+"108
 [e $ ! == -> . . _portC 1 1 `i -> 1 `i 351  ]
 {
-[; ;IO_Controls.c: 130: portC.bits.SCR_Relay = 0;
-"130
+[; ;IO_Controls.c: 110: portC.bits.SCR_Relay = 0;
+"110
 [e = . . _portC 1 1 -> -> 0 `i `uc ]
-"131
+"111
 }
-[; ;IO_Controls.c: 131: }
+[; ;IO_Controls.c: 111: }
 [e $U 352  ]
-"132
+"112
 [e :U 351 ]
-[; ;IO_Controls.c: 132: else{
+[; ;IO_Controls.c: 112: else{
 {
-[; ;IO_Controls.c: 133: portC.bits.SCR_Relay = 1;
-"133
+[; ;IO_Controls.c: 113: portC.bits.SCR_Relay = 1;
+"113
 [e = . . _portC 1 1 -> -> 1 `i `uc ]
-"134
+"114
 }
 [e :U 352 ]
-[; ;IO_Controls.c: 134: }
-[; ;IO_Controls.c: 135: PORTC=portC.portCByte;
-"135
+[; ;IO_Controls.c: 114: }
+[; ;IO_Controls.c: 115: PORTC=portC.portCByte;
+"115
 [e = _PORTC . _portC 0 ]
-[; ;IO_Controls.c: 136: return;
-"136
+[; ;IO_Controls.c: 116: return;
+"116
 [e $UE 350  ]
-[; ;IO_Controls.c: 137: }
-"137
+[; ;IO_Controls.c: 117: }
+"117
 [e :UE 350 ]
 }
-"139
+"119
 [v _Fail_LED `(v ~T0 @X0 1 ef1`uc ]
 {
-[; ;IO_Controls.c: 139: void Fail_LED(char OnOff){
+[; ;IO_Controls.c: 119: void Fail_LED(char OnOff){
 [e :U _Fail_LED ]
 [v _OnOff `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;IO_Controls.c: 141: portC.portCByte = PORTC;
-"141
+[; ;IO_Controls.c: 121: portC.portCByte = PORTC;
+"121
 [e = . _portC 0 _PORTC ]
-[; ;IO_Controls.c: 142: portC.bits.Fail_LED = OnOff;
-"142
+[; ;IO_Controls.c: 122: portC.bits.Fail_LED = OnOff;
+"122
 [e = . . _portC 1 5 _OnOff ]
-[; ;IO_Controls.c: 143: PORTC=portC.portCByte;
-"143
+[; ;IO_Controls.c: 123: PORTC=portC.portCByte;
+"123
 [e = _PORTC . _portC 0 ]
-[; ;IO_Controls.c: 144: return;
-"144
+[; ;IO_Controls.c: 124: return;
+"124
 [e $UE 353  ]
-[; ;IO_Controls.c: 145: }
-"145
+[; ;IO_Controls.c: 125: }
+"125
 [e :UE 353 ]
 }
-"147
+"127
 [v _ToggleRLED `(v ~T0 @X0 1 ef ]
 {
-[; ;IO_Controls.c: 147: void ToggleRLED(void){
+[; ;IO_Controls.c: 127: void ToggleRLED(void){
 [e :U _ToggleRLED ]
 [f ]
-[; ;IO_Controls.c: 149: portC.portCByte = PORTC;
-"149
+[; ;IO_Controls.c: 129: portC.portCByte = PORTC;
+"129
 [e = . _portC 0 _PORTC ]
-[; ;IO_Controls.c: 150: if(portC.bits.Fail_LED == 1){
-"150
+[; ;IO_Controls.c: 130: if(portC.bits.Fail_LED == 1){
+"130
 [e $ ! == -> . . _portC 1 5 `i -> 1 `i 355  ]
 {
-[; ;IO_Controls.c: 152: portC.bits.Fail_LED = 0;
-"152
+[; ;IO_Controls.c: 132: portC.bits.Fail_LED = 0;
+"132
 [e = . . _portC 1 5 -> -> 0 `i `uc ]
-"153
+"133
 }
-[; ;IO_Controls.c: 153: }
+[; ;IO_Controls.c: 133: }
 [e $U 356  ]
-"154
+"134
 [e :U 355 ]
-[; ;IO_Controls.c: 154: else{
+[; ;IO_Controls.c: 134: else{
 {
-[; ;IO_Controls.c: 155: portC.bits.Fail_LED = 1;
-"155
+[; ;IO_Controls.c: 135: portC.bits.Fail_LED = 1;
+"135
 [e = . . _portC 1 5 -> -> 1 `i `uc ]
-"156
+"136
 }
 [e :U 356 ]
-[; ;IO_Controls.c: 156: }
-[; ;IO_Controls.c: 157: PORTC=portC.portCByte;
-"157
+[; ;IO_Controls.c: 136: }
+[; ;IO_Controls.c: 137: PORTC=portC.portCByte;
+"137
 [e = _PORTC . _portC 0 ]
-[; ;IO_Controls.c: 158: return;
-"158
+[; ;IO_Controls.c: 138: return;
+"138
 [e $UE 354  ]
-[; ;IO_Controls.c: 159: }
-"159
+[; ;IO_Controls.c: 139: }
+"139
 [e :UE 354 ]
 }
-"161
+"141
 [v _PassLED `(v ~T0 @X0 1 ef1`uc ]
 {
-[; ;IO_Controls.c: 161: void PassLED(char OnOff){
+[; ;IO_Controls.c: 141: void PassLED(char OnOff){
 [e :U _PassLED ]
 [v _OnOff `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;IO_Controls.c: 163: portA.portAByte = PORTA;
-"163
+[; ;IO_Controls.c: 143: portA.portAByte = PORTA;
+"143
 [e = . _portA 0 _PORTA ]
-[; ;IO_Controls.c: 164: portA.bits.PassLED = OnOff;
-"164
+[; ;IO_Controls.c: 144: portA.bits.PassLED = OnOff;
+"144
 [e = . . _portA 1 5 _OnOff ]
-[; ;IO_Controls.c: 165: PORTA=portA.portAByte;
-"165
+[; ;IO_Controls.c: 145: PORTA=portA.portAByte;
+"145
 [e = _PORTA . _portA 0 ]
-[; ;IO_Controls.c: 166: return;
-"166
+[; ;IO_Controls.c: 146: return;
+"146
 [e $UE 357  ]
-[; ;IO_Controls.c: 167: }
-"167
+[; ;IO_Controls.c: 147: }
+"147
 [e :UE 357 ]
 }
-"169
+"149
 [v _ToggleGLED `(v ~T0 @X0 1 ef ]
 {
-[; ;IO_Controls.c: 169: void ToggleGLED(void){
+[; ;IO_Controls.c: 149: void ToggleGLED(void){
 [e :U _ToggleGLED ]
 [f ]
-[; ;IO_Controls.c: 171: portA.portAByte = PORTA;
-"171
+[; ;IO_Controls.c: 151: portA.portAByte = PORTA;
+"151
 [e = . _portA 0 _PORTA ]
-[; ;IO_Controls.c: 172: if(portA.bits.PassLED == 1){
-"172
+[; ;IO_Controls.c: 152: if(portA.bits.PassLED == 1){
+"152
 [e $ ! == -> . . _portA 1 5 `i -> 1 `i 359  ]
 {
-[; ;IO_Controls.c: 174: portA.bits.PassLED = 0;
-"174
+[; ;IO_Controls.c: 154: portA.bits.PassLED = 0;
+"154
 [e = . . _portA 1 5 -> -> 0 `i `uc ]
-"175
+"155
 }
-[; ;IO_Controls.c: 175: }
+[; ;IO_Controls.c: 155: }
 [e $U 360  ]
-"176
+"156
 [e :U 359 ]
-[; ;IO_Controls.c: 176: else{
+[; ;IO_Controls.c: 156: else{
 {
-[; ;IO_Controls.c: 177: portA.bits.PassLED = 1;
-"177
+[; ;IO_Controls.c: 157: portA.bits.PassLED = 1;
+"157
 [e = . . _portA 1 5 -> -> 1 `i `uc ]
-"178
+"158
 }
 [e :U 360 ]
-[; ;IO_Controls.c: 178: }
-[; ;IO_Controls.c: 179: PORTA=portA.portAByte;
-"179
+[; ;IO_Controls.c: 158: }
+[; ;IO_Controls.c: 159: PORTA=portA.portAByte;
+"159
 [e = _PORTA . _portA 0 ]
-[; ;IO_Controls.c: 180: return;
-"180
+[; ;IO_Controls.c: 160: return;
+"160
 [e $UE 358  ]
-[; ;IO_Controls.c: 181: }
-"181
+[; ;IO_Controls.c: 161: }
+"161
 [e :UE 358 ]
 }

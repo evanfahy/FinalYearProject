@@ -2708,29 +2708,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _aveTmr1Val `ul ~T0 @X0 1 e ]
 [v _Tmr1Val_Ms `ul ~T0 @X0 1 e ]
 [; ;Timer.h: 37: unsigned long aveTmr1Val, Tmr1Val_Ms;
-[; ;USART.h: 8: void InitUSART(void );
-[; ;USART.h: 9: unsigned char UART_RX_Byte(void);
-[; ;USART.h: 10: void UART_RX_String(void );
-[; ;USART.h: 12: void UART_TX(unsigned char *);
-[; ;USART.h: 13: void UART_TX_String(unsigned char * );
-[; ;USART.h: 14: void putch(char );
-[; ;USART.h: 15: void empty_RX_BUFF(void);
-"16 USART.h
-[v _rxByte `uc ~T0 @X0 1 e ]
-[v _txByte `uc ~T0 @X0 1 e ]
-[; ;USART.h: 16: unsigned char rxByte, txByte;
-"18
-[v _intData `ui ~T0 @X0 1 e ]
-[i _intData
--> -> 0 `i `ui
-]
-[; ;USART.h: 18: unsigned int intData = 0;
-"19
+[; ;USART.h: 9: void InitUSART(void);
+[; ;USART.h: 10: void UART_TX(unsigned char *);
+[; ;USART.h: 11: void UART_TX_String(unsigned char *);
+[; ;USART.h: 12: unsigned char UART_RX_Byte();
+[; ;USART.h: 13: void UART_RX_String();
+[; ;USART.h: 14: void empty_RX_BUFF();
+[; ;USART.h: 15: void putch(char );
+"17 USART.h
 [v _rxArray `uc ~T0 @X0 -> 20 `i e ]
-[; ;USART.h: 19: unsigned char rxArray[20];
-"20
+[; ;USART.h: 17: unsigned char rxArray[20];
+"18
 [v _ptr `uc ~T0 @X0 1 e ]
-[; ;USART.h: 20: unsigned char ptr;
+[; ;USART.h: 18: unsigned char ptr;
+"19
+[v _txByte `uc ~T0 @X0 1 e ]
+[v _rxByte `uc ~T0 @X0 1 e ]
+[; ;USART.h: 19: unsigned char txByte, rxByte;
 "14 Timer.c
 [v _temp_time `ui ~T0 @X0 1 e ]
 [; ;Timer.c: 14: unsigned int temp_time;
