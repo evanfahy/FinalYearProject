@@ -1,0 +1,31 @@
+body{
+  font-family: 'Arial';
+  background:white;
+  width:100%; 
+  text-align:center;
+}
+
+h1{
+  font-size:2em;
+  color:black;
+}
+
+table {
+  font-family: arial;
+  width: 100%;
+}
+
+td, th {  
+  border:#ccc 1px solid;
+  padding:8px;
+  width:500px;
+  font-size:1em;
+  text-align:left;
+}
+
+.box{
+  background:white;
+  width:1000px;
+  margin: 0 auto 0 auto;  
+}
+
