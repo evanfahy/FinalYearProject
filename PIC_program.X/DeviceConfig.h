@@ -19,6 +19,8 @@
 #ifndef DEVICECONFIG_H
 #define	DEVICECONFIG_H
 
+#include <xc.h> // include processor files - each processor file is guarded.
+
 //Configuration Settings    (CONFIG1 & CONFIG2))
 //Clock related
 #pragma config FOSC = INTOSC    //Oscillator Selection (INTOSC oscillator: I/O function on CLKIN pin)

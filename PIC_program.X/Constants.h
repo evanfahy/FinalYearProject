@@ -10,6 +10,8 @@
 #ifndef CONSTANTS_H
 #define	CONSTANTS_H
 
+#include <xc.h> // include processor files - each processor file is guarded.
+
 //misc instructions/abbreviations
 #define Pin6_OFF LATCbits.LATC4=Clear
 #define Pin6_ON LATCbits.LATC4=Set

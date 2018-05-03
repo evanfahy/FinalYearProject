@@ -30,7 +30,7 @@ void Init_TMR1(void)
 
  unsigned int Timer1(void)
 {
-        T1CONbits.TMR1ON = Disable;                 // Stop the timer
+        TMR1ON = Disable;                 // Stop the timer
         
         temp_time = TMR1H;
         temp_time <<= 8;
@@ -41,4 +41,20 @@ void Init_TMR1(void)
         
         return temp_time;
 }
+ 
+  unsigned int Timer1Read(void)
+{        
+        temp_time = TMR1H;
+        temp_time <<= 8;
+        temp_time += TMR1L;
+        
+        return temp_time;
+}
+  
+  void TMR1Reset(void)
+  {
+    TMR1ON = Disable;                 // Stop the timer 
+    TMR1L = 0x00;
+    TMR1H = 0x00; 
+  }
  

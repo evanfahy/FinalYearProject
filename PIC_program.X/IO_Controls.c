@@ -5,8 +5,6 @@
  * Created on 05 March 2018, 19:09
  */
 
-
-#include <xc.h>
 #include "IO_Controls.h"
 
 //Function Definitions
@@ -22,20 +20,12 @@ void InitialisePorts(void){
     //Ensure IO ports are configured to output zeros before enabling as outputs
     
     
-    //************* PORT A *************
-    // A0 TxPin (PGM)        Digital In
-    // A1 RxPin (PGM)        Digital In
-    // A2 RCD_FaultPinDIN    Digital In/ INTERRUPT PIN
-    // A3 ResetButtonPinDIN  Digital In
-    // A4 TestPin1Out        Digital Out
-    // A5 ShortTripSCRPinOut Digital Out
-    
     portA.portAByte = 0;     // initialise the A shadow register to zero
     LATA   = 0;              // Switch off all port A output pins before enabling
     
-    TRISA  = 0b00111110;     /// 0 = Digital Outputs; 1 = Digital IN.
-                             // RA5 is set to digital input for INT_NEG (Interrupt-on-change))
-                             // RA4 is set to digital input for safety button
+    TRISA  = 0b00011110;     /// 0 = Digital Outputs; 1 = Digital IN.
+                             // RA5 is set to digital output for PASS LED
+                             // RA4 is set to digital input for for INT_NEG (Interrupt-on-change)
                              // RA3 pin4 bit is always ?1? as RA3 is an input only
                              // RA2 is set to digital input for INT_POS
                              // RA1 (RXPIN) is set to digital input
@@ -45,18 +35,6 @@ void InitialisePorts(void){
     
     IOCAPbits.IOCAP4 = 1;   //Enable IOCIE on RA4/Pin3
 
-    
-    
-    //INLVLA2 =1;             // select Schmitt Trigger levels for IOC A2 pin
-    //************* PORT A end *************
-    
-        //************* PORT C *************
-    // C0 VccSensePinAIN    Analog In -AN4
-    // C1 FaultLEDPinOut    Digital Out
-    // C2 ClosePinOut       Digital Out
-    // C3 MainsSensePinAIN  Analog In -AN7
-    // C4 TestPin2Out        Digital Out
-    // C5 Trip M7 Digital Out
     
     portC.portCByte = 0;    // initialise the C shadow register to zero
     LATC = 0;               // Switch off all port C output pins before enabling
@@ -71,55 +49,114 @@ void InitialisePorts(void){
 }
 
 
-void PIN3(char OnOff){
-
-    //read, write, modify
-    portA.portAByte = PORTA;//reads port A val into mask
-    portA.bits.Pin3 = OnOff;//change bit in mask
-    PORTA=portA.portAByte;//write to mask
+void SCR(char OnOff){
+    
+    portC.portCByte = PORTC;
+    portC.bits.SCR = OnOff;
+    PORTC = portC.portCByte;
     return;
+
 }
 
-void PIN5(char OnOff){
+void ToggleSCR(void){
 
     portC.portCByte = PORTC;
-    portC.bits.Pin5 = OnOff;
-    PORTC=portC.portCByte;
-    return; 
-}
-
-void PIN6(char OnOff){
-
-    portC.portCByte = PORTC;
-    portC.bits.Pin6 = OnOff;
-    PORTC=portC.portCByte;
-    return; 
-}
-
-void TogglePIN6(void){
-
-    portC.portCByte = PORTC;
-    if(portC.bits.Pin6 == 1){
+    if(portC.bits.SCR == 1){
        
-        portC.bits.Pin6 = 0;
+        portC.bits.SCR = 0;
     }
     else{
-        portC.bits.Pin6 = 1;
+        portC.bits.SCR = 1;
     }
      PORTC=portC.portCByte; 
      return;
 }
 
-void TogglePIN5(void){
+void ADC_OPTO_Relay(char OnOff){
 
     portC.portCByte = PORTC;
-    if(portC.bits.Pin5 == 1){
+    portC.bits.ADC_OPTORelay = OnOff;
+    PORTC=portC.portCByte;
+    return; 
+}
+
+void ToggleADC_OPTO_Relay(void){
+
+    portC.portCByte = PORTC;
+    if(portC.bits.ADC_OPTORelay == 1){
        
-        portC.bits.Pin5 = 0;
+        portC.bits.ADC_OPTORelay = 0;
     }
     else{
-        portC.bits.Pin5 = 1;
+        portC.bits.ADC_OPTORelay = 1;
     }
      PORTC=portC.portCByte; 
      return;
 }
+
+void SCR_Relay(char OnOff){
+
+    portC.portCByte = PORTC;
+    portC.bits.SCR_Relay = OnOff;
+    PORTC=portC.portCByte;
+    return; 
+}
+
+void ToggleSCR_Relay(void){
+
+    portC.portCByte = PORTC;
+    if(portC.bits.SCR_Relay == 1){
+       
+        portC.bits.SCR_Relay = 0;
+    }
+    else{
+        portC.bits.SCR_Relay = 1;
+    }
+     PORTC=portC.portCByte; 
+     return;
+}
+
+void Fail_LED(char OnOff){
+
+    portC.portCByte = PORTC;
+    portC.bits.Fail_LED = OnOff;
+    PORTC=portC.portCByte;
+    return; 
+}
+
+void ToggleRLED(void){
+
+    portC.portCByte = PORTC;
+    if(portC.bits.Fail_LED == 1){
+       
+        portC.bits.Fail_LED = 0;
+    }
+    else{
+        portC.bits.Fail_LED = 1;
+    }
+     PORTC=portC.portCByte; 
+     return;
+}
+
+void PassLED(char OnOff){
+
+    portA.portAByte = PORTA;
+    portA.bits.PassLED = OnOff;
+    PORTA=portA.portAByte;
+    return; 
+}
+
+void ToggleGLED(void){
+
+    portA.portAByte = PORTA;
+    if(portA.bits.PassLED == 1){
+       
+        portA.bits.PassLED = 0;
+    }
+    else{
+        portA.bits.PassLED = 1;
+    }
+     PORTA=portA.portAByte; 
+     return;
+}
+

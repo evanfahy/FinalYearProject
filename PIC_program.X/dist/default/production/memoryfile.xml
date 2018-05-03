@@ -3,15 +3,15 @@
   <executable name="dist/default/production\PIC_program.X.production.hex">
     <memory name="program">
       <units>words</units>
-      <length>2048</length>
-      <used>446</used>
-      <free>1602</free>
+      <length>4096</length>
+      <used>2394</used>
+      <free>1702</free>
     </memory>
     <memory name="data">
       <units>bytes</units>
-      <length>128</length>
-      <used>59</used>
-      <free>69</free>
+      <length>256</length>
+      <used>141</used>
+      <free>115</free>
     </memory>
   </executable>
 </project>
