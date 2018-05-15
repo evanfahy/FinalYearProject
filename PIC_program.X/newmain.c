@@ -5,48 +5,27 @@
  * Created on 25 October 2017, 09:46
  */
 
-#define _XTAL_FREQ          4000000  //Declare Oscillator value (0.1Mhz) for use in __delay_ms, etc.
-#define _TMR1_cnt           65536    // value to be subtracted away from timer0 register (max of 65535 allowed)
+#define _XTAL_FREQ          4000000  //Declare Oscillator value (0.4Mhz) for use in __delay_ms, etc.
 
+//Standard libs
 #include <xc.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 
-#include "Constants.h"
-#include "DeviceConfig.h"
-#include "IO_Controls.h"
-#include "ADC.h"
-#include "USART.h"
-#include "Timer.h"
-
-void initPIC(void);
-void pi3Connect(void);
-void verifyACSignal(void);
-void setupTestParameters(void);
-void beginHighCurrentTest(void);
-void interrupt ISR (void);
-
-//Global Scope
-//volatile keyword is a qualifier that is applied to a variable when it is declared. It tells the compiler that the value of the variable may change at any time
-//without any action being taken by the code the compiler finds nearby.
-volatile unsigned short sampleVal = 0, ADC_Test = False, tmr1StartFlag = False, tmr1Samples = 0, tmr1Start = False, 
-                        mainTest = False, PosCycle = False, NegCycle = False, SCR_On = False;
-unsigned short rxFlag = 0;
-unsigned long PoW = 0;
-unsigned short cycles = 0;
+#include "newmain.h"
 
 int main() 
 {
     
     initPIC();
-    
+   
     for(int i = 0; i < 6; i++){
     
         ToggleGLED();
-        __delay_ms(100);
+        __delay_ms(250);
     }
-      
+    
    pi3Connect();
     __delay_ms(10);
    verifyACSignal();
@@ -142,8 +121,8 @@ void verifyACSignal(void)
     aveTmr1Val = 0;
      
      //Begin ADC Test
-     // 100 is arbitrary
-    while(tmr1Samples < 100 ){
+     // 300 is arbitrary
+    while(tmr1Samples < 300 ){
          
         adcSample = ReadADC();
         
@@ -151,15 +130,15 @@ void verifyACSignal(void)
                     
             if(tmr1StartFlag == 0) {
             
-                T1CONbits.TMR1ON = Enable;   //Timer on
+                T1CONbits.TMR1ON = Enable;                  //Timer on
                 tmr1StartFlag = Set;
             }
             else {
                 
-                tmr1Val = Timer1();           //Function call to calculate time
+                tmr1Val = Timer1StopRead();                         //Function call to calculate time
                 aveTmr1Val = aveTmr1Val + tmr1Val;
                 
-                tmr1Samples = tmr1Samples + 1 ;
+                tmr1Samples = tmr1Samples + 1;
                 tmr1StartFlag = Clear;
             }
             
@@ -177,7 +156,7 @@ void verifyACSignal(void)
     ADON=Disable;
     tmr1Samples = 0;
     tmr1Val = 0;
-    aveTmr1Val = fabs((double)(aveTmr1Val/100));
+    aveTmr1Val = fabs((double)(aveTmr1Val/300));
     
     //Tmr1Val_Ms = fabs((double)(aveTmr1Val*2)/1000); // to display in ms
     
@@ -199,7 +178,6 @@ void verifyACSignal(void)
     //Send to Pi
      UART_TX(txByte);
      __delay_ms(1800);
-     //PIE1bits.RCIE = Disable;                                 //enable USART receive interrupt
      printf("%d\n", aveTmr1Val);
      //printf("Half cycle: %d ms\n", Tmr1Val_Ms); 
      empty_RX_BUFF();
@@ -227,11 +205,11 @@ void verifyACSignal(void)
 
 void setupTestParameters(void)
 {
-    //PIE1bits.RCIE = Enable;                                 //enable USART receive interrupt
-    INTCONbits.PEIE = Enable;                               //enables all active peripheral interrupts
+    //PIE1bits.RCIE = Enable;                                   //enable USART receive interrupt
+    INTCONbits.PEIE = Enable;                                   //enables all active peripheral interrupts
     
-    //RCSTAbits.SPEN = Enable;                                //enable USART
-    RCSTAbits.CREN = Disable; RCSTAbits.CREN = Enable;      // resets continuous receiver
+    //RCSTAbits.SPEN = Enable;                                  //enable USART
+    RCSTAbits.CREN = Disable; RCSTAbits.CREN = Enable;          // resets continuous receiver
     
     unsigned char handshake3 = '0';
     
@@ -249,7 +227,6 @@ void setupTestParameters(void)
     empty_RX_BUFF();
     
     //wait for PoW value
-    
     while(rxArray[0] == '\0'){}
     rxFlag = 0;
     
@@ -286,15 +263,12 @@ void beginHighCurrentTest(void)
     mainTest = True;
     PIE1bits.RCIE = Disable;               //Disables RX 
         
-    //When POS_INT occurs start timer
+    //When POS_INT or NEG_INT occurs start timer
     //Constantly check when timer == PoW
-    //When timer == PoW drive transistor to Thyristor
-    //Switching Thyristor relay during cycles for numOfCycles
+    //When timer == PoW drive Thyristor
     //Finish test
-    //Alert Pi
-    //Send time taken to Pi3
     //Examine scope
-    //Done
+
     
     //Polarity of Transformer is flipped
     //SCR will only let negative cycle flow
@@ -309,30 +283,48 @@ void beginHighCurrentTest(void)
         
         SCR_Relay(Clear);
         PosCycle = True;
-//        for(int i = 0; i < 6; i++){
-//            
-//            ToggleGLED();
-//            __delay_ms(250);
-//         }
+
     }
     
-    
+    //Repeats cycle pulse for i number of times
     for(int i = 0; i < cycles; i++){
     
-        //SCR(Clear);
-   
-        INTCONbits.INTE = Enable;             //Enable External interrupt
-        INTCONbits.IOCIE = Enable;            // Enable interrupt-on-change
+        //Test is about to begin
+        for(int j = 0; j < 6; j++){
+            
+            ToggleGLED();
+            __delay_ms(250);
+         }
+        
+        //Arbitrary delay to mimic trigger
+        __delay_ms(3000);
+        Fail_LED(1);
+        __delay_ms(2000);
+        Fail_LED(0);
+        
+        PassLED(1);        
+        //Enable interrupt to turn on timer at Pos/Neg zero crossing
+        if(PoW > 5000){
     
-        while(SCR_On <= PoW)
-        {
-            SCR_On = Timer1Read();
+            INTCONbits.IOCIE = Enable;
+        
         }
-        INTCONbits.INTE = Disable;             //Enable External interrupt
-        INTCONbits.IOCIE = Disable;            // Enable interrupt-on-change
-        SCR(Set);
-        SCR_On = 0;
+        else if (PoW < 4999){
+        
+            INTCONbits.INTE = Enable;
+        }
+        else{}
+        
+        //While Timer1 has not reached the time of PoW
+         while(SCR_On < PoW){
+             
+             SCR_On = Timer1Read();
+         }       
+        SCR(Set);   //Drive SCR
         TMR1Reset();
+        SCR_On = 0;
+        PassLED(0);
+        SCR(Clear);
     }
     
     NegCycle = False;
@@ -340,71 +332,6 @@ void beginHighCurrentTest(void)
     SCR(Clear);
     SCR_Relay(Clear);
     ADC_OPTO_Relay(Clear);
-   
-
-    return;
-}
-
-void interrupt ISR (void)
-{
-    //External Interrupt
-    //Positive Cycle Zero Cross
-    if((INTCONbits.INTF == 1) && (INTCONbits.INTE == 1)){
-       
-         if((PORTAbits.RA2 == 1)){
-                            
-             if((ADC_Test == True) && (tmr1StartFlag == 0)){
-                 
-                TMR1ON = Enable;
-                tmr1StartFlag++;
-                Fail_LED(Clear);
-                PassLED(Set);
-             }
-             else if(PosCycle == True){
-                 
-               TMR1ON = Enable; 
-            }    
-         }
-        INTCONbits.INTF = 0;
-    }
-    
-    //Interrupt on Change Interrupt
-    //Positive Cycle Zero Cross
-    else if(( IOCAFbits.IOCAF4 == 1 ) && (INTCONbits.IOCIE == 1)){
-    
-        if((PORTAbits.RA4 == 1)){
-            
-            if((ADC_Test == True) && (tmr1StartFlag == 1)){
-                tmr1Val = Timer1();
-                Fail_LED(Set);
-                PassLED(Clear);
-                tmr1StartFlag = 0;
-            }
-            else if(NegCycle == True){
-                
-               TMR1ON = Enable; 
-            }
-           
-        }
-        
-        IOCAFbits.IOCAF4 = 0;   //clears flag
-    }
-    
-    //UART RX Interrupt routine
-    else if (PIR1bits.RCIF){
-        rxFlag = 1;
-        if((RCSTAbits.OERR == 1) || (RCSTAbits.FERR == 1)){
-            
-            //OERR is the error
-            RCSTAbits.CREN = Disable; RCSTAbits.CREN = Enable;      // resets continuous receiver
-            Fail_LED(Set);
-        }
-        else{
-
-            UART_RX_String();
-        }
-
-    }
     
     return;
 }
